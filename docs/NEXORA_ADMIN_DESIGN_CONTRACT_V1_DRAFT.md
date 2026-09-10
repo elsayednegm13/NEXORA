@@ -1,8 +1,8 @@
 # NEXORA Admin Design Contract v1 — DRAFT
 
-> Status: **DRAFT / NOT YET OWNER-APPROVED**  
-> Track: **R5 — NEXORA Content Architecture & Product Identity**  
-> Live baseline remains **R4.1** until a later owner-approved release.  
+> Status: **DRAFT / NOT YET OWNER-APPROVED**
+> Track: **R5 — NEXORA Content Architecture & Product Identity**
+> Live baseline remains **R4.1** until a later owner-approved release.
 > This contract records design decisions that must become protected once the final R5 visual baseline is approved.
 
 ## 0. Reference-match correction — 2026-09-10
