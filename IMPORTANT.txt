@@ -1,0 +1,38 @@
+NEXORA NX-OPS-3 R5 CLEAN RELEASE
+================================
+
+This package is a FULL clean code/assets release built on the accepted NX-OPS-3 R4 baseline.
+Do NOT overlay it onto an old project folder. Extract it into a NEW folder.
+
+R5 scope:
+- Admin icon system is standardized on pinned Font Awesome 7.3.1 with readable fallback glyphs.
+- The Admin shell and current Admin modules use the shared icon helper instead of ad-hoc icon glyphs.
+- Public website and Client Profile assets remain byte-identical and are intentionally not rewritten.
+- Project Execution task cards are compact, two-column on suitable desktop widths and one-column responsively.
+- Tasks remain grouped by their existing milestone/stage.
+- Each stage includes a compact semantic status-distribution strip and status counts.
+- Task cards use semantic status rail/tint/icon/text for fast visual scanning.
+- Readability at 100% zoom is improved for stage titles, task titles, metadata and status chips.
+- New Task / New Milestone forms remain collapsed after a successful save.
+- No migration, API route, task lifecycle, assignment rule, progress rule, or D1 schema change.
+
+Official entry point (PowerShell):
+  Set-ExecutionPolicy -Scope Process Bypass
+  .\scripts\RUN_NX_OPS_3_RELEASE.ps1
+
+0008 is already expected to be Live for this code-only release.
+The runner performs a read-only CODE preflight and, only after owner review, instructs:
+  .\scripts\RUN_NX_OPS_3_RELEASE.ps1 -DeployRemote
+
+DO NOT:
+- run APPLY_NX_OPS_3.ps1 directly
+- rerun FIRST_DEPLOY.ps1
+- create/replace the D1 database
+- reset Worker Secrets
+- apply any migration for R5
+
+The release runner pins verified portable Node.js v22.23.2 and Wrangler 4.129.1,
+validates SHA-256 hashes, parses the staged PowerShell entry script before Cloudflare access,
+and stages only approved files in a fresh temporary workspace.
+
+NX-OPS-3 R6: fixes literal Font Awesome HTML appearing in Inquiry detail cards; no DB/API/business-logic changes.

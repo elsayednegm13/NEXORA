@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (()=>{const r=document.documentElement;try{const l=localStorage.getItem('nexora_lang')==='ar'?'ar':'en';const s=localStorage.getItem('nexora_theme');const m=['light','dark','system'].includes(s)?s:'system';const t=m==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):m;r.lang=l;r.dir=l==='ar'?'rtl':'ltr';r.dataset.theme=t;if(l==='ar'){r.classList.add('i18n-preload','i18n-fade');setTimeout(()=>r.classList.remove('i18n-preload'),2500)}}catch(_){r.lang='en';r.dir='ltr'}})();
+  </script>
+  <style>html.i18n-preload{background:#03101b}html.i18n-preload[data-theme="light"]{background:#f4f8fc}html.i18n-fade body{transition:opacity .45s cubic-bezier(.22,1,.36,1)}html.i18n-preload body{visibility:hidden;opacity:0}@media(prefers-reduced-motion:reduce){html.i18n-fade body{transition:none}}</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#03101b">
+  <meta name="description" content="Explore NEXORA Technologies services: websites, platforms, ERP/CRM, UI/UX and custom systems.">
+  <title>NEXORA Technologies — Services</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/design-system.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/motion-polish.css"><link rel="stylesheet" href="css/services.css">
+</head>
+<body class="services-page">
+  <div class="site-grid" aria-hidden="true"></div>
+  <header class="nav"><div class="container nav-inner">
+    <a class="brand" href="index.html#home" aria-label="NEXORA home"><img class="brand-logo brand-logo--full" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><img class="brand-logo brand-logo--mark" src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></a>
+    <nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="index.html#home" data-i18n="nav_home">Home</a><a class="nav-link active" href="services.html" aria-current="page" data-i18n="nav_services">Services</a><a class="nav-link" href="work.html" data-i18n="nav_work">Work</a><a class="nav-link" href="index.html#packages" data-i18n="nav_packages">Packages</a><a class="nav-link" href="index.html#team" data-i18n="nav_about">About</a><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></nav>
+    <div class="nav-actions"><button class="icon-btn" data-theme-toggle type="button" aria-label="Change theme">◐</button><button class="lang-switch" data-lang-toggle type="button" aria-label="Switch language">AR</button><a class="btn btn--primary nav-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a><button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false"><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="menu-toggle-label" data-i18n="menu_label">Menu</span></button></div>
+  </div></header>
+  <div class="mobile-drawer" aria-hidden="true"><div class="drawer-backdrop"></div><aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation"><div class="drawer-head"><div class="drawer-brand-mark"><img src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></div><button class="drawer-close" data-menu-close type="button" aria-label="Close menu"><span aria-hidden="true">×</span></button></div><div class="drawer-kicker" data-i18n="mobile_nav_kicker">Explore</div><nav class="drawer-links"><a href="index.html#home"><span class="drawer-index">01</span><span data-i18n="nav_home">Home</span></a><a class="active" href="services.html" aria-current="page"><span class="drawer-index">02</span><span data-i18n="nav_services">Services</span></a><a href="work.html"><span class="drawer-index">03</span><span data-i18n="nav_work">Work</span></a><a href="index.html#packages"><span class="drawer-index">04</span><span data-i18n="nav_packages">Packages</span></a><a href="index.html#team"><span class="drawer-index">05</span><span data-i18n="nav_about">About</span></a><a href="contact.html"><span class="drawer-index">06</span><span data-i18n="nav_contact">Contact</span></a></nav><div class="drawer-foot"><a class="btn btn--primary drawer-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a><p data-i18n="drawer_hint">Choose a section or start your project.</p></div></aside></div>
+  <main>
+    <section class="services-hero">
+      <div class="services-hero-signal" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="container services-hero-grid">
+        <div class="services-hero-copy reveal">
+          <p class="eyebrow services-kicker" data-services-i18n="eyebrow">SERVICES</p>
+          <h1><span data-services-i18n="titleA">Build the right thing.</span><strong data-services-i18n="titleB">Build it to last.</strong></h1>
+          <p class="services-hero-lead" data-services-i18n="lead">From focused websites to complete business systems, NEXORA shapes digital products around the real needs of the business.</p>
+          <div class="services-hero-actions"><a class="btn btn--primary" href="#service-index"><span data-services-i18n="explore">Explore Services</span><span class="arrow">↓</span></a><a class="btn btn--ghost" href="contact.html"><span data-services-i18n="discuss">Discuss Your Project</span><span class="arrow">→</span></a></div>
+        </div>
+        <div class="services-orbit reveal" aria-hidden="true">
+          <span class="services-orbit-ring services-orbit-ring--outer"></span><span class="services-orbit-ring services-orbit-ring--inner"></span>
+          <span class="services-orbit-node services-orbit-node--one"></span><span class="services-orbit-node services-orbit-node--two"></span><span class="services-orbit-node services-orbit-node--three"></span>
+          <div class="services-orbit-core"><img class="services-orbit-mark" src="assets/brand/nexora-mark-primary.png" alt=""></div>
+          <span class="services-orbit-label">WEB</span><span class="services-orbit-label">ERP</span><span class="services-orbit-label">UX</span><span class="services-orbit-label">SYS</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section services-index-section" id="service-index">
+      <div class="container">
+        <div class="services-head reveal"><div><p class="eyebrow" data-services-i18n="indexEyebrow">OUR SERVICES</p><h2 data-services-i18n="indexTitle">What we can build with you</h2></div><p data-services-i18n="indexCopy">Each service can stand alone or combine with others as the project grows.</p></div>
+        <div class="services-grid" data-services-grid></div>
+      </div>
+    </section>
+
+    <section class="services-section services-method-section">
+      <div class="container">
+        <div class="services-head reveal"><div><p class="eyebrow" data-services-i18n="modelEyebrow">HOW WE WORK</p><h2 data-services-i18n="modelTitle">One delivery model. Different scopes.</h2></div><p data-services-i18n="modelCopy">The scope changes from project to project. The discipline and clarity do not.</p></div>
+        <div class="delivery-path" aria-hidden="true"><span></span></div>
+        <div class="delivery-grid">
+          <article class="delivery-step reveal"><div class="delivery-step-top"><span class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/><path d="M11 8v6M8 11h6"/></svg></span><span class="delivery-number">01</span></div><h3 data-services-i18n="discover">Discover</h3><p data-services-i18n="discoverD">Clarify the goal, users, constraints and success criteria.</p></article>
+          <article class="delivery-step reveal"><div class="delivery-step-top"><span class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h7v6H4zM13 5h7v3h-7zM13 10h7v9h-7zM4 13h7v6H4z"/></svg></span><span class="delivery-number">02</span></div><h3 data-services-i18n="design">Design</h3><p data-services-i18n="designD">Shape the experience, system structure and interaction model.</p></article>
+          <article class="delivery-step reveal"><div class="delivery-step-top"><span class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="delivery-number">03</span></div><h3 data-services-i18n="build">Build</h3><p data-services-i18n="buildD">Develop, integrate and test with maintainable engineering.</p></article>
+          <article class="delivery-step reveal"><div class="delivery-step-top"><span class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4c3 0 5 0 6 1-1 5-4 8-8 10l-3-3c2-4 5-7 10-8Z"/><path d="m9 12-4 1-2 3 5 1M12 15l1 4-3 2-1-5"/><circle cx="15.5" cy="8.5" r="1.5"/></svg></span><span class="delivery-number">04</span></div><h3 data-services-i18n="launch">Launch & Support</h3><p data-services-i18n="launchD">Deploy, verify and keep improving after release.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section services-value-section">
+      <div class="container">
+        <div class="services-head reveal"><div><p class="eyebrow" data-services-i18n="futureEyebrow">WHY NEXORA</p><h2 data-services-i18n="futureTitle">Built to move with your business.</h2></div><p data-services-i18n="futureCopy">A focused start, a clear experience, and room to grow without losing direction.</p></div>
+        <div class="value-layout">
+          <div class="value-core reveal" aria-hidden="true"><span class="value-core-ring"></span><span class="value-core-ring value-core-ring--two"></span><div class="value-core-mark"><img src="assets/brand/nexora-mark-primary.png" alt=""></div><i></i><i></i><i></i></div>
+          <div class="value-grid">
+            <article class="value-card reveal"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 4v6M4 17h16M16 14v6"/></svg></span><div><h3 data-services-i18n="growFocus">Clear Scope</h3><p data-services-i18n="growFocusD">Start with what matters most and keep priorities visible.</p></div></article>
+            <article class="value-card reveal"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V9l7-4 7 4v10M9 19v-5h6v5"/><path d="M3 19h18"/></svg></span><div><h3 data-services-i18n="growStructure">Strong Foundation</h3><p data-services-i18n="growStructureD">Build on a foundation that stays clear as needs expand.</p></div></article>
+            <article class="value-card reveal"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.9 7.6-3.8M8.2 13.1l7.6 3.8"/></svg></span><div><h3 data-services-i18n="growConnect">Connected Thinking</h3><p data-services-i18n="growConnectD">Consider experience, workflows and future connections together.</p></div></article>
+            <article class="value-card reveal"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 18 11 12l4 4 4-7"/><path d="M15 9h4v4"/><path d="M4 5v14h16"/></svg></span><div><h3 data-services-i18n="growEvolve">Room to Evolve</h3><p data-services-i18n="growEvolveD">Improve and expand the product without starting over.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section services-final-section">
+      <div class="container"><div class="services-cta-card reveal"><div class="services-cta-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><p class="eyebrow" data-services-i18n="ctaEyebrow">LET’S BUILD</p><h2 data-services-i18n="ctaTitle">Have a project in mind?</h2><p data-services-i18n="ctaCopy">Tell us what you need. We’ll help define the right path before we build.</p></div><div class="services-cta-actions"><a class="btn btn--primary" href="contact.html"><span data-services-i18n="start">Start a Project</span><span class="arrow">→</span></a><a class="btn btn--outline" href="work.html"><span data-services-i18n="work">View Our Work</span><span class="arrow">→</span></a></div></div></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><div class="footer-brand"><img class="footer-logo" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><span data-i18n="footer_copy">Building a better digital tomorrow.</span></div><nav class="footer-nav"><a href="index.html#home" data-i18n="nav_home">Home</a><a href="services.html" data-i18n="nav_services">Services</a><a href="work.html" data-i18n="nav_work">Work</a><a href="index.html#packages" data-i18n="nav_packages">Packages</a><a href="index.html#team" data-i18n="nav_about">About</a><a href="contact.html" data-i18n="nav_contact">Contact</a></nav><div class="footer-right"><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Email">@</a></div><span class="footer-copy" data-i18n="rights">© 2026 NEXORA Technologies. All rights reserved.</span></div></div></footer>
+  <script src="js/runtime-config.js"></script>
+  <script src="js/data.js"></script><script src="js/services-data.js"></script><script src="js/api-client.js"></script><script src="js/repositories/services-repository.js"></script><script src="js/app.js"></script><script src="js/services.js"></script><script src="js/motion.js"></script><script src="js/perf-debug.js"></script>
+</body></html>

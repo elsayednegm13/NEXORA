@@ -1,0 +1,582 @@
+/* NEXORA Phase 2.5 — senior UX stability, navigation, motion and responsive hardening */
+:root{
+  --motion-fast:150ms;
+  --motion-med:280ms;
+  --motion-slow:620ms;
+  --motion-ease:cubic-bezier(.2,.7,.2,1);
+  --motion-ease-emph:cubic-bezier(.16,1,.3,1);
+  --scroll-progress:0%;
+  --nav-height:76px;
+}
+
+/* Scale correction: 100% browser zoom is the reference. */
+body{font-size:17px}
+.container{width:min(calc(100% - 72px),1480px)}
+.section{padding:42px 0}
+.section--row{padding:40px 0}
+.section--compact{padding:36px 0}
+.section--cta{padding:34px 0 38px}
+.section-title{font-size:clamp(2.2rem,2.75vw,3.3rem)}
+.section-intro .section-title{font-size:clamp(2.05rem,2.35vw,2.85rem)}
+.section-copy{font-size:.9rem;line-height:1.65;max-width:380px}
+.section-intro .section-copy{max-width:335px}
+.eyebrow{font-size:.7rem;margin-bottom:10px}
+
+/* Avoid expensive continuously moving fixed filters. */
+.site-grid{animation:none!important;opacity:.105}
+.hero-lines{animation:none!important}
+body::after{display:none!important}
+
+/* Header */
+.nav{
+  padding:10px 0;
+  transition:padding var(--motion-med) var(--motion-ease),background var(--motion-med) var(--motion-ease),border-color var(--motion-med),box-shadow var(--motion-med);
+}
+.nav::after{
+  content:"";position:absolute;left:0;bottom:-1px;height:1px;width:var(--scroll-progress);
+  background:linear-gradient(90deg,var(--brand-cyan),var(--brand-blue));
+  box-shadow:0 0 10px rgba(0,209,255,.38);pointer-events:none;
+}
+.nav.is-scrolled{
+  background:color-mix(in srgb,var(--bg) 94%,transparent);
+  -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
+  box-shadow:0 12px 32px rgba(0,0,0,.12);
+}
+.nav-inner{min-height:60px;grid-template-columns:226px 1fr auto;gap:22px}
+.brand{display:inline-flex;align-items:center;width:max-content}
+.brand-logo{width:178px;height:48px;transition:width var(--motion-med) var(--motion-ease),height var(--motion-med) var(--motion-ease),transform var(--motion-med) var(--motion-ease)}
+.nav.is-scrolled{padding:5px 0}.nav.is-scrolled .nav-inner{min-height:52px}.nav.is-scrolled .brand-logo{width:154px;height:41px}
+.nav-links{gap:34px}
+.nav-link{font-size:.78rem;padding:10px 0;transition:color var(--motion-fast),transform var(--motion-fast) var(--motion-ease)}
+.nav-link::after{transition:width var(--motion-med) var(--motion-ease-emph)}
+.nav-link:hover{transform:translateY(-1px)}
+.nav-link.active{color:var(--text)}
+.drawer-links a{position:relative}.drawer-links a.active{color:var(--brand-cyan)}
+.nav-actions{gap:8px}.nav-cta{min-width:150px}
+.lang-switch{height:40px;min-width:50px;font-size:.74rem}.icon-btn{width:40px;height:40px}
+
+/* Buttons: tactile, fast, GPU-only. */
+.btn{
+  min-height:45px;padding:0 21px;gap:10px;font-size:.81rem;position:relative;overflow:hidden;isolation:isolate;
+  transition:transform var(--motion-fast) var(--motion-ease),border-color var(--motion-fast),background var(--motion-med),box-shadow var(--motion-med),color var(--motion-fast);
+}
+.btn::before{
+  content:"";position:absolute;z-index:-1;top:-60%;bottom:-60%;left:-55%;width:34%;
+  transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.20),transparent);
+  transition:left 520ms var(--motion-ease-emph);pointer-events:none;
+}
+.btn:hover::before{left:120%}.btn:hover{transform:translate3d(0,-2px,0)}.btn:active{transform:translate3d(0,0,0) scale(.985);transition-duration:70ms}
+.btn--primary{box-shadow:0 13px 34px rgba(0,166,255,.22)}.btn--primary:hover{box-shadow:0 18px 42px rgba(0,166,255,.32)}
+.btn.compact{min-height:39px;padding:0 17px;font-size:.72rem}.arrow{transition:transform var(--motion-fast) var(--motion-ease)}
+.btn:hover .arrow,.text-link:hover{transform:translateX(4px)}html[dir="rtl"] .btn:hover .arrow,html[dir="rtl"] .text-link:hover{transform:translateX(-4px)}
+
+/* Hero */
+.hero{padding-top:100px;min-height:585px}
+.hero-layout{grid-template-columns:minmax(0,.88fr) minmax(540px,1.12fr);gap:36px}
+.hero-copy{padding:46px 0 34px}
+.hero-kicker{font-size:.68rem;margin-bottom:16px}
+.hero h1{max-width:720px;font-size:clamp(3rem,4.05vw,5.25rem);line-height:.965}
+html[dir="rtl"] .hero h1{line-height:1.02}
+.hero-services{gap:7px 18px;margin-top:16px;font-size:.78rem}
+.hero-lead{max-width:650px;font-size:.93rem;line-height:1.68;margin-top:14px}
+.hero-cta{margin-top:22px;gap:12px}.hero-stats{margin-top:30px}.stat{padding:15px 17px 11px 0}html[dir="rtl"] .stat{padding:15px 0 11px 17px}.stat-value{font-size:1.34rem}.stat-label{font-size:.67rem}
+.hero-art{min-height:465px;perspective:1200px;contain:layout paint}
+.hero-art::before{width:88%;filter:none;background:radial-gradient(circle,rgba(0,102,255,.24),rgba(0,209,255,.055) 42%,transparent 68%)}
+.hero-mark{
+  width:min(750px,98%);animation:none!important;
+  filter:drop-shadow(0 28px 60px rgba(0,102,255,.38));
+  transform:translate3d(0,0,0) rotate(-2deg);will-change:transform;
+}
+.hero-message{padding:12px 14px;font-size:.52rem;backdrop-filter:none;background:rgba(2,13,23,.55)}
+.signal-list{font-size:.52rem;gap:8px}.hero-signal i{animation:none!important}.scroll-cue{animation:none!important}
+
+/* Card interaction language — no tilt, no pointer-following spotlight. */
+.glass{position:relative;isolation:isolate}
+.cap-card,.project-card,.package-card,.person-card,.tech-item,.process-step{transform:translateZ(0)}
+.cap-card,.project-card,.package-card,.person-card{
+  transition:transform var(--motion-med) var(--motion-ease-emph),border-color var(--motion-med),box-shadow var(--motion-med),background var(--motion-med);
+}
+.cap-card::before,.project-card::before,.package-card::after,.person-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;
+  background:linear-gradient(135deg,rgba(0,209,255,.07),transparent 38%,transparent 68%,rgba(0,102,255,.04));
+  transition:opacity var(--motion-med);z-index:-1;
+}
+@media(hover:hover) and (pointer:fine){
+  .cap-card:hover,.project-card:hover,.package-card:hover,.person-card:hover{transform:translate3d(0,-7px,0);border-color:var(--border-strong);box-shadow:0 22px 48px rgba(0,0,0,.20),0 0 26px rgba(0,209,255,.035)}
+  .cap-card:hover::before,.project-card:hover::before,.package-card:hover::after,.person-card:hover::before{opacity:1}
+}
+
+/* Capability icons deserve more visual weight. */
+.split-layout,.split-layout--work,.split-layout--process,.split-layout--packages,.tech-wrap{grid-template-columns:270px minmax(0,1fr);gap:34px}
+.cap-grid{gap:14px}.cap-card{min-height:202px;padding:19px 18px 17px}
+.cap-icon{width:48px;height:48px;border-radius:12px;transition:transform var(--motion-med) var(--motion-ease-emph),background var(--motion-med),box-shadow var(--motion-med)}
+.cap-icon svg{width:27px;height:27px;stroke-width:1.65}.cap-card h3{margin:17px 0 7px;font-size:1rem}.cap-card p{font-size:.72rem;line-height:1.62;min-height:62px}.text-link{font-size:.7rem}
+@media(hover:hover) and (pointer:fine){.cap-card:hover .cap-icon{transform:translate3d(0,-3px,0) scale(1.06);background:rgba(0,209,255,.11);box-shadow:0 0 22px rgba(0,209,255,.12)}}
+
+/* Projects */
+.projects-track{gap:14px}.project-card{border-radius:13px}.project-media{aspect-ratio:1.58/1}.project-media img{transition:transform 560ms var(--motion-ease-emph),filter 400ms ease}
+@media(hover:hover) and (pointer:fine){.project-card:hover img{transform:scale(1.055);filter:saturate(1.05) contrast(1.02)}}
+.project-badge{left:11px;top:11px;padding:5px 9px;font-size:.57rem}.project-body{padding:13px 14px 14px}.project-body h3{font-size:.91rem}.project-alt{font-size:.68rem}.project-domain{font-size:.65rem}.project-link{font-size:.65rem}
+
+/* Process */
+.process-line{gap:24px;padding-top:8px;--process-progress:0}
+.process-line::before{top:30px}.process-line::after{content:"";position:absolute;left:6%;top:29px;width:88%;height:2px;transform:scaleX(var(--process-progress));transform-origin:left center;background:linear-gradient(90deg,var(--brand-cyan),var(--brand-blue));box-shadow:0 0 12px rgba(0,209,255,.22);pointer-events:none}
+html[dir="rtl"] .process-line::after{transform-origin:right center}
+.process-dot{width:48px;height:48px;font-size:.68rem}.process-step h3{font-size:.93rem}.process-step p{font-size:.68rem;line-height:1.58}
+
+/* Packages */
+.packages-grid{gap:14px}.package-card{min-height:318px;padding:20px 18px 17px}.package-card.featured{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(0,209,255,.10),0 20px 44px rgba(0,102,255,.14)}
+@media(hover:hover) and (pointer:fine){.package-card.featured:hover{transform:translate3d(0,-9px,0)}}
+.pkg-icon{width:48px;height:48px;border-radius:12px;transition:transform var(--motion-med) var(--motion-ease-emph)}.pkg-icon svg{width:27px;height:27px}.package-card h3{font-size:1.02rem}.package-copy{font-size:.69rem;line-height:1.58}.package-price{font-size:1.08rem}.package-duration{font-size:.65rem}.package-list{font-size:.65rem;gap:5px}.package-card .btn{min-height:39px;font-size:.68rem}
+@media(hover:hover) and (pointer:fine){.package-card:hover .pkg-icon{transform:translate3d(0,-3px,0) scale(1.06)}}
+
+/* Technology */
+.tech-strip{gap:7px;padding:12px 10px;overflow:hidden}.tech-item{min-height:76px;align-content:center;gap:7px;padding:8px 4px;border-radius:10px;font-size:.58rem;transition:transform var(--motion-fast) var(--motion-ease),background var(--motion-med),color var(--motion-fast)}.tech-symbol{min-height:30px;font-size:1rem}
+@media(hover:hover) and (pointer:fine){.tech-item:hover{transform:translate3d(0,-4px,0);background:rgba(0,209,255,.05);color:var(--text)}.tech-item:hover .tech-symbol{transform:scale(1.08)}}
+
+/* Team */
+.team-layout{grid-template-columns:270px minmax(0,1fr) 112px;gap:34px}.team-grid{gap:14px}.person-card{grid-template-columns:68px 1fr;gap:14px;padding:16px 17px}.person-avatar{width:66px;height:66px;font-size:.86rem;transition:transform var(--motion-med) var(--motion-ease-emph)}.person-card h3{font-size:.9rem}.person-role{font-size:.64rem}.focus-chip{font-size:.54rem}.team-signature{font-size:1.32rem}
+@media(hover:hover) and (pointer:fine){.person-card:hover .person-avatar{transform:scale(1.04)}}
+
+/* Contact / footer */
+.contact-bar{grid-template-columns:1.08fr .9fr .52fr .52fr;gap:18px;padding:18px 20px;border-radius:14px;overflow:hidden;position:relative}.contact-bar::before{display:none!important}.contact-copy h2{font-size:1.52rem}.contact-copy p{font-size:.7rem}.email-field input{height:42px;font-size:.72rem}.contact-action .btn{min-height:42px;font-size:.7rem}.contact-proof{grid-template-columns:38px 1fr;gap:9px}.proof-icon{width:36px;height:36px;font-size:.82rem}.contact-proof strong{font-size:.67rem}.contact-proof span{font-size:.56rem}.footer{padding:20px 0 24px}.footer-logo{width:132px}.footer-brand{font-size:.57rem}.footer-nav{gap:19px;font-size:.61rem}.socials a{width:28px;height:28px;font-size:.55rem}.footer-copy{font-size:.55rem}
+
+/* Reveal: opacity + transform only. */
+.js .reveal{opacity:0;transform:translate3d(0,18px,0);transition:opacity 540ms var(--motion-ease-emph),transform 540ms var(--motion-ease-emph);transition-delay:var(--reveal-delay,0ms)}
+.js .reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
+
+/* Large tablet */
+@media(max-width:1180px){
+  .container{width:min(calc(100% - 52px),1480px)}
+  .nav-inner{grid-template-columns:200px 1fr auto}.brand-logo{width:162px}.nav-links{gap:23px}
+  .hero-layout{grid-template-columns:minmax(0,.95fr) minmax(460px,1.05fr);gap:24px}.hero h1{font-size:clamp(2.8rem,4.25vw,4.7rem)}
+  .split-layout,.split-layout--work,.split-layout--process,.split-layout--packages,.tech-wrap{grid-template-columns:230px minmax(0,1fr);gap:26px}
+  .team-layout{grid-template-columns:230px minmax(0,1fr);gap:26px}.team-signature{display:none}
+}
+
+/* Tablet */
+@media(max-width:900px){
+  :root{--nav-height:66px}
+  body{font-size:16px}.container{width:min(calc(100% - 34px),1480px)}
+  .nav{padding:6px 0}.nav-inner{grid-template-columns:1fr auto;min-height:54px}.brand-logo{width:150px;height:42px}.nav.is-scrolled .brand-logo{width:138px;height:38px}.nav-links,.nav-cta{display:none}.menu-toggle{display:grid}
+  .hero{padding-top:82px;min-height:auto}.hero-layout{grid-template-columns:1fr;gap:14px}.hero-copy{padding:18px 0 14px;order:0}.hero-art{min-height:350px;order:1}.hero-mark{width:min(620px,88%)}.hero h1{font-size:clamp(2.7rem,8vw,4.35rem);max-width:760px}.hero-lead{font-size:.92rem}.hero-stats{margin-top:24px}
+  .split-layout,.split-layout--work,.split-layout--process,.split-layout--packages,.tech-wrap,.team-layout{grid-template-columns:1fr;gap:24px}.section-intro .section-copy{max-width:650px}
+  .section{padding:56px 0}.section--row{padding:52px 0}.section--compact{padding:46px 0}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}.projects-track{grid-template-columns:repeat(2,1fr)}.process-line{grid-template-columns:repeat(3,1fr)}.process-line::before,.process-line::after,.process-step::after{display:none!important}.packages-grid{grid-template-columns:repeat(2,1fr)}.tech-strip{grid-template-columns:repeat(6,1fr)}.team-grid{grid-template-columns:1fr 1fr}
+  .contact-bar{grid-template-columns:1fr 1fr}.contact-copy,.contact-action{grid-column:1/-1}.footer-inner{grid-template-columns:1fr;justify-items:start}.footer-right{justify-content:flex-start}.footer-nav{flex-wrap:wrap}
+  .mobile-drawer{transition:opacity var(--motion-med) var(--motion-ease)}.drawer-backdrop{backdrop-filter:blur(5px)}.drawer-panel{transition:transform var(--motion-med) var(--motion-ease-emph)}
+}
+
+/* Mobile: intentional layout, not a scaled desktop. */
+@media(max-width:620px){
+  :root{--nav-height:62px}
+  body{font-size:15px}.container{width:min(calc(100% - 24px),1480px)}
+  .nav{padding:5px 0}.nav-inner{min-height:52px;gap:8px}.brand-logo{width:120px;height:36px}.nav.is-scrolled .brand-logo{width:114px;height:34px}.nav-actions{gap:2px}.lang-switch{height:34px;min-width:36px;font-size:.68rem}.icon-btn{width:34px;height:34px;font-size:.82rem}
+
+  .hero{padding-top:72px;padding-bottom:8px}.hero-layout{display:grid;grid-template-columns:1fr;gap:14px}.hero-copy{order:0;padding:12px 0 8px}.hero-art{order:1;min-height:235px;margin-top:2px}
+  .hero-kicker{font-size:.61rem;line-height:1.5;letter-spacing:.18em;margin-bottom:11px}
+  html[dir="rtl"] .hero-kicker{letter-spacing:.04em}
+  .hero h1{font-size:clamp(2.05rem,9.4vw,2.6rem);line-height:1.015;letter-spacing:-.042em;max-width:100%}
+  html[dir="rtl"] .hero h1{font-size:clamp(2.08rem,9.6vw,2.65rem);line-height:1.08;letter-spacing:-.022em}
+  .hero-services{gap:6px;margin-top:13px}.hero-services span{font-size:.62rem;padding:5px 8px;border:1px solid var(--border);border-radius:999px;background:rgba(0,209,255,.035)}.hero-services span+span::before{display:none}
+  .hero-lead{font-size:.84rem;line-height:1.62;margin-top:13px}.hero-cta{margin-top:17px;display:grid;grid-template-columns:1fr;gap:8px}.hero-cta .btn{width:100%;min-height:44px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);margin-top:20px}.stat{padding:12px 10px}.stat:nth-child(2){border-inline-end:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--border)}.stat-value{font-size:1.12rem}.stat-label{font-size:.61rem}
+  .hero-mark{width:88%;max-width:360px}.hero-message,.signal-list,.hero-signal,.scroll-cue{display:none}.terrain{height:84px;opacity:.8}.hero-art::after{inset:4% 8% 5%;opacity:.5}
+
+  .section{padding:44px 0}.section--row{padding:42px 0}.section--compact{padding:38px 0}.section-title,.section-intro .section-title{font-size:clamp(2rem,9.3vw,2.55rem);line-height:1.03}.section-copy{font-size:.83rem;line-height:1.62}.section-intro .section-copy{max-width:100%}.btn.compact{width:max-content;max-width:100%}
+
+  /* Swipe decks keep mobile dense and alive without tiny cards. */
+  .cap-grid,.projects-track,.packages-grid{
+    display:grid;grid-auto-flow:column;grid-auto-columns:min(84vw,330px);grid-template-columns:none;gap:12px;overflow-x:auto;overflow-y:hidden;
+    padding:3px 2px 12px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .cap-grid::-webkit-scrollbar,.projects-track::-webkit-scrollbar,.packages-grid::-webkit-scrollbar{display:none}
+  .cap-card,.project-card,.package-card{scroll-snap-align:start;min-height:auto}.cap-card{padding:18px}.cap-icon{width:50px;height:50px}.cap-icon svg{width:28px;height:28px}.cap-card h3{font-size:1.02rem}.cap-card p{font-size:.76rem;min-height:0}
+  .project-body h3{font-size:.95rem}.project-alt{font-size:.72rem}.project-domain{font-size:.68rem}
+  .package-card{padding:18px;min-height:320px}.package-card.featured{transform:none}.pkg-icon{width:50px;height:50px}.package-card h3{font-size:1.04rem}.package-copy,.package-list{font-size:.72rem}.package-price{font-size:1.12rem}
+
+  /* Mobile process becomes a readable vertical timeline. */
+  .process-line{display:grid;grid-template-columns:1fr;gap:0;padding-top:2px}.process-line::before{display:block!important;left:23px;right:auto;top:10px;bottom:10px;width:1px;height:auto;background:linear-gradient(180deg,transparent,var(--border-strong) 10%,var(--border-strong) 90%,transparent)}html[dir="rtl"] .process-line::before{left:auto;right:23px}.process-line::after{display:none!important}
+  .process-step{display:grid;grid-template-columns:48px 1fr;grid-template-rows:auto auto;column-gap:14px;padding:10px 0 16px;background:transparent;border:0;border-radius:0}.process-dot{grid-row:1/3;width:46px;height:46px;margin:0;background:var(--bg);box-shadow:0 0 0 5px var(--bg)}.process-step h3{margin:3px 0 2px;font-size:.96rem}.process-step p{margin:0;font-size:.74rem;line-height:1.55}.process-step::after{display:none!important}
+
+  .tech-strip{grid-template-columns:repeat(3,1fr);gap:7px;padding:10px}.tech-item{min-height:78px;font-size:.61rem}.tech-symbol{font-size:1.02rem}
+  .team-grid{grid-template-columns:1fr}.person-card{grid-template-columns:64px 1fr;padding:15px}.person-avatar{width:62px;height:62px}.person-card h3{font-size:.92rem}.person-role{font-size:.67rem}
+  .contact-bar{grid-template-columns:1fr;padding:18px}.contact-copy,.contact-action{grid-column:auto}.contact-action{grid-template-columns:1fr}.contact-action .btn{width:100%}.contact-copy h2{font-size:1.42rem}.footer-brand{flex-wrap:wrap}
+}
+
+@media(max-width:380px){
+  .container{width:min(calc(100% - 20px),1480px)}
+  .brand-logo{width:108px}.lang-switch{min-width:32px}.icon-btn{width:32px;height:32px}
+  .hero h1{font-size:clamp(1.94rem,9.25vw,2.35rem)}html[dir="rtl"] .hero h1{font-size:clamp(1.98rem,9.4vw,2.38rem)}
+  .cap-grid,.projects-track,.packages-grid{grid-auto-columns:min(86vw,310px)}
+}
+
+@media(pointer:coarse){
+  .btn:hover,.cap-card:hover,.project-card:hover,.package-card:hover,.person-card:hover,.tech-item:hover{transform:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav::after{box-shadow:none}.hero-mark{transform:none!important}.process-line::after{transform:scaleX(1)}
+  .btn::before{display:none}.js .reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ========================================================================== */
+/* NEXORA Phase 2.5 — navigation order, mobile navigation, light CTA, scroll cue */
+/* ========================================================================== */
+
+/* Full wordmark stays desktop/tablet; mobile uses the N monogram as a compact brand anchor. */
+.brand-logo--mark{display:none;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,102,255,.16))}
+
+/* Mobile menu trigger is intentionally explicit — icon + label, not a mystery glyph. */
+.menu-toggle{
+  display:none;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 13px;border:1px solid var(--border);
+  border-radius:var(--pill);background:color-mix(in srgb,var(--surface) 82%,transparent);color:var(--text);font:inherit;font-weight:820;font-size:.72rem;cursor:pointer;
+  transition:background var(--motion-fast),border-color var(--motion-fast),transform var(--motion-fast) var(--motion-ease);
+}
+.menu-toggle:hover{border-color:var(--border-strong);background:rgba(0,209,255,.065)}
+.menu-toggle:active{transform:scale(.975)}
+.menu-toggle-icon{display:grid;gap:3px;width:15px}.menu-toggle-icon i{display:block;width:15px;height:1.5px;border-radius:999px;background:currentColor;transition:transform var(--motion-med) var(--motion-ease-emph),opacity var(--motion-fast)}
+.menu-toggle.is-open .menu-toggle-icon i:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+.menu-toggle.is-open .menu-toggle-icon i:nth-child(2){opacity:0}
+.menu-toggle.is-open .menu-toggle-icon i:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
+
+/* Mobile drawer becomes a real navigation surface, not a hidden utility panel. */
+.drawer-panel{overflow-y:auto;overscroll-behavior:contain}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:19px;border-bottom:1px solid var(--border)}
+.drawer-logo{width:148px;height:42px;object-fit:contain;object-position:left center}html[dir="rtl"] .drawer-logo{object-position:right center}
+.drawer-close{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:1.55rem;line-height:1;cursor:pointer;transition:transform var(--motion-fast),border-color var(--motion-fast),background var(--motion-fast)}
+.drawer-close:hover{border-color:var(--border-strong);background:rgba(0,209,255,.06)}.drawer-close:active{transform:scale(.94)}
+.drawer-kicker{margin:25px 0 8px;color:var(--brand-cyan);font-size:.66rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}html[dir="rtl"] .drawer-kicker{letter-spacing:.05em}
+.drawer-links{display:grid;gap:2px}
+.drawer-links a{display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:12px;min-height:58px;padding:10px 6px;border-bottom:1px solid var(--border);font-size:1.16rem;font-weight:850;letter-spacing:-.025em;transition:color var(--motion-fast),padding var(--motion-fast),background var(--motion-fast)}
+.drawer-links a::after{content:"→";font-size:.85rem;color:var(--muted);transition:transform var(--motion-fast),color var(--motion-fast)}
+html[dir="rtl"] .drawer-links a::after{content:"←"}
+.drawer-links a:hover,.drawer-links a.active{color:var(--brand-cyan);background:linear-gradient(90deg,transparent,rgba(0,209,255,.045),transparent)}
+.drawer-links a:hover::after,.drawer-links a.active::after{color:var(--brand-cyan);transform:translateX(3px)}html[dir="rtl"] .drawer-links a:hover::after,html[dir="rtl"] .drawer-links a.active::after{transform:translateX(-3px)}
+.drawer-index{font-size:.57rem;letter-spacing:.12em;color:var(--muted);font-weight:900}.drawer-links a.active .drawer-index{color:var(--brand-cyan)}
+.drawer-foot{padding-top:22px}.drawer-cta{margin-top:0!important;width:100%}.drawer-foot p{margin:10px 2px 0;color:var(--muted);font-size:.68rem;line-height:1.5}
+
+/* Conversion block deliberately remains a dark brand island in light mode for contrast. */
+.contact-bar{color:#f6fbff;background:linear-gradient(105deg,#041724 0%,#08283e 48%,#0a3550 100%);border-color:rgba(80,194,255,.20);box-shadow:0 18px 45px rgba(1,14,25,.14)}
+.contact-copy .eyebrow{color:#28d9ff}.contact-copy p,.contact-proof span{color:#b9ccda}.contact-proof strong{color:#f6fbff}.contact-proof{color:#f6fbff}
+.email-field input{background:rgba(2,13,23,.55);border-color:rgba(151,211,244,.18);color:#f6fbff}.email-field input::placeholder{color:#8ca6b9}
+:root[data-theme="light"] .contact-bar{color:#f6fbff;background:linear-gradient(105deg,#041724 0%,#08283e 48%,#0a3550 100%);border-color:rgba(0,145,224,.28);box-shadow:0 20px 52px rgba(9,45,70,.18)}
+:root[data-theme="light"] .contact-copy h2,:root[data-theme="light"] .contact-proof strong{color:#f6fbff}
+:root[data-theme="light"] .contact-copy p,:root[data-theme="light"] .contact-proof span{color:#c1d4e1}
+:root[data-theme="light"] .email-field input{background:rgba(2,13,23,.52);color:#fff;border-color:rgba(168,220,247,.22)}
+
+/* Scroll cue communicates motion: wheel travels down, then the chevrons breathe. */
+.scroll-cue{bottom:10px;gap:4px;color:var(--soft);transition:color var(--motion-fast),transform var(--motion-fast);cursor:pointer}
+.scroll-cue:hover{color:var(--brand-cyan);transform:translateX(-50%) translateY(-2px)}
+.scroll-mouse{position:relative;width:22px;height:34px;border:1.5px solid currentColor;border-radius:13px;display:block;opacity:.92}
+.scroll-mouse i{position:absolute;left:50%;top:6px;width:3px;height:7px;border-radius:999px;background:currentColor;transform:translateX(-50%);animation:nexoraWheel 1.65s cubic-bezier(.2,.7,.2,1) infinite}
+.scroll-chevrons{display:grid;justify-items:center;height:12px;margin-top:-2px}.scroll-chevrons i{display:block;width:7px;height:7px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg);animation:nexoraChevron 1.65s ease-in-out infinite}.scroll-chevrons i+ i{margin-top:-3px;animation-delay:.13s}
+.scroll-label{font-size:.43rem;letter-spacing:.24em;font-weight:760}
+@keyframes nexoraWheel{0%{transform:translate3d(-50%,0,0);opacity:0}20%{opacity:1}65%{opacity:1}100%{transform:translate3d(-50%,11px,0);opacity:0}}
+@keyframes nexoraChevron{0%,100%{opacity:.22;transform:translateY(-1px) rotate(45deg)}50%{opacity:1;transform:translateY(2px) rotate(45deg)}}
+
+@media(max-width:900px){
+  .menu-toggle{display:inline-flex}
+  .drawer-panel{width:min(390px,92vw);padding:20px 22px 26px;transform:translateX(102%);background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 98%,transparent),var(--bg));box-shadow:-24px 0 80px rgba(0,0,0,.26)}
+  html[dir="rtl"] .drawer-panel{transform:translateX(-102%);box-shadow:24px 0 80px rgba(0,0,0,.26)}
+  .mobile-drawer.is-open .drawer-panel{transform:none}
+  .drawer-backdrop{background:rgba(0,7,14,.66);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+}
+
+@media(max-width:620px){
+  /* Header hierarchy: monogram is the brand anchor; the full wordmark moves into the menu. */
+  .nav-inner{grid-template-columns:auto 1fr;gap:8px}
+  .brand-logo--full{display:none!important}.brand-logo--mark{display:block!important;width:36px!important;height:36px!important}
+  .nav.is-scrolled .brand-logo--mark{width:34px!important;height:34px!important}
+  .brand{min-width:36px}
+  .nav-actions{justify-self:end;gap:5px}.menu-toggle{min-height:36px;padding:0 10px;font-size:.68rem}.menu-toggle-icon{width:14px}.menu-toggle-icon i{width:14px}
+  .lang-switch{min-width:34px}.icon-btn{width:34px;height:34px}
+  html[dir="rtl"] .nav-actions{justify-self:start}
+  .drawer-panel{inset:0 0 0 auto;width:100%;max-width:none;padding:18px 18px calc(24px + env(safe-area-inset-bottom));border:0;box-shadow:none}
+  html[dir="rtl"] .drawer-panel{inset:0 auto 0 0;border:0;box-shadow:none}
+  .drawer-head{padding-top:env(safe-area-inset-top)}.drawer-logo{width:145px;height:40px}
+  .drawer-kicker{margin-top:22px}.drawer-links a{min-height:56px;font-size:1.22rem}.drawer-foot{padding-top:20px}
+  .scroll-cue{display:none}
+}
+
+@media(max-width:380px){
+  .menu-toggle-label{display:none}.menu-toggle{width:36px;padding:0}.nav-actions{gap:3px}.brand-logo--mark{width:34px!important;height:34px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .scroll-mouse i,.scroll-chevrons i{animation:none!important}.scroll-mouse i{opacity:1;top:9px}.scroll-chevrons i{opacity:.6}
+}
+
+/* ========================================================================== */
+/* NEXORA Phase 2.6 — footer scale, mobile card wrapping, branded scrollbar   */
+/* ========================================================================== */
+
+/* Branded scrollbar: narrow, high-contrast and compositor-friendly. */
+html{
+  scrollbar-gutter:stable;
+  scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,var(--brand-cyan) 72%,var(--brand-blue)) color-mix(in srgb,var(--bg-2) 88%,transparent);
+}
+html::-webkit-scrollbar{width:10px;height:10px}
+html::-webkit-scrollbar-track{background:color-mix(in srgb,var(--bg-2) 90%,transparent)}
+html::-webkit-scrollbar-thumb{
+  min-height:72px;border:3px solid color-mix(in srgb,var(--bg-2) 92%,transparent);border-radius:999px;
+  background:linear-gradient(180deg,var(--brand-cyan),#159dff 52%,var(--brand-blue));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 0 16px rgba(0,153,255,.12);
+}
+html::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#32dcff,#188dff 52%,#0057e6)}
+:root[data-theme="light"]::-webkit-scrollbar-track{background:#e7f1f8}
+:root[data-theme="light"]::-webkit-scrollbar-thumb{border-color:#e7f1f8;box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),0 3px 12px rgba(0,102,255,.12)}
+
+/* Footer gets more presence without becoming a second hero. */
+.footer{
+  padding:30px 0 34px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 38%,transparent),transparent 72%);
+}
+.footer::after{
+  content:"";position:absolute;left:50%;top:-1px;width:min(760px,70vw);height:1px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(0,209,255,.42),rgba(0,102,255,.35),transparent);pointer-events:none;
+}
+.footer-inner{min-height:92px;gap:28px}
+.footer-brand{gap:14px;font-size:.66rem;line-height:1.55}
+.footer-logo{width:154px;flex:0 0 auto}
+.footer-nav{gap:22px;font-size:.68rem;font-weight:720}
+.footer-nav a{position:relative;padding:8px 2px;color:var(--soft);transition:color var(--motion-fast),transform var(--motion-fast) var(--motion-ease)}
+.footer-nav a::after{content:"";position:absolute;inset:auto 0 2px;height:1px;background:linear-gradient(90deg,var(--brand-cyan),var(--brand-blue));transform:scaleX(0);transform-origin:center;transition:transform var(--motion-med) var(--motion-ease-emph)}
+.footer-right{gap:14px}
+.socials{gap:7px}.socials a{width:32px;height:32px;font-size:.58rem;font-weight:850;background:color-mix(in srgb,var(--surface-2) 74%,transparent);transition:transform var(--motion-fast) var(--motion-ease),border-color var(--motion-fast),background var(--motion-fast),color var(--motion-fast)}
+.footer-copy{font-size:.61rem;line-height:1.5}
+@media(hover:hover) and (pointer:fine){
+  .footer-nav a:hover{color:var(--text);transform:translateY(-1px)}.footer-nav a:hover::after{transform:scaleX(1)}
+  .socials a:hover{transform:translateY(-3px);border-color:var(--border-strong);background:rgba(0,209,255,.07);color:var(--brand-cyan)}
+}
+
+/* Tablet footer stays balanced instead of collapsing into an unstructured list. */
+@media(max-width:900px){
+  .footer{padding:26px 0 30px}.footer-inner{grid-template-columns:1fr auto;align-items:start;gap:18px 26px}
+  .footer-brand{font-size:.64rem}.footer-logo{width:148px}.footer-nav{grid-column:1/-1;width:100%;gap:10px 18px;font-size:.67rem}
+  .footer-right{justify-content:flex-end;align-items:flex-start;flex-wrap:wrap}.footer-copy{font-size:.59rem}
+}
+
+/* Mobile uses real wrapping — no clipped 'peek' cards or hidden horizontal rails. */
+@media(max-width:620px){
+  .cap-grid,.projects-track,.packages-grid{
+    display:grid;grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;gap:12px;overflow:visible;padding:0;
+    scroll-snap-type:none;overscroll-behavior:auto;scrollbar-width:auto;
+  }
+  .cap-card,.project-card,.package-card{scroll-snap-align:none;width:100%;min-width:0}
+
+  /* Capabilities become compact horizontal cards to keep page length under control. */
+  .cap-card{display:grid;grid-template-columns:58px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:14px;align-items:start;padding:16px 17px}
+  .cap-icon{grid-row:1/4;width:54px;height:54px;margin:0}.cap-icon svg{width:30px;height:30px}
+  .cap-card h3{margin:1px 0 4px;font-size:1rem}.cap-card p{margin:0;font-size:.75rem;line-height:1.55}.cap-card .text-link{margin-top:8px;font-size:.7rem;width:max-content}
+
+  .project-card{border-radius:14px}.project-media{aspect-ratio:1.72/1}.project-body{padding:13px 14px 14px}.project-body h3{font-size:1rem}.project-alt{font-size:.73rem}.project-domain{font-size:.69rem}.project-actions{margin-top:10px;padding-top:9px}.project-link{font-size:.68rem}
+
+  .package-card{padding:19px 18px;min-height:0}.package-card.featured{transform:none}.package-copy{min-height:0}.package-card .btn{min-height:42px}
+
+  .footer{padding:28px 0 calc(30px + env(safe-area-inset-bottom))}.footer-inner{display:grid;grid-template-columns:1fr;gap:18px;min-height:0}
+  .footer-brand{width:100%;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;font-size:.65rem}.footer-logo{width:136px}
+  .footer-nav{grid-column:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;font-size:.7rem}
+  .footer-nav a{padding:9px 6px;text-align:center;border:1px solid var(--border);border-radius:10px;background:color-mix(in srgb,var(--surface) 82%,transparent)}
+  .footer-nav a::after{display:none}
+  .footer-right{width:100%;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;justify-content:stretch}.socials{gap:7px}.socials a{width:34px;height:34px}.footer-copy{font-size:.59rem;text-align:end}
+
+  html::-webkit-scrollbar{width:6px;height:6px}
+  html::-webkit-scrollbar-thumb{border-width:1px;min-height:54px}
+}
+
+@media(min-width:500px) and (max-width:620px){
+  .cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cap-card{display:block}.cap-icon{width:50px;height:50px;margin-bottom:10px}.cap-card h3{font-size:.96rem}.cap-card p{font-size:.72rem}
+}
+
+@media(max-width:380px){
+  .footer-brand{grid-template-columns:1fr;gap:8px}.footer-logo{width:130px}.footer-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-right{grid-template-columns:1fr;gap:10px}.footer-copy{text-align:start}
+}
+
+
+/* ========================================================================== */
+/* NEXORA Phase 2.7 — tablet/mobile navigation rebuild + centered hero stats  */
+/* ========================================================================== */
+
+/* The highlight row should read as one centered system at every size. */
+.hero-stats{align-items:stretch}
+.stat{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-inline:14px}
+html[dir="rtl"] .stat{padding-inline:14px}
+
+/* Tablet and phone deliberately use a logo-free utility header. The full
+   NEXORA wordmark remains a desktop-only navigation asset. */
+@media(max-width:1024px){
+  .brand{display:none!important}
+  .nav-inner{grid-template-columns:1fr!important;min-height:54px}
+  .nav-links,.nav-cta{display:none!important}
+  .nav-actions{display:flex;justify-self:end!important;align-items:center;gap:7px!important}
+  html[dir="rtl"] .nav-actions{justify-self:end!important}
+  .menu-toggle{display:inline-flex!important}
+
+  /* Drawer owns the entire navigation layer so the fixed header can never
+     bleed through it or create doubled controls. */
+  .mobile-drawer{
+    display:block!important;position:fixed;inset:0;z-index:90;opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity 180ms var(--motion-ease)
+  }
+  .mobile-drawer.is-open{opacity:1;visibility:visible;pointer-events:auto}
+  .drawer-backdrop{position:absolute;inset:0;background:rgba(0,7,14,.72);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .drawer-panel{
+    position:absolute;inset:0 0 0 auto;width:min(420px,92vw);height:100%;padding:22px 24px 28px;
+    overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 98%,transparent),var(--bg));
+    border-inline-start:1px solid var(--border);box-shadow:-24px 0 70px rgba(0,0,0,.24);
+    transform:translate3d(102%,0,0);transition:transform 260ms var(--motion-ease-emph);will-change:transform
+  }
+  html[dir="rtl"] .drawer-panel{inset:0 auto 0 0;transform:translate3d(-102%,0,0);border-inline-start:0;border-inline-end:1px solid var(--border);box-shadow:24px 0 70px rgba(0,0,0,.24)}
+  .mobile-drawer.is-open .drawer-panel{transform:translate3d(0,0,0)}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:2px 0 18px;border-bottom:1px solid var(--border)}
+  .drawer-brand-text{display:grid;gap:1px;line-height:1;color:var(--text)}
+  .drawer-brand-text strong{font-size:1rem;letter-spacing:.18em;font-weight:900}
+  .drawer-brand-text span{font-size:.43rem;letter-spacing:.28em;color:var(--brand-cyan);font-weight:850}
+  .drawer-close{flex:0 0 auto}
+  .drawer-kicker{margin:22px 0 7px}
+  .drawer-links a{grid-template-columns:34px minmax(0,1fr) auto;min-height:58px;padding:10px 4px}
+
+  .hero-stats{width:min(100%,720px);margin-inline:auto}
+}
+
+@media(max-width:620px){
+  .nav-inner{min-height:52px}
+  .nav-actions{gap:5px!important}
+  .menu-toggle{min-height:36px;padding:0 11px}
+
+  /* Full-screen menu on phone: clean, opaque and isolated from page motion. */
+  .drawer-backdrop{display:none}
+  .drawer-panel,html[dir="rtl"] .drawer-panel{
+    inset:0;width:100%;height:100%;max-width:none;padding:calc(16px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));
+    border:0;box-shadow:none;background:var(--bg)
+  }
+  .drawer-brand-text strong{font-size:.94rem}.drawer-brand-text span{font-size:.4rem}
+  .drawer-kicker{margin-top:20px}
+  .drawer-links{gap:0}
+  .drawer-links a{min-height:60px;padding:9px 3px;font-size:1.2rem;background:none!important}
+  .drawer-links a::after{font-size:.78rem}
+  .drawer-foot{padding-top:18px}
+
+  /* Stable centered 2x2 metrics grid. */
+  .hero-stats{
+    width:min(100%,360px);margin:20px auto 0;border:1px solid var(--border);border-radius:12px;overflow:hidden
+  }
+  .stat{min-height:76px;padding:12px 8px!important;border:0!important}
+  .stat:nth-child(odd){border-inline-end:1px solid var(--border)!important}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--border)!important}
+  .stat-value{font-size:1.14rem}.stat-label{font-size:.62rem;line-height:1.35}
+}
+
+@media(max-width:380px){
+  .menu-toggle-label{display:inline}
+  .menu-toggle{width:auto;padding:0 10px}
+  .hero-stats{width:min(100%,336px)}
+}
+
+/* ========================================================================== */
+/* NEXORA Phase 2.8 — responsive brand mark + desktop-only hero artwork       */
+/* ========================================================================== */
+
+/* Full wordmark is desktop-only. Compact contexts use the N mark alone. */
+.brand-logo--mark{display:none;object-fit:contain;object-position:center;filter:drop-shadow(0 8px 20px rgba(0,102,255,.18))}
+.drawer-brand-mark{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px}
+.drawer-brand-mark img{display:block;width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,102,255,.20))}
+
+@media(max-width:1024px){
+  /* Tablet / mobile header keeps only the N icon. */
+  .nav-inner{grid-template-columns:auto 1fr auto!important;min-height:54px}
+  .brand{display:inline-flex!important;grid-column:1;justify-self:start;align-items:center;min-width:40px}
+  .brand-logo--full{display:none!important}
+  .brand-logo--mark{display:block!important;width:40px!important;height:40px!important}
+  .nav.is-scrolled .brand-logo--mark{width:36px!important;height:36px!important}
+  .nav-links,.nav-cta{display:none!important}
+  .nav-actions{grid-column:3;display:flex;justify-self:end!important;align-items:center;gap:7px!important}
+  html[dir="rtl"] .brand{grid-column:3;justify-self:end}
+  html[dir="rtl"] .nav-actions{grid-column:1;justify-self:start!important}
+  .menu-toggle{display:inline-flex!important}
+
+  /* The large hero N is a desktop visual only. Mobile/tablet prioritize message,
+     actions and centered metrics instead of repeating the same brand artwork. */
+  .hero-art{display:none!important}
+  .hero-layout{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+  .hero-copy{width:100%;max-width:920px;margin-inline:auto}
+  .hero{min-height:auto;padding-bottom:34px}
+  .hero-stats{margin-bottom:0}
+}
+
+@media(max-width:620px){
+  .nav-inner{min-height:52px}
+  .brand{min-width:36px}
+  .brand-logo--mark{width:36px!important;height:36px!important}
+  .nav.is-scrolled .brand-logo--mark{width:34px!important;height:34px!important}
+  .drawer-brand-mark{width:38px;height:38px;flex-basis:38px}
+  .drawer-brand-mark img{width:34px;height:34px}
+  .hero{padding-bottom:28px}
+}
+
+@media(max-width:380px){
+  .brand{min-width:34px}
+  .brand-logo--mark{width:34px!important;height:34px!important}
+  .drawer-brand-mark{width:36px;height:36px;flex-basis:36px}
+  .drawer-brand-mark img{width:32px;height:32px}
+}
+
+/* Phase 2.11 — navigation glide: shared active indicator + subtle arrival feedback. */
+.nav-links{position:relative}
+.nav-active-track{
+  --track-x:0px;--track-w:24;
+  position:absolute;inset:auto auto -1px 0;width:1px;height:2px;border-radius:999px;
+  background:linear-gradient(90deg,var(--brand-cyan),var(--brand-blue));
+  box-shadow:0 0 12px color-mix(in srgb,var(--brand-cyan) 48%,transparent);
+  opacity:0;pointer-events:none;transform-origin:left center;
+  transform:translate3d(var(--track-x),0,0) scaleX(var(--track-w));
+  transition:transform 420ms cubic-bezier(.22,1,.36,1),opacity 180ms ease;
+  will-change:transform;
+}
+.nav-active-track.is-ready{opacity:1}
+.nav-links .nav-link::after{opacity:0!important}
+.section.nav-arrival .section-title,.section--cta.nav-arrival h2{
+  animation:nexoraSectionArrival 560ms cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes nexoraSectionArrival{
+  0%{transform:translate3d(0,7px,0);filter:brightness(.96)}
+  55%{filter:brightness(1.08)}
+  100%{transform:translate3d(0,0,0);filter:none}
+}
+@media(max-width:1024px){.nav-active-track{display:none!important}.nav-links .nav-link::after{opacity:1!important}}
+@media(prefers-reduced-motion:reduce){.nav-active-track{transition:none}.section.nav-arrival .section-title,.section--cta.nav-arrival h2{animation:none!important}}
+
+/* ========================================================================== */
+/* NEXORA Phase 2.12 — Arabic compact-header parity                           */
+/* ========================================================================== */
+/*
+   The compact header keeps one physical composition in both locales:
+   N mark on the left, utility controls on the right. RTL still applies to
+   page/content copy, but it must not mirror the utility bar itself.
+*/
+@media(max-width:1024px){
+  .nav-inner{direction:ltr;grid-template-columns:auto 1fr auto!important;align-items:center}
+  .brand,
+  html[dir="rtl"] .brand{grid-column:1!important;justify-self:start!important;align-self:center}
+  .nav-actions,
+  html[dir="rtl"] .nav-actions{grid-column:3!important;justify-self:end!important;align-self:center;direction:ltr}
+  .menu-toggle{height:40px;min-height:40px;line-height:1;white-space:nowrap}
+  .menu-toggle-label{line-height:1;display:inline-block}
+  html[dir="rtl"] .menu-toggle-label{direction:rtl;unicode-bidi:isolate}
+  .lang-switch,.icon-btn{flex:0 0 auto}
+}
+
+@media(max-width:620px){
+  .nav-inner{min-height:52px!important}
+  .menu-toggle{height:36px;min-height:36px}
+}
+
+
+/* ========================================================================== */
+/* NEXORA Phase 2.13 — deterministic navigation glide                        */
+/* ========================================================================== */
+html.nav-gliding{scroll-behavior:auto!important}
+html.nav-gliding body{scroll-behavior:auto!important}
+@media(prefers-reduced-motion:reduce){html.nav-gliding,html.nav-gliding body{scroll-behavior:auto!important}}

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      try {
+        const savedLang = localStorage.getItem('nexora_lang');
+        const lang = savedLang === 'ar' ? 'ar' : 'en';
+        const savedTheme = localStorage.getItem('nexora_theme');
+        const mode = ['light','dark','system'].includes(savedTheme) ? savedTheme : 'system';
+        const theme = mode === 'system'
+          ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : mode;
+        root.lang = lang;
+        root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        root.dataset.theme = theme;
+        if (lang === 'ar') {
+          root.classList.add('i18n-preload', 'i18n-fade');
+          setTimeout(() => root.classList.remove('i18n-preload'), 2500);
+        }
+      } catch (_) {
+        root.lang = 'en';
+        root.dir = 'ltr';
+      }
+    })();
+  </script>
+  <style>
+    html.i18n-preload{background:#03101b}
+    html.i18n-preload[data-theme="light"]{background:#f4f8fc}
+    html.i18n-fade body{transition:opacity .45s cubic-bezier(.22,1,.36,1)}
+    html.i18n-preload body{visibility:hidden;opacity:0}
+    @media (prefers-reduced-motion: reduce){html.i18n-fade body{transition:none}}
+  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#03101b">
+  <meta name="description" content="NEXORA Technologies project showcase.">
+  <title>NEXORA Technologies — Project</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/motion-polish.css">
+  <link rel="stylesheet" href="css/project.css">
+</head>
+<body class="project-page">
+  <div class="site-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html#home" aria-label="NEXORA home">
+        <img class="brand-logo brand-logo--full" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies">
+        <img class="brand-logo brand-logo--mark" src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="nav-link" href="index.html#home" data-i18n="nav_home">Home</a>
+        <a class="nav-link" href="services.html" data-i18n="nav_services">Services</a>
+        <a class="nav-link active" href="work.html" aria-current="page" data-i18n="nav_work">Work</a>
+        <a class="nav-link" href="index.html#packages" data-i18n="nav_packages">Packages</a>
+        <a class="nav-link" href="index.html#team" data-i18n="nav_about">About</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle type="button" aria-label="Change theme">◐</button>
+        <button class="lang-switch" data-lang-toggle type="button" aria-label="Switch language">AR</button>
+        <a class="btn btn--primary nav-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+        <button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="menu-toggle-label" data-i18n="menu_label">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-backdrop"></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="drawer-head">
+        <div class="drawer-brand-mark" aria-label="NEXORA Technologies"><img src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></div>
+        <button class="drawer-close" data-menu-close type="button" aria-label="Close menu"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="drawer-kicker" data-i18n="mobile_nav_kicker">Explore</div>
+      <nav class="drawer-links" aria-label="Mobile navigation links">
+        <a href="index.html#home"><span class="drawer-index">01</span><span data-i18n="nav_home">Home</span></a>
+        <a href="services.html"><span class="drawer-index">02</span><span data-i18n="nav_services">Services</span></a>
+        <a class="active" href="work.html" aria-current="page"><span class="drawer-index">03</span><span data-i18n="nav_work">Work</span></a>
+        <a href="index.html#packages"><span class="drawer-index">04</span><span data-i18n="nav_packages">Packages</span></a>
+        <a href="index.html#team"><span class="drawer-index">05</span><span data-i18n="nav_about">About</span></a>
+        <a href="contact.html"><span class="drawer-index">06</span><span data-i18n="nav_contact">Contact</span></a>
+      </nav>
+      <div class="drawer-foot">
+        <a class="btn btn--primary drawer-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+        <p data-i18n="drawer_hint">Choose a section or start your project.</p>
+      </div>
+    </aside>
+  </div>
+
+  <main data-project-page>
+    <div class="project-progress" aria-hidden="true"><i></i></div>
+
+    <section class="project-hero" id="project-top">
+      <div class="project-hero-lines" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="project-breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="work.html" data-i18n="breadcrumb_work">Work</a>
+          <span aria-hidden="true">/</span>
+          <span data-project-index>#01</span>
+        </nav>
+
+        <div class="project-hero-grid">
+          <div class="project-hero-copy reveal">
+            <div class="project-status-row">
+              <span class="project-status"><i></i><span data-i18n="live_project">Live Project</span></span>
+              <span class="project-sequence"><span data-project-position>01</span> / <span data-project-total>12</span></span>
+            </div>
+            <h1 data-project-title>Project</h1>
+            <p class="project-alt-title" data-project-alt-title>Project alternative title</p>
+            <p class="project-hero-description" data-project-short-description hidden></p>
+            <div class="project-hero-actions">
+              <a class="btn btn--primary" data-project-live href="#" target="_blank" rel="noopener noreferrer"><span data-i18n="visit_live_site">Visit Live Site</span><span class="arrow">↗</span></a>
+              <a class="btn btn--ghost" href="work.html"><span data-i18n="back_to_work">Back to Work</span><span class="arrow">←</span></a>
+            </div>
+          </div>
+
+          <aside class="project-hero-meta reveal" aria-label="Project information">
+            <div class="project-meta-label" data-i18n="project_snapshot">Project Snapshot</div>
+            <dl class="project-meta-list">
+              <div><dt data-i18n="project_number">Project</dt><dd data-project-number>#01</dd></div>
+              <div><dt data-i18n="website">Website</dt><dd data-project-domain>example.com</dd></div>
+              <div><dt data-i18n="status">Status</dt><dd data-i18n="live">Live</dd></div>
+              <div data-project-service-meta hidden><dt data-i18n="service">Service</dt><dd data-project-service-primary>—</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <div class="project-hero-showcase reveal">
+          <a class="project-browser project-browser--hero" data-project-live href="#" target="_blank" rel="noopener noreferrer" aria-label="Open live project">
+            <div class="browser-bar" aria-hidden="true">
+              <div class="browser-dots"><i></i><i></i><i></i></div>
+              <div class="browser-address"><span class="browser-lock">●</span><span data-project-domain>example.com</span></div>
+              <div class="browser-open">↗</div>
+            </div>
+            <div class="browser-screen" data-project-media>
+              <img data-project-image src="" alt="" loading="eager" fetchpriority="high">
+              <div class="project-image-fallback" aria-hidden="true">N</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-snapshot">
+      <div class="container">
+        <div class="project-snapshot-grid reveal">
+          <div class="snapshot-cell"><span data-i18n="project_number">Project</span><strong data-project-number>#01</strong></div>
+          <div class="snapshot-cell"><span data-i18n="status">Status</span><strong data-i18n="live">Live</strong></div>
+          <div class="snapshot-cell snapshot-cell--wide"><span data-i18n="website">Website</span><a data-project-live data-project-domain href="#" target="_blank" rel="noopener noreferrer">example.com</a></div>
+          <div class="snapshot-cell"><span data-i18n="portfolio_index">Portfolio Index</span><strong><span data-project-position>01</span> / <span data-project-total>12</span></strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-content project-content--about" data-project-section data-optional-section="description" hidden>
+      <div class="container project-content-grid">
+        <div class="project-content-heading reveal">
+          <p class="eyebrow"><span data-section-number>01</span><span aria-hidden="true"> / </span><span data-i18n="about_eyebrow">ABOUT</span></p>
+          <h2 data-i18n="about_title">About the project.</h2>
+        </div>
+        <div class="project-rich-copy reveal" data-project-description></div>
+      </div>
+    </section>
+
+    <section class="project-content project-content--terms" data-project-section data-optional-section="technologies" hidden>
+      <div class="container project-content-grid">
+        <div class="project-content-heading reveal">
+          <p class="eyebrow"><span data-section-number>02</span><span aria-hidden="true"> / </span><span data-i18n="technologies_eyebrow">TECHNOLOGIES</span></p>
+          <h2 data-i18n="technologies_title">Tools behind the build.</h2>
+          <p data-i18n="technologies_copy">The tools and technologies used to shape the experience.</p>
+        </div>
+        <div class="project-term-list reveal" data-project-technologies></div>
+      </div>
+    </section>
+
+    <section class="project-content project-content--terms" data-project-section data-optional-section="services" hidden>
+      <div class="container project-content-grid">
+        <div class="project-content-heading reveal">
+          <p class="eyebrow"><span data-section-number>03</span><span aria-hidden="true"> / </span><span data-i18n="services_eyebrow">SERVICES</span></p>
+          <h2 data-i18n="services_title">What we delivered.</h2>
+        </div>
+        <div class="project-term-list reveal" data-project-services></div>
+      </div>
+    </section>
+
+    <section class="project-visual-story" id="visual-story" data-project-section>
+      <div class="container">
+        <div class="project-section-head reveal">
+          <div>
+            <p class="eyebrow"><span data-section-number>01</span><span aria-hidden="true"> / </span><span data-i18n="visual_eyebrow">VISUAL STORY</span></p>
+            <h2 data-i18n="visual_title">Explore the interface.</h2>
+          </div>
+          <p data-i18n="visual_copy">A closer visual reading of the live project using its verified portfolio artwork.</p>
+        </div>
+
+        <div class="visual-story-grid">
+          <figure class="visual-frame visual-frame--wide reveal">
+            <div class="visual-image visual-image--top" data-visual-media><img data-project-image-copy data-crop="top" src="" alt=""></div>
+            <figcaption><span>01</span><strong data-i18n="visual_overview">Overview</strong></figcaption>
+          </figure>
+          <figure class="visual-frame visual-frame--portrait reveal">
+            <div class="visual-image visual-image--center" data-visual-media><img data-project-image-copy data-crop="center" src="" alt=""></div>
+            <figcaption><span>02</span><strong data-i18n="visual_detail">Interface Detail</strong></figcaption>
+          </figure>
+          <figure class="visual-frame visual-frame--landscape reveal">
+            <div class="visual-image visual-image--bottom" data-visual-media><img data-project-image-copy data-crop="bottom" src="" alt=""></div>
+            <figcaption><span>03</span><strong data-i18n="visual_flow">Page Flow</strong></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-story" data-project-section data-optional-section="challenge" hidden>
+      <div class="container project-story-grid">
+        <div class="project-story-index reveal" data-section-number>01</div>
+        <div class="project-story-copy reveal"><p class="eyebrow" data-i18n="challenge_eyebrow">CHALLENGE</p><h2 data-i18n="challenge_title">The challenge.</h2><div data-project-challenge></div></div>
+      </div>
+    </section>
+
+    <section class="project-story" data-project-section data-optional-section="solution" hidden>
+      <div class="container project-story-grid">
+        <div class="project-story-index reveal" data-section-number>01</div>
+        <div class="project-story-copy reveal"><p class="eyebrow" data-i18n="solution_eyebrow">SOLUTION</p><h2 data-i18n="solution_title">The solution.</h2><div data-project-solution></div></div>
+      </div>
+    </section>
+
+    <section class="project-results" data-project-section data-optional-section="results" hidden>
+      <div class="container">
+        <div class="project-section-head reveal">
+          <div><p class="eyebrow"><span data-section-number>01</span><span aria-hidden="true"> / </span><span data-i18n="results_eyebrow">RESULTS</span></p><h2 data-i18n="results_title">Verified outcomes.</h2></div>
+          <p data-i18n="results_copy">Key outcomes and measurable highlights from the project.</p>
+        </div>
+        <div class="project-results-grid reveal" data-project-results></div>
+      </div>
+    </section>
+
+    <section class="project-gallery" data-project-section data-optional-section="gallery" hidden>
+      <div class="container">
+        <div class="project-section-head reveal"><div><p class="eyebrow"><span data-section-number>01</span><span aria-hidden="true"> / </span><span data-i18n="gallery_eyebrow">GALLERY</span></p><h2 data-i18n="gallery_title">More project views.</h2></div></div>
+        <div class="project-gallery-grid" data-project-gallery></div>
+      </div>
+    </section>
+
+    <section class="project-live">
+      <div class="container">
+        <div class="project-live-card reveal">
+          <div class="project-live-glow" aria-hidden="true"></div>
+          <div class="project-live-copy">
+            <p class="eyebrow" data-i18n="live_eyebrow">LIVE EXPERIENCE</p>
+            <h2 data-project-domain>example.com</h2>
+            <p data-i18n="live_copy">Open the real project and experience it in its current live environment.</p>
+          </div>
+          <a class="btn btn--primary project-live-button" data-project-live href="#" target="_blank" rel="noopener noreferrer"><span data-i18n="visit_live_project">Visit Live Project</span><span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-navigation">
+      <div class="container">
+        <div class="project-navigation-head reveal">
+          <div><p class="eyebrow" data-i18n="continue_eyebrow">NEXT / CONTINUE</p><h2 data-i18n="continue_title">Keep exploring.</h2></div>
+          <a class="project-all-link" href="work.html"><span data-i18n="all_projects">All Projects</span><span>→</span></a>
+        </div>
+
+        <a class="project-next-scene reveal" data-project-next href="#">
+          <div class="project-next-media" data-next-media><img data-next-image src="" alt=""></div>
+          <div class="project-next-overlay"></div>
+          <div class="project-next-content">
+            <div><span class="project-next-kicker" data-i18n="next_project">Next Project</span><span data-next-index>#02</span></div>
+            <strong data-next-title>Next</strong>
+            <small data-next-domain>example.com</small>
+            <span class="project-next-arrow">→</span>
+          </div>
+        </a>
+
+        <div class="project-previous-row reveal">
+          <a data-project-prev href="#"><span>←</span><span data-i18n="previous_project">Previous Project</span><strong data-prev-title>Previous</strong><small data-prev-domain>example.com</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-cta">
+      <div class="container">
+        <div class="project-cta-card reveal">
+          <div>
+            <p class="eyebrow" data-i18n="cta_eyebrow">YOUR PROJECT</p>
+            <h2 data-i18n="cta_title">Have something in mind?</h2>
+            <p data-i18n="cta_copy">Let’s turn your next idea into a clear digital experience.</p>
+          </div>
+          <a class="btn btn--primary" data-project-contact href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+          <div class="project-cta-orbit" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-not-found" data-project-not-found hidden>
+      <div class="container project-not-found-inner">
+        <span>404</span>
+        <h1 data-i18n="not_found_title">Project not found.</h1>
+        <p data-i18n="not_found_copy">This project is not available in the current portfolio index.</p>
+        <a class="btn btn--primary" href="work.html"><span data-i18n="back_to_work">Back to Work</span><span class="arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><img class="footer-logo" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><span data-i18n="footer_copy">Building a better digital tomorrow.</span></div>
+      <nav class="footer-nav" aria-label="Footer navigation"><a href="index.html#home" data-i18n="nav_home">Home</a><a href="services.html" data-i18n="nav_services">Services</a><a href="work.html" data-i18n="nav_work">Work</a><a href="index.html#packages" data-i18n="nav_packages">Packages</a><a href="index.html#team" data-i18n="nav_about">About</a><a href="contact.html" data-i18n="nav_contact">Contact</a></nav>
+      <div class="footer-right"><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Email">@</a></div><span class="footer-copy" data-i18n="rights">© 2026 NEXORA Technologies. All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script src="js/runtime-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/api-client.js"></script>
+  <script src="js/repositories/projects-repository.js"></script>
+  <script src="js/project.js"></script>
+  <script src="js/perf-debug.js"></script>
+</body>
+</html>

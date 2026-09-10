@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../../',import.meta.url));
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const assert=(c,m)=>{if(!c)throw new Error(m)};
+const admin=read('public/admin/index.html'),projects=read('public/admin/js/modules/client-projects.js'),support=read('public/admin/js/modules/client-project-support.js'),design=read('public/admin/js/core/design-system.js'),css=read('public/admin/css/admin.css'),foundation=read('public/css/nexora-foundation.css'),portal=read('public/project-portal.html'),portalCss=read('public/css/project-portal.css'),portalJs=read('public/js/project-portal.js'),i18n=read('public/admin/js/core/i18n.js');
+assert(admin.includes('../css/nexora-foundation.css'),'Admin foundation CSS not loaded');
+assert(admin.includes('font-awesome/7.3.1/js/all.min.js'),'Font Awesome standard missing');
+for(const token of ['--nx-color-primary','--nx-status-success','--nx-status-progress','--nx-status-warning','--nx-status-danger','--nx-radius-md','--nx-motion-normal'])assert(foundation.includes(token),'missing design token '+token);
+assert(design.includes('PROJECT_WORKSPACE_MODULES')&&design.includes("id:'tickets'")&&design.includes("id:'clientAccess'"),'workspace registry incomplete');
+assert(projects.includes('projectWorkspaceNav()')&&projects.includes('supportSection(p)')&&projects.includes('clientAccessSection(p)'),'support/access not mounted in Project Workspace');
+assert(projects.includes('clientVisibleToggle')&&projects.includes('client_visible:Boolean'),'client visibility UI/payload missing');
+for(const c of ['project-workspace-nav','ticket-summary-grid','ticket-card','project-access-form','client-visible-toggle'])assert(css.includes('.'+c),'missing Admin CSS '+c);
+assert(portal.includes('project-portal.js')&&portal.includes('nexora-foundation.css')&&portal.includes('font-awesome/7.3.1/js/all.min.js'),'portal assets/Font Awesome missing');
+assert(portal.includes('id="portalTicketForm"')&&portal.includes('id="portalMilestonesSection"')&&portal.includes('id="portalTasksSection"'),'portal views missing');
+assert(portalCss.includes('@media(max-width:760px)')&&portalCss.includes('html[data-theme="light"]'),'portal responsive/theme missing');
+assert(portalJs.includes('tokenFromHash()')&&portalJs.includes("location.hash")&&portalJs.includes("history.replaceState(null,'',location.pathname)"),'fragment token lifecycle missing');
+assert(!portalJs.includes('location.search')&&!portalJs.includes('?token='),'portal raw token query-string usage');
+assert(portalJs.includes("credentials:'include'")&&portalJs.includes("headers['X-CSRF-Token']=csrf"),'portal cookie/CSRF flow missing');
+assert(portalJs.includes("/client-portal/tickets")&&portalJs.includes("/messages"),'portal ticket submission/tracking missing');
+assert(![admin,projects,support,portalJs].some(x=>x.includes('window.confirm(')),'native confirm introduced');
+assert(![projects,support].some(x=>/esc\s*\(\s*(?:faIcon|detailIcon|executionStateIcon)\s*\(/.test(x)),'trusted Font Awesome markup escaped');
+assert(i18n.includes("clientVisible:'")&&i18n.includes("projectTickets:'")&&i18n.includes("clientAccess:'"),'AR/EN support labels missing');
+// Primary NEXORA CTA stays white in existing design system.
+assert(css.includes('.primary-btn')&&/\.primary-btn[^}]*color:\s*(?:#fff|white)/s.test(css),'Admin primary CTA white-text standard missing');
+console.log('NX_OPS_4_UI_CONTRACT_PASS');

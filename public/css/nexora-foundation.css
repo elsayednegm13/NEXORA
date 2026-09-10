@@ -1,0 +1,36 @@
+:root{
+  --nx-brand-cyan:#18c7ff;
+  --nx-brand-blue:#1b76ff;
+  --nx-brand-gradient:linear-gradient(135deg,var(--nx-brand-cyan),var(--nx-brand-blue));
+  --nx-color-primary:var(--nx-brand-cyan);
+  --nx-color-primary-strong:var(--nx-brand-blue);
+  --nx-status-success:#41d99d;
+  --nx-status-progress:#2f8cff;
+  --nx-status-warning:#ffca6a;
+  --nx-status-danger:#ff6b7a;
+  --nx-status-muted:#8aa6b8;
+  --nx-space-1:4px;--nx-space-2:8px;--nx-space-3:12px;--nx-space-4:16px;--nx-space-5:20px;--nx-space-6:24px;--nx-space-8:32px;
+  --nx-radius-sm:10px;--nx-radius-md:14px;--nx-radius-lg:20px;--nx-radius-xl:24px;--nx-radius-pill:999px;
+  --nx-motion-fast:160ms;--nx-motion-normal:240ms;--nx-ease:cubic-bezier(.16,1,.3,1);--nx-ease-standard:var(--nx-ease);
+  --nx-shadow-soft:0 14px 42px rgba(0,0,0,.14);
+  --nx-shadow-elevated:0 26px 76px rgba(0,0,0,.25);
+}
+html[data-theme="light"]{
+  --nx-shadow-soft:0 14px 42px rgba(40,79,102,.10);
+  --nx-shadow-elevated:0 26px 76px rgba(40,79,102,.16);
+}
+/* NX-COLLAB-1 semantic, theme-aware state surfaces. Legacy tokens above remain immutable. */
+:root{
+  --nx-success-text:#7cf0bd;--nx-success-bg:rgba(39,190,126,.12);--nx-success-border:rgba(65,217,157,.30);
+  --nx-progress-text:#67bdff;--nx-progress-bg:rgba(47,140,255,.13);--nx-progress-border:rgba(47,140,255,.32);
+  --nx-warning-text:#ffc861;--nx-warning-bg:rgba(245,166,35,.12);--nx-warning-border:rgba(245,166,35,.30);
+  --nx-danger-text:#ff8290;--nx-danger-bg:rgba(255,102,119,.11);--nx-danger-border:rgba(255,102,119,.30);
+  --nx-muted-text:#9db2c1;--nx-muted-bg:rgba(138,166,184,.09);--nx-muted-border:rgba(138,166,184,.20)
+}
+html[data-theme="light"]{
+  --nx-success-text:#13744d;--nx-success-bg:#e9f8f1;--nx-success-border:#b9e9d3;
+  --nx-progress-text:#155fb5;--nx-progress-bg:#eaf4ff;--nx-progress-border:#bddcff;
+  --nx-warning-text:#81520b;--nx-warning-bg:#fff7e7;--nx-warning-border:#eed39e;
+  --nx-danger-text:#a72d3c;--nx-danger-bg:#fff0f2;--nx-danger-border:#f3c0c7;
+  --nx-muted-text:#536b7b;--nx-muted-bg:#eef4f7;--nx-muted-border:#d1dfe7
+}

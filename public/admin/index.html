@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="nexora-ui-release" content="NX-COLLAB-1-UI-R4">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="color-scheme" content="dark light">
+  <title>NEXORA Admin</title>
+  <link rel="icon" href="../assets/brand/favicon.ico">
+  <link rel="stylesheet" href="../css/nexora-foundation.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script>
+    (function(){
+      try{
+        var lang=localStorage.getItem('nexora_admin_lang')||localStorage.getItem('nexora_lang')||'ar';
+        var theme=localStorage.getItem('nexora_admin_theme')||localStorage.getItem('nexora_theme')||'dark';
+        if(!/^(ar|en)$/.test(lang))lang='ar'; if(!/^(dark|light)$/.test(theme))theme='dark';
+        document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.dataset.theme=theme;
+      }catch(e){}
+    })();
+    window.FontAwesomeConfig={autoReplaceSvg:'nest',observeMutations:true};
+  </script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="boot" class="boot-screen" aria-live="polite">
+    <img src="../assets/brand/nexora-mark-primary.png" alt="" class="boot-mark">
+    <div class="boot-line"><span></span></div>
+  </div>
+
+  <main id="loginView" class="auth-view" hidden>
+    <section class="auth-shell">
+      <div class="auth-brand">
+        <img src="../assets/brand/nexora-mark-primary.png" alt="NEXORA" class="auth-mark">
+        <div><strong>NEXORA</strong><span>CONTROL CENTER</span></div>
+      </div>
+      <div class="auth-copy">
+        <span class="eyebrow" data-i18n="secureArea">منطقة إدارة آمنة</span>
+        <h1 data-i18n="loginTitle">أهلاً بعودتك.</h1>
+        <p data-i18n="loginText">ادخل لإدارة المشاريع والخدمات وطلبات العملاء من مكان واحد.</p>
+      </div>
+      <form id="loginForm" class="auth-form" novalidate>
+        <label><span data-i18n="email">البريد الإلكتروني</span><input id="loginEmail" name="email" type="email" autocomplete="username" required></label>
+        <label><span data-i18n="password">كلمة المرور</span><input id="loginPassword" name="password" type="password" autocomplete="current-password" required></label>
+        <div id="loginError" class="form-message" role="alert" hidden></div>
+        <button class="primary-btn wide" type="submit"><span data-i18n="login">تسجيل الدخول</span><span aria-hidden="true"><i class="fa-solid fa-arrow-right-to-bracket nexora-fa">↗</i></span></button>
+      </form>
+      <div class="auth-footer">
+        <button class="text-btn" id="authLangBtn" type="button">EN</button>
+        <a id="setupLink" href="setup.html" class="text-link" hidden data-i18n="firstSetup">إعداد الحساب لأول مرة</a>
+        <a href="../index.html" class="text-link" data-i18n="backSite">العودة للموقع</a>
+      </div>
+    </section>
+    <aside class="auth-visual" aria-hidden="true">
+      <div class="radar radar-a"></div><div class="radar radar-b"></div><div class="radar radar-c"></div>
+      <div class="visual-core"><img src="../assets/brand/nexora-mark-primary.png" alt=""></div>
+      <span class="visual-tag tag-a">PROJECTS</span><span class="visual-tag tag-b">LEADS</span><span class="visual-tag tag-c">SERVICES</span>
+    </aside>
+  </main>
+
+  <div id="appView" class="app-shell" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a href="#overview" class="side-brand" aria-label="NEXORA Admin"><img src="../assets/brand/nexora-mark-primary.png" alt=""><div><strong>NEXORA</strong><span>ADMIN</span></div></a>
+      <nav class="side-nav" aria-label="Admin navigation">
+        <button class="nav-item is-active" data-view="overview" type="button"><span class="nav-icon"><i class="fa-solid fa-house nexora-fa">⌂</i></span><span data-i18n="overview">نظرة عامة</span></button>
+        <span class="nav-group-label" data-i18n="salesGroup">المبيعات والعملاء</span>
+        <button class="nav-item" data-view="inquiries" type="button"><span class="nav-icon"><i class="fa-solid fa-inbox nexora-fa">✦</i></span><span data-i18n="inquiries">طلبات العملاء</span><b id="newLeadBadge" class="nav-badge" hidden>0</b></button>
+        <button class="nav-item" data-view="clients" type="button"><span class="nav-icon"><i class="fa-solid fa-users nexora-fa">◎</i></span><span data-i18n="clients">العملاء</span></button>
+        <span class="nav-group-label" data-i18n="operationsGroup">العمليات</span>
+        <button class="nav-item" data-view="clientProjects" type="button"><span class="nav-icon"><i class="fa-solid fa-diagram-project nexora-fa">▱</i></span><span data-i18n="clientProjects">مشاريع العملاء</span></button>
+        <span class="nav-group-label" data-i18n="websiteGroup">محتوى الموقع</span>
+        <button class="nav-item" data-view="projects" type="button"><span class="nav-icon"><i class="fa-solid fa-images nexora-fa">◇</i></span><span data-i18n="portfolioProjects">مشاريع الموقع</span></button>
+        <button class="nav-item" data-view="services" type="button"><span class="nav-icon"><i class="fa-solid fa-layer-group nexora-fa">▦</i></span><span data-i18n="services">الخدمات</span></button>
+      </nav>
+      <div class="side-bottom">
+        <a href="../index.html" target="_blank" class="nav-item nav-link"><span class="nav-icon"><i class="fa-solid fa-arrow-up-right-from-square nexora-fa">↗</i></span><span data-i18n="viewSite">عرض الموقع</span></a>
+        <button id="logoutBtn" class="nav-item danger" type="button"><span class="nav-icon"><i class="fa-solid fa-power-off nexora-fa">⏻</i></span><span data-i18n="logout">تسجيل الخروج</span></button>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn menu-btn" type="button" aria-label="Menu"><i class="fa-solid fa-bars nexora-fa">☰</i></button>
+        <div class="top-title"><span id="viewEyebrow">NEXORA / ADMIN</span><h1 id="viewTitle">نظرة عامة</h1></div>
+        <div class="top-actions">
+          <button id="langBtn" class="ghost-btn" type="button">EN</button>
+          <button id="themeBtn" class="icon-btn" type="button" aria-label="Theme"><i class="fa-solid fa-circle-half-stroke nexora-fa">◐</i></button>
+          <div class="admin-chip"><span class="status-dot"></span><div><strong id="adminName">Admin</strong><small id="adminEmail"></small></div></div>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section id="view-overview" class="view is-active" data-view-section="overview">
+          <div class="hero-panel">
+            <div><span class="eyebrow" data-i18n="controlCenter">مركز التحكم</span><h2 data-i18n="overviewHero">كل ما تحتاجه لإدارة NEXORA في لقطة واحدة.</h2><p data-i18n="overviewSub">تابع الطلبات الجديدة، حالة المحتوى، وما يحتاج انتباهك الآن.</p></div>
+            <div class="hero-orbit" aria-hidden="true"><div class="orbit o1"></div><div class="orbit o2"></div><img src="../assets/brand/nexora-mark-primary.png" alt=""></div>
+          </div>
+          <div id="statsGrid" class="stats-grid"></div>
+          <div class="split-grid">
+            <section class="panel"><div class="panel-head"><div><span class="eyebrow" data-i18n="latestActivity">أحدث النشاط</span><h3 data-i18n="latestInquiries">أحدث طلبات العملاء</h3></div><button class="text-btn" data-go="inquiries" type="button" data-i18n="viewAll">عرض الكل</button></div><div id="recentInquiries" class="recent-list"></div></section>
+            <section class="panel signal-panel"><div class="panel-head"><div><span class="eyebrow">SYSTEM</span><h3 data-i18n="systemState">حالة المنظومة</h3></div><span class="live-pill"><i></i> LIVE</span></div><div class="signal-grid"><div><span data-i18n="staticAssets">واجهة الموقع</span><b data-i18n="connected">متصل</b></div><div><span data-i18n="workerApi">Worker API</span><b data-i18n="connected">متصل</b></div><div><span data-i18n="d1Database">قاعدة D1</span><b data-i18n="connected">متصل</b></div><div><span data-i18n="adminSession">جلسة الإدارة</span><b data-i18n="protected">محمية</b></div></div></section>
+          </div>
+        </section>
+
+        <section id="view-inquiries" class="view" data-view-section="inquiries">
+          <div class="section-tools"><div class="search-box"><span><i class="fa-solid fa-magnifying-glass nexora-fa">⌕</i></span><input id="inquirySearch" type="search" data-i18n-placeholder="searchInquiries" placeholder="ابحث بالاسم أو البريد أو رقم الطلب"></div><select id="inquiryStatusFilter" class="select-input"><option value="">كل الحالات</option><option value="new">جديد</option><option value="reviewing">قيد المراجعة</option><option value="qualified">مؤهل</option><option value="contacted">تم التواصل</option><option value="proposal_sent">تم إرسال العرض</option><option value="won">تم الاتفاق</option><option value="lost">لم يتم الاتفاق</option><option value="spam">غير مرغوب</option><option value="archived">مؤرشف</option></select><span id="liveSyncBadge" class="live-sync" aria-live="polite"><i></i><span data-i18n="liveUpdates">تحديث تلقائي</span><small id="lastSyncTime">—</small></span><button id="refreshInquiries" class="ghost-btn" type="button" data-i18n="refresh">تحديث</button></div>
+          <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th data-i18n="client">العميل</th><th data-i18n="source">المصدر</th><th data-i18n="status">الحالة</th><th data-i18n="date">التاريخ</th><th></th></tr></thead><tbody id="inquiriesBody"></tbody></table></div></div>
+        </section>
+
+        <section id="view-clients" class="view" data-view-section="clients">
+          <div class="section-tools clients-tools"><div class="search-box"><span><i class="fa-solid fa-magnifying-glass nexora-fa">⌕</i></span><input id="clientSearch" type="search" data-i18n-placeholder="searchClients" placeholder="ابحث باسم العميل أو البريد أو الكود"></div><select id="clientStatusFilter" class="select-input" aria-label="Client status"></select><button id="addClientBtn" class="primary-btn compact-btn" type="button"><span><i class="fa-solid fa-plus nexora-fa">+</i></span><span data-i18n="addClient">إضافة عميل</span></button><button id="refreshClients" class="ghost-btn" type="button" data-i18n="refresh">تحديث</button></div>
+          <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th data-i18n="client">العميل</th><th data-i18n="primaryContact">جهة الاتصال</th><th data-i18n="status">الحالة</th><th data-i18n="sourceInquiries">الطلبات المرتبطة</th><th data-i18n="updatedAt">آخر تحديث</th><th></th></tr></thead><tbody id="clientsBody"></tbody></table></div><div class="table-footer"><button id="loadMoreClients" class="ghost-btn" type="button" data-i18n="loadMore" hidden>تحميل المزيد</button></div></div>
+        </section>
+
+        <section id="view-client-projects" class="view" data-view-section="clientProjects">
+          <div id="clientProjectScopeBar" class="client-project-scope-bar" hidden></div>
+          <div class="section-tools client-projects-tools"><div class="search-box"><span><i class="fa-solid fa-magnifying-glass nexora-fa">⌕</i></span><input id="clientProjectSearch" type="search" data-i18n-placeholder="searchClientProjects" placeholder="ابحث باسم المشروع أو العميل أو الكود"></div><select id="clientProjectStatusFilter" class="select-input" aria-label="Client Project status"></select><select id="clientProjectPriorityFilter" class="select-input" aria-label="Client Project priority"></select><button id="addClientProjectBtn" class="primary-btn compact-btn" type="button"><span><i class="fa-solid fa-plus nexora-fa">+</i></span><span data-i18n="addClientProject">إضافة مشروع</span></button><button id="refreshClientProjects" class="ghost-btn" type="button" data-i18n="refresh">تحديث</button></div>
+          <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th data-i18n="project">المشروع</th><th data-i18n="client">العميل</th><th data-i18n="status">الحالة</th><th data-i18n="projectProgress">التقدم</th><th data-i18n="projectTarget">الموعد المستهدف</th><th data-i18n="updatedAt">آخر تحديث</th><th></th></tr></thead><tbody id="clientProjectsBody"></tbody></table></div><div class="table-footer"><button id="loadMoreClientProjects" class="ghost-btn" type="button" data-i18n="loadMore" hidden>تحميل المزيد</button></div></div>
+        </section>
+
+        <section id="view-projects" class="view" data-view-section="projects">
+          <div class="section-tools"><p class="section-note" data-i18n="projectManageText">إدارة البيانات الأساسية والمحتوى وحالة الظهور لكل مشروع.</p><button id="refreshProjects" class="ghost-btn" type="button" data-i18n="refresh">تحديث</button></div>
+          <div id="projectsGrid" class="manage-grid"></div>
+        </section>
+
+        <section id="view-services" class="view" data-view-section="services">
+          <div class="section-tools"><p class="section-note" data-i18n="serviceManageText">تحكم في محتوى الخدمات وترتيبها وظهورها على الموقع.</p><button id="refreshServices" class="ghost-btn" type="button" data-i18n="refresh">تحديث</button></div>
+          <div id="servicesGrid" class="manage-grid"></div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <aside id="detailDrawer" class="detail-drawer" aria-hidden="true">
+    <header class="drawer-head"><div><span class="eyebrow" id="drawerEyebrow">DETAILS</span><h2 id="drawerTitle">—</h2></div><button id="drawerClose" class="icon-btn" type="button" aria-label="Close"><i class="fa-solid fa-xmark nexora-fa">×</i></button></header>
+    <div id="drawerBody" class="drawer-body"></div>
+  </aside>
+  <section id="projectWorkspaceLayer" class="project-workspace-layer" aria-hidden="true" hidden>
+    <header class="project-workspace-topbar">
+      <div class="project-workspace-brand" aria-label="NEXORA Technologies">
+        <img class="project-logo-dark" src="../assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><img class="project-logo-light" src="../assets/brand/nexora-logo-light.png" alt="NEXORA Technologies">
+      </div>
+      <div class="project-workspace-titlebar">
+        <span id="projectWorkspaceEyebrow" class="eyebrow">CLIENT PROJECT</span>
+        <strong id="projectWorkspaceTitle">—</strong>
+      </div>
+      <div class="project-workspace-actions">
+        <button id="projectWorkspaceLang" class="ghost-btn compact-btn" type="button">EN</button>
+        <button id="projectWorkspaceTheme" class="icon-btn" type="button" aria-label="Theme"><i class="fa-solid fa-circle-half-stroke nexora-fa">◐</i></button>
+        <button id="projectWorkspaceClose" class="project-workspace-close" type="button" aria-label="Close project workspace"><i class="fa-solid fa-xmark nexora-fa">×</i></button>
+      </div>
+    </header>
+    <div id="projectWorkspaceBody" class="project-workspace-body"></div>
+  </section>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

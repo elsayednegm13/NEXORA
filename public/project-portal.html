@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="nexora-ui-release" content="NX-COLLAB-1-UI-R4">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; frame-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdnjs.cloudflare.com; connect-src 'self'; font-src 'self' data:; base-uri 'none'; form-action 'self'">
+  <title>NEXORA — Client Project Portal</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/nexora-foundation.css">
+  <link rel="stylesheet" href="css/project-portal.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <main class="portal-shell">
+    <header class="portal-topbar">
+      <a class="portal-brand" href="index.html" aria-label="NEXORA Technologies">
+        <img src="assets/brand/nexora-logo-dark.png" class="portal-logo-full portal-logo-dark" alt="NEXORA Technologies">
+        <img src="assets/brand/nexora-logo-light.png" class="portal-logo-full portal-logo-light" alt="NEXORA Technologies">
+        <img src="assets/brand/nexora-mark-primary.png" class="portal-logo-mark" alt="" aria-hidden="true">
+      </a>
+      <div class="portal-top-project" aria-live="polite">
+        <span id="portalTopProjectCode" dir="ltr">CLIENT PROJECT</span>
+        <strong id="portalTopProjectName">NEXORA</strong>
+      </div>
+      <div class="portal-actions">
+        <span id="portalRealtimeTop" class="portal-live-chip is-offline" hidden>
+          <i class="fa-solid fa-circle" aria-hidden="true"></i><span data-i18n="connecting">جاري الاتصال</span>
+        </span>
+        <button id="portalLangBtn" class="portal-action portal-lang" type="button" aria-label="Language">EN</button>
+        <button id="portalThemeBtn" class="portal-action portal-icon-action" type="button" data-i18n-aria="theme">
+          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+        </button>
+        <button id="portalLogoutBtn" class="portal-action portal-logout" type="button" hidden>
+          <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i><span data-i18n="logout">خروج</span>
+        </button>
+      </div>
+    </header>
+
+    <section id="portalLoading" class="portal-state-card">
+      <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+      <h1 data-i18n="openingProject">جاري فتح المشروع…</h1>
+    </section>
+
+    <section id="portalInvalid" class="portal-state-card" hidden>
+      <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+      <h1 data-i18n="linkUnavailable">الرابط غير متاح</h1>
+      <p data-i18n="linkUnavailableHint">قد يكون الرابط منتهيًا أو تم إلغاؤه. اطلب رابطًا جديدًا من NEXORA.</p>
+    </section>
+
+    <section id="portalView" class="portal-app" hidden>
+      <section class="portal-command-hero portal-surface">
+        <div class="portal-hero-glow" aria-hidden="true"></div>
+        <div class="portal-hero-identity">
+          <div id="portalProjectAvatar" class="portal-avatar">N</div>
+          <div class="portal-identity-copy">
+            <span id="portalProjectCode" class="portal-code" dir="ltr">—</span>
+            <h1 id="portalProjectName">—</h1>
+            <div class="portal-hero-tags">
+              <span id="portalProjectStatus" class="portal-status">—</span>
+              <span id="portalClientCode" class="portal-code-chip" dir="ltr">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-command-metrics">
+          <article class="portal-command-metric">
+            <span class="portal-command-icon"><i class="fa-solid fa-building" aria-hidden="true"></i></span>
+            <div><small data-i18n="client">العميل</small><strong id="portalClientName">—</strong><em id="portalContactName">—</em></div>
+          </article>
+          <article class="portal-command-metric portal-target-metric">
+            <span class="portal-command-icon"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i></span>
+            <div><small data-i18n="targetDate">الموعد المستهدف</small><strong id="portalTargetDate">—</strong><em id="portalProjectNameStat">—</em></div>
+          </article>
+          <article class="portal-command-progress">
+            <div class="portal-progress-ring"><strong id="portalProgress">0%</strong></div>
+            <span data-i18n="progress">التقدم</span>
+            <small id="portalProgressState">—</small>
+          </article>
+        </div>
+      </section>
+
+      <nav class="portal-nav portal-surface" aria-label="Project modules">
+        <button data-tab="overview" type="button">
+          <i class="fa-solid fa-briefcase" aria-hidden="true"></i><span data-i18n="overview">بيانات المشروع</span>
+        </button>
+        <button data-tab="execution" type="button">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i><span data-i18n="execution">تنفيذ المشروع</span>
+        </button>
+        <button data-tab="tickets" class="is-active" type="button">
+          <i class="fa-regular fa-comment-dots" aria-hidden="true"></i><span data-i18n="ticketsSupport">التذاكر والدعم</span><b id="portalTicketNavCount">0</b>
+        </button>
+      </nav>
+
+      <div class="portal-workspace">
+        <section data-pane="overview" class="portal-pane portal-surface" hidden>
+          <header class="portal-pane-head">
+            <div><span class="portal-eyebrow" data-i18n="projectSnapshot">PROJECT SNAPSHOT</span><h2 data-i18n="overview">بيانات المشروع</h2></div>
+          </header>
+          <div id="portalOverviewGrid" class="portal-overview-grid"></div>
+        </section>
+
+        <section data-pane="execution" class="portal-pane portal-surface" hidden>
+          <header class="portal-pane-head">
+            <div><span class="portal-eyebrow" data-i18n="deliveryProgress">DELIVERY PROGRESS</span><h2 data-i18n="execution">تنفيذ المشروع</h2></div>
+            <span class="portal-live-chip"><i class="fa-solid fa-circle" aria-hidden="true"></i><span data-i18n="liveUpdates">تحديث مباشر</span></span>
+          </header>
+          <div id="portalExecutionBoard" class="portal-execution-board"></div>
+        </section>
+
+        <section data-pane="tickets" class="portal-support-pane">
+          <div class="portal-ticket-workspace">
+            <aside class="portal-ticket-sidebar portal-surface-inner">
+              <header class="portal-ticket-sidebar-head">
+                <div><span class="portal-section-icon"><i class="fa-solid fa-ticket" aria-hidden="true"></i></span><div><h2 data-i18n="tickets">التذاكر</h2><small><span id="portalTicketCount">0</span> <span data-i18n="ticketCountUnit">تذكرة</span></small></div></div>
+                <button id="portalNewTicketBtn" class="portal-primary compact" type="button" hidden>
+                  <i class="fa-solid fa-plus" aria-hidden="true"></i><span data-i18n="newTicket">تذكرة جديدة</span>
+                </button>
+              </header>
+              <div class="portal-ticket-tools">
+                <label class="portal-search-field"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="portalTicketSearch" type="search" data-i18n-placeholder="searchTickets" placeholder="البحث في التذاكر…"></label>
+                <select id="portalTicketFilter" aria-label="Ticket status"></select>
+              </div>
+              <div id="portalTickets" class="portal-ticket-list"></div>
+              <footer class="portal-ticket-list-footer">
+                <span id="portalListRealtime" class="portal-live-chip is-offline"><i class="fa-solid fa-circle" aria-hidden="true"></i><span data-i18n="connecting">جاري الاتصال</span></span>
+                <strong id="portalTicketFooterCount">0</strong>
+              </footer>
+            </aside>
+
+            <section class="portal-ticket-detail-panel portal-surface-inner">
+              <div id="portalTicketEmpty" class="portal-ticket-empty">
+                <span class="portal-empty-icon"><i class="fa-regular fa-comments" aria-hidden="true"></i></span>
+                <h3 data-i18n="selectTicket">اختر تذكرة</h3>
+                <p data-i18n="selectTicketHint">اختر تذكرة من القائمة لعرض المحادثة والتفاصيل.</p>
+              </div>
+
+              <div id="portalTicketDetail" class="portal-ticket-detail" hidden>
+                <header class="portal-ticket-detail-head">
+                  <div class="portal-ticket-title-wrap">
+                    <button id="portalTicketBack" class="portal-ticket-mobile-back" type="button" data-i18n-aria="backToTickets">
+                      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span data-i18n="backToTickets">العودة للتذاكر</span>
+                    </button>
+                    <div><span id="portalTicketCode">—</span><h2 id="portalTicketTitle">—</h2><p id="portalTicketMeta">—</p></div>
+                  </div>
+                  <div class="portal-ticket-head-actions">
+                    <div id="portalTicketBadges" class="portal-ticket-badges"></div>
+                    <span class="portal-live-chip"><i class="fa-solid fa-circle" aria-hidden="true"></i><span data-i18n="liveUpdates">تحديث مباشر</span></span>
+                  </div>
+                </header>
+
+                <div class="portal-thread-wrap">
+                  <div id="portalTicketThread" class="portal-thread"></div>
+                  <button id="portalNewMessagesBtn" class="portal-new-messages" type="button" hidden>
+                    <i class="fa-solid fa-arrow-down" aria-hidden="true"></i><span data-i18n="newMessages">رسائل جديدة</span>
+                  </button>
+                </div>
+
+                <div id="portalUploadState" class="portal-sync-note" hidden></div>
+
+                <div id="portalClosedNotice" class="portal-closed-notice" hidden>
+                  <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                  <div><strong data-i18n="ticketClosed">تم إغلاق التذكرة</strong><span data-i18n="ticketClosedHint">إذا كان لديك طلب جديد، أنشئ تذكرة جديدة.</span></div>
+                  <button id="portalClosedNewTicket" class="portal-secondary compact" type="button" hidden><i class="fa-solid fa-plus" aria-hidden="true"></i><span data-i18n="newTicket">تذكرة جديدة</span></button>
+                </div>
+
+                <div id="portalCommentUnavailable" class="portal-closed-notice portal-permission-notice" hidden>
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <div><strong data-i18n="commentsUnavailable">الرد غير متاح</strong><span data-i18n="commentsUnavailableHint">يمكنك متابعة التذكرة، لكن الرد غير مفعّل لهذا الرابط.</span></div>
+                </div>
+
+                <form id="portalReplyForm" class="portal-composer">
+                  <div id="portalReplyAttachments" class="portal-pending-files" hidden></div>
+                  <div class="portal-composer-row">
+                    <input id="portalReplyFile" type="file" multiple hidden accept="image/*,application/pdf,audio/*,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip">
+                    <button id="portalAttachBtn" class="portal-icon-btn" type="button" data-i18n-aria="attachFile"><i class="fa-solid fa-paperclip" aria-hidden="true"></i></button>
+                    <button id="portalVoiceBtn" class="portal-icon-btn" type="button" data-i18n-aria="voiceNote"><i class="fa-solid fa-microphone" aria-hidden="true"></i></button>
+                    <textarea id="portalReplyBody" rows="1" maxlength="10000" data-i18n-placeholder="writeReply" placeholder="اكتب ردك هنا…"></textarea>
+                    <button class="portal-primary" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="sendReply">إرسال الرد</span></button>
+                  </div>
+                  <div id="portalVoiceState" class="portal-voice-state" hidden></div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="portalNewTicketBackdrop" class="portal-backdrop" hidden></div>
+  <aside id="portalNewTicketDrawer" class="portal-drawer" aria-hidden="true">
+    <header><div><span class="portal-eyebrow" data-i18n="supportRequest">SUPPORT REQUEST</span><h2 data-i18n="newTicket">تذكرة جديدة</h2></div><button id="portalNewTicketClose" class="portal-icon-btn" type="button" data-i18n-aria="close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
+    <form id="portalTicketForm" class="portal-drawer-form">
+      <label><span data-i18n="ticketTitle">عنوان التذكرة</span><input name="title" maxlength="190" required></label>
+      <div class="portal-fields-2"><label><span data-i18n="type">النوع</span><select name="type"></select></label><label><span data-i18n="priority">الأولوية</span><select name="priority"></select></label></div>
+      <label><span data-i18n="description">الوصف</span><textarea name="description" maxlength="10000" rows="7" required></textarea></label>
+      <label class="portal-file-drop" for="portalNewTicketFiles"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i><strong data-i18n="addFiles">إضافة ملفات أو صور</strong><span data-i18n="fileHint">PDF، صور، صوت أو مستندات — حتى 25MB للملف</span><input id="portalNewTicketFiles" type="file" multiple hidden accept="image/*,application/pdf,audio/*,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip"></label>
+      <div id="portalNewTicketFileList" class="portal-pending-files" hidden></div>
+      <div id="portalNewTicketUploadState" class="portal-sync-note" hidden></div>
+      <div class="portal-form-actions"><button type="button" id="portalTicketCancel" class="portal-secondary" data-i18n="cancel">إلغاء</button><button type="submit" class="portal-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="sendTicket">إرسال التذكرة</span></button></div>
+    </form>
+  </aside>
+
+  <div id="portalPreviewBackdrop" class="portal-backdrop" hidden></div>
+  <section id="portalPreview" class="portal-preview" hidden>
+    <header><h2 id="portalPreviewTitle">—</h2><div><a id="portalPreviewDownload" class="portal-secondary" href="#" download><i class="fa-solid fa-download" aria-hidden="true"></i><span data-i18n="download">تنزيل</span></a><button id="portalPreviewClose" class="portal-icon-btn" type="button" data-i18n-aria="close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div></header>
+    <div id="portalPreviewBody" class="portal-preview-body"></div>
+  </section>
+
+  <div id="portalToast" class="portal-toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="js/project-portal.js"></script>
+</body>
+</html>

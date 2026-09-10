@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (()=>{const r=document.documentElement;try{const l=localStorage.getItem('nexora_lang')==='ar'?'ar':'en';const s=localStorage.getItem('nexora_theme');const m=['light','dark','system'].includes(s)?s:'system';const t=m==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):m;r.lang=l;r.dir=l==='ar'?'rtl':'ltr';r.dataset.theme=t;if(l==='ar'){r.classList.add('i18n-preload','i18n-fade','contact-i18n-pending');setTimeout(()=>{r.classList.remove('i18n-preload','contact-i18n-pending')},2500)}}catch(_){r.lang='en';r.dir='ltr'}})();
+  </script>
+  <style>html.i18n-preload{background:#03101b}html.i18n-preload[data-theme="light"]{background:#f4f8fc}html.i18n-fade body{transition:opacity .45s cubic-bezier(.22,1,.36,1)}html.i18n-preload body,html.contact-i18n-pending body{visibility:hidden;opacity:0}@media(prefers-reduced-motion:reduce){html.i18n-fade body{transition:none}}</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#03101b">
+  <meta name="description" content="Start a project with NEXORA Technologies.">
+  <title>NEXORA Technologies — Start a Project</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/motion-polish.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body class="contact-page">
+  <div class="site-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html#home" aria-label="NEXORA home"><img class="brand-logo brand-logo--full" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><img class="brand-logo brand-logo--mark" src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></a>
+      <nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="index.html#home" data-i18n="nav_home">Home</a><a class="nav-link" href="services.html" data-i18n="nav_services">Services</a><a class="nav-link" href="work.html" data-i18n="nav_work">Work</a><a class="nav-link" href="index.html#packages" data-i18n="nav_packages">Packages</a><a class="nav-link" href="index.html#team" data-i18n="nav_about">About</a><a class="nav-link active" href="contact.html" aria-current="page" data-i18n="nav_contact">Contact</a></nav>
+      <div class="nav-actions"><button class="icon-btn" data-theme-toggle type="button" aria-label="Change theme">◐</button><button class="lang-switch" data-lang-toggle type="button" aria-label="Switch language">AR</button><a class="btn btn--primary nav-cta" href="#brief"><span data-contact-i18n="start">Start a Project</span><span class="arrow">↓</span></a><button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false"><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="menu-toggle-label" data-i18n="menu_label">Menu</span></button></div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" aria-hidden="true"><div class="drawer-backdrop"></div><aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation"><div class="drawer-head"><div class="drawer-brand-mark"><img src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></div><button class="drawer-close" data-menu-close type="button" aria-label="Close menu"><span aria-hidden="true">×</span></button></div><div class="drawer-kicker" data-i18n="mobile_nav_kicker">Explore</div><nav class="drawer-links"><a href="index.html#home"><span class="drawer-index">01</span><span data-i18n="nav_home">Home</span></a><a href="services.html"><span class="drawer-index">02</span><span data-i18n="nav_services">Services</span></a><a href="work.html"><span class="drawer-index">03</span><span data-i18n="nav_work">Work</span></a><a href="index.html#packages"><span class="drawer-index">04</span><span data-i18n="nav_packages">Packages</span></a><a href="index.html#team"><span class="drawer-index">05</span><span data-i18n="nav_about">About</span></a><a class="active" href="contact.html" aria-current="page"><span class="drawer-index">06</span><span data-i18n="nav_contact">Contact</span></a></nav><div class="drawer-foot"><a class="btn btn--primary drawer-cta" href="#brief"><span data-contact-i18n="start">Start a Project</span><span class="arrow">↓</span></a><p data-i18n="drawer_hint">Choose a section or start your project.</p></div></aside></div>
+
+  <main>
+    <section class="contact-hero">
+      <div class="contact-hero-lines" aria-hidden="true"></div>
+      <div class="container contact-hero-grid">
+        <div class="contact-hero-copy reveal">
+          <p class="eyebrow" data-contact-i18n="eyebrow">START A PROJECT</p>
+          <h1><span data-contact-i18n="titleA">Tell us what</span> <strong data-contact-i18n="titleB">you want to build.</strong></h1>
+          <p data-contact-i18n="lead">A focused brief gives us the context to understand your goal, scope and the right next step.</p>
+          <a class="btn btn--primary" href="#brief"><span data-contact-i18n="startBrief">Start Your Brief</span><span class="arrow">↓</span></a>
+        </div>
+        <div class="contact-hero-visual reveal" aria-hidden="true">
+          <div class="contact-orbit"><img src="assets/brand/nexora-mark-primary.png" alt=""><span class="contact-node contact-node--1"><i></i><b>01</b></span><span class="contact-node contact-node--2"><i></i><b>02</b></span><span class="contact-node contact-node--3"><i></i><b>03</b></span></div>
+          <div class="contact-signal"><span data-contact-i18n="signal1">Context</span><i></i><span data-contact-i18n="signal2">Scope</span><i></i><span data-contact-i18n="signal3">Next step</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="brief-section" id="brief">
+      <div class="container brief-layout">
+        <aside class="brief-sidebar reveal">
+          <p class="eyebrow" data-contact-i18n="briefEyebrow">PROJECT BRIEF</p>
+          <h2 data-contact-i18n="briefTitle">A few details. One clear starting point.</h2>
+          <p data-contact-i18n="briefCopy">Move through the brief at your pace. Only the essentials are required.</p>
+          <ol class="brief-steps" data-step-list>
+            <li class="active" data-step-nav="1"><span>01</span><div><strong data-contact-i18n="step1">About you</strong><small data-contact-i18n="step1d">Contact details</small></div></li>
+            <li data-step-nav="2"><span>02</span><div><strong data-contact-i18n="step2">The project</strong><small data-contact-i18n="step2d">Scope and direction</small></div></li>
+            <li data-step-nav="3"><span>03</span><div><strong data-contact-i18n="step3">The brief</strong><small data-contact-i18n="step3d">Goals and context</small></div></li>
+          </ol>
+        </aside>
+
+        <div class="brief-card reveal">
+          <div class="brief-progress"><span data-step-progress>Step 1 of 3</span><i><b data-progress-bar></b></i></div>
+          <form data-project-brief novalidate>
+            <input class="contact-honeypot" type="text" name="website_confirm" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <fieldset class="brief-step active" data-step="1">
+              <legend><span data-contact-i18n="step1Kicker">LET’S START</span><strong data-contact-i18n="step1Title">Who should we speak with?</strong></legend>
+              <div class="form-grid">
+                <label class="field"><span data-contact-i18n="name">Name</span><input name="name" type="text" autocomplete="name" required maxlength="120" data-contact-placeholder="namePh"><small data-error-for="name"></small></label>
+                <label class="field"><span data-contact-i18n="email">Email</span><input name="email" type="email" autocomplete="email" required maxlength="180" data-contact-placeholder="emailPh"><small data-error-for="email"></small></label>
+                <label class="field"><span data-contact-i18n="phone">Phone <em>Optional</em></span><input name="phone" type="tel" autocomplete="tel" maxlength="40" data-contact-placeholder="phonePh"><small data-error-for="phone"></small></label>
+                <label class="field"><span data-contact-i18n="company">Company <em>Optional</em></span><input name="company" type="text" autocomplete="organization" maxlength="160" data-contact-placeholder="companyPh"></label>
+              </div>
+              <div class="step-actions"><span></span><button class="btn btn--primary" type="button" data-next-step><span data-contact-i18n="continue">Continue</span><span class="arrow">→</span></button></div>
+            </fieldset>
+
+            <fieldset class="brief-step" data-step="2" hidden>
+              <legend><span data-contact-i18n="step2Kicker">THE PROJECT</span><strong data-contact-i18n="step2Title">What are we building together?</strong></legend>
+              <div class="field-group"><div class="field-group-head"><span data-contact-i18n="servicesLabel">Services</span><small data-contact-i18n="servicesHint">Choose one or more, or leave it open if you need guidance.</small></div><div class="service-choice-grid" data-service-choices></div></div>
+              <div class="form-grid form-grid--triple">
+                <label class="field"><span data-contact-i18n="stage">Project stage</span><select name="project_stage" data-project-stage required></select><small data-error-for="project_stage"></small></label>
+                <label class="field"><span data-contact-i18n="timeline">Timeline</span><select name="timeline" data-timeline required></select><small data-error-for="timeline"></small></label>
+                <label class="field"><span data-contact-i18n="budget">Budget context</span><select name="budget_mode" data-budget-mode required></select><small data-error-for="budget_mode"></small></label>
+              </div>
+              <div class="budget-defined" data-budget-defined hidden><label class="field"><span data-contact-i18n="budgetAmount">Estimated budget <em>Optional</em></span><div class="money-field"><select name="budget_currency" data-currency></select><input name="budget_amount" type="number" min="0" step="1" inputmode="decimal" data-contact-placeholder="budgetPh"></div></label></div>
+              <div class="step-actions"><button class="btn btn--ghost" type="button" data-prev-step><span class="arrow">←</span><span data-contact-i18n="back">Back</span></button><button class="btn btn--primary" type="button" data-next-step><span data-contact-i18n="continue">Continue</span><span class="arrow">→</span></button></div>
+            </fieldset>
+
+            <fieldset class="brief-step" data-step="3" hidden>
+              <legend><span data-contact-i18n="step3Kicker">YOUR BRIEF</span><strong data-contact-i18n="step3Title">What should we understand first?</strong></legend>
+              <label class="field field--textarea"><span data-contact-i18n="description">Project description</span><textarea name="description" rows="7" required minlength="20" maxlength="4000" data-contact-placeholder="descriptionPh"></textarea><div class="field-meta"><small data-error-for="description"></small><small><span data-char-count>0</span> / 4000</small></div></label>
+              <div class="form-grid">
+                <label class="field"><span data-contact-i18n="reference">Reference URL <em>Optional</em></span><input name="reference_url" type="url" maxlength="500" data-contact-placeholder="referencePh"><small data-error-for="reference_url"></small></label>
+                <label class="field"><span data-contact-i18n="preferred">Preferred contact</span><select name="preferred_contact"><option value="email">Email</option><option value="phone" data-contact-i18n-option="phoneOption">Phone</option></select></label>
+              </div>
+              <label class="consent"><input name="privacy_accepted" type="checkbox" required><span data-contact-i18n="consent">I agree to be contacted about this project and understand that the information I submit will be used to respond to my inquiry.</span></label><small class="consent-error" data-error-for="privacy_accepted"></small>
+              <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+              <div class="step-actions"><button class="btn btn--ghost" type="button" data-prev-step><span class="arrow">←</span><span data-contact-i18n="back">Back</span></button><button class="btn btn--primary" type="submit" data-submit><span data-contact-i18n="send">Send Project Brief</span><span class="arrow">→</span></button></div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-values">
+      <div class="container">
+        <div class="contact-values-head reveal"><p class="eyebrow" data-contact-i18n="afterEyebrow">WHAT HAPPENS NEXT</p><h2 data-contact-i18n="afterTitle">A clear conversation before any commitment.</h2></div>
+        <div class="contact-values-grid"><article class="reveal"><span class="value-icon">⌁</span><strong data-contact-i18n="value1">We understand the brief</strong><p data-contact-i18n="value1d">We review the goal, scope and the context you shared.</p></article><article class="reveal"><span class="value-icon">◇</span><strong data-contact-i18n="value2">We identify the right path</strong><p data-contact-i18n="value2d">We clarify what should happen first and what can come later.</p></article><article class="reveal"><span class="value-icon">→</span><strong data-contact-i18n="value3">We agree on the next step</strong><p data-contact-i18n="value3d">If there is a fit, we move forward with a defined scope and plan.</p></article></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><div class="footer-brand"><img class="footer-logo" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><span data-i18n="footer_copy">Building a better digital tomorrow.</span></div><nav class="footer-nav"><a href="index.html#home" data-i18n="nav_home">Home</a><a href="services.html" data-i18n="nav_services">Services</a><a href="work.html" data-i18n="nav_work">Work</a><a href="index.html#packages" data-i18n="nav_packages">Packages</a><a href="index.html#team" data-i18n="nav_about">About</a><a href="contact.html" data-i18n="nav_contact">Contact</a></nav><div class="footer-right"><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Email">@</a></div><span class="footer-copy" data-i18n="rights">© 2026 NEXORA Technologies. All rights reserved.</span></div></div></footer>
+
+  <script src="js/runtime-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/services-data.js"></script>
+  <script src="js/contact-config.js"></script>
+  <script src="js/api-client.js"></script>
+  <script src="js/repositories/services-repository.js"></script>
+  <script src="js/repositories/inquiry-repository.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/perf-debug.js"></script>
+</body>
+</html>

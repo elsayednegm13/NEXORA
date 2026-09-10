@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>NEXORA Admin Setup</title>
+  <link rel="icon" href="../assets/brand/favicon.ico"><link rel="stylesheet" href="../css/nexora-foundation.css">
+  <link rel="stylesheet" href="css/admin.css"><script>window.FontAwesomeConfig={autoReplaceSvg:'nest',observeMutations:true};</script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="setup-page">
+  <main class="setup-shell">
+    <a href="index.html" class="side-brand setup-brand"><img src="../assets/brand/nexora-mark-primary.png" alt=""><div><strong>NEXORA</strong><span>ADMIN SETUP</span></div></a>
+    <span class="eyebrow">ONE-TIME SETUP</span>
+    <h1>إنشاء حساب الإدارة الأول</h1>
+    <p>تعمل هذه الصفحة مرة واحدة فقط. قبل المتابعة يتم تأمين الإعداد بواسطة Worker Secrets في Cloudflare.</p>
+    <form id="setupForm" class="auth-form" novalidate>
+      <label><span>Setup Key</span><input name="setup_key" type="password" autocomplete="off" required></label>
+      <label><span>اسم المدير</span><input name="name" type="text" maxlength="190" autocomplete="name" required></label>
+      <label><span>البريد الإلكتروني</span><input name="email" type="email" autocomplete="username" required></label>
+      <label><span>كلمة المرور</span><input name="password" type="password" minlength="12" autocomplete="new-password" required><small>12 حرفًا على الأقل.</small></label>
+      <div id="setupMessage" class="form-message" role="alert" hidden></div>
+      <button class="primary-btn wide" type="submit">إنشاء الحساب وفتح لوحة التحكم <span><i class="fa-solid fa-arrow-right-to-bracket nexora-fa">↗</i></span></button>
+    </form>
+    <a href="index.html" class="text-link">العودة لتسجيل الدخول</a>
+  </main>
+  <script src="js/setup.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      try {
+        const savedLang = localStorage.getItem('nexora_lang');
+        const lang = savedLang === 'ar' ? 'ar' : 'en';
+        const savedTheme = localStorage.getItem('nexora_theme');
+        const mode = ['light','dark','system'].includes(savedTheme) ? savedTheme : 'system';
+        const theme = mode === 'system'
+          ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : mode;
+        root.lang = lang;
+        root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        root.dataset.theme = theme;
+        if (lang === 'ar') {
+          root.classList.add('i18n-preload', 'i18n-fade');
+          setTimeout(() => root.classList.remove('i18n-preload'), 2500);
+        }
+      } catch (_) {
+        root.lang = 'en';
+        root.dir = 'ltr';
+      }
+    })();
+  </script>
+  <style>
+    html.i18n-preload{background:#03101b}
+    html.i18n-preload[data-theme="light"]{background:#f4f8fc}
+    html.i18n-fade body{transition:opacity .45s cubic-bezier(.22,1,.36,1)}
+    html.i18n-preload body{visibility:hidden;opacity:0}
+    @media (prefers-reduced-motion: reduce){html.i18n-fade body{transition:none}}
+  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#03101b">
+  <meta name="description" content="Explore selected digital products and websites built by NEXORA Technologies.">
+  <title>NEXORA Technologies — Work</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/motion-polish.css">
+  <link rel="stylesheet" href="css/work.css">
+</head>
+<body class="work-page">
+  <div class="site-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html#home" aria-label="NEXORA home">
+        <img class="brand-logo brand-logo--full" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies">
+        <img class="brand-logo brand-logo--mark" src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="nav-link" href="index.html#home" data-i18n="nav_home">Home</a>
+        <a class="nav-link" href="services.html" data-i18n="nav_services">Services</a>
+        <a class="nav-link active" href="work.html" aria-current="page" data-i18n="nav_work">Work</a>
+        <a class="nav-link" href="index.html#packages" data-i18n="nav_packages">Packages</a>
+        <a class="nav-link" href="index.html#team" data-i18n="nav_about">About</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle type="button" aria-label="Change theme">◐</button>
+        <button class="lang-switch" data-lang-toggle type="button" aria-label="Switch language">AR</button>
+        <a class="btn btn--primary nav-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+        <button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="menu-toggle-label" data-i18n="menu_label">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-backdrop"></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="drawer-head">
+        <div class="drawer-brand-mark" aria-label="NEXORA Technologies">
+          <img src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true">
+        </div>
+        <button class="drawer-close" data-menu-close type="button" aria-label="Close menu"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="drawer-kicker" data-i18n="mobile_nav_kicker">Explore</div>
+      <nav class="drawer-links" aria-label="Mobile navigation links">
+        <a href="index.html#home"><span class="drawer-index">01</span><span data-i18n="nav_home">Home</span></a>
+        <a href="services.html"><span class="drawer-index">02</span><span data-i18n="nav_services">Services</span></a>
+        <a class="active" href="work.html" aria-current="page"><span class="drawer-index">03</span><span data-i18n="nav_work">Work</span></a>
+        <a href="index.html#packages"><span class="drawer-index">04</span><span data-i18n="nav_packages">Packages</span></a>
+        <a href="index.html#team"><span class="drawer-index">05</span><span data-i18n="nav_about">About</span></a>
+        <a href="contact.html"><span class="drawer-index">06</span><span data-i18n="nav_contact">Contact</span></a>
+      </nav>
+      <div class="drawer-foot">
+        <a class="btn btn--primary drawer-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+        <p data-i18n="drawer_hint">Choose a section or start your project.</p>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <section class="work-hero" id="work-top">
+      <div class="work-hero-lines" aria-hidden="true"></div>
+      <div class="container work-hero-grid">
+        <div class="work-hero-copy reveal">
+          <p class="eyebrow" data-i18n="work_eyebrow">01 / WORK</p>
+          <h1>
+            <span data-i18n="work_title_1">Digital work built</span>
+            <strong data-i18n="work_title_2">for real businesses.</strong>
+          </h1>
+          <p class="work-hero-lead" data-i18n="work_lead">A growing collection of websites and digital products delivered across different business needs.</p>
+          <div class="work-hero-actions">
+            <a class="btn btn--primary" href="#featured"><span data-i18n="explore_projects">Explore Projects</span><span class="arrow">↓</span></a>
+            <a class="btn btn--ghost" href="contact.html"><span data-i18n="build_with_us">Build With Us</span><span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="work-hero-index reveal" aria-label="Portfolio summary">
+          <div class="work-count">
+            <span class="work-count-number" data-project-count>12</span>
+            <span class="work-count-label" data-i18n="live_projects">Live Projects</span>
+          </div>
+          <div class="work-index-meta">
+            <div><span data-featured-range>01—04</span><strong data-i18n="featured_label">Featured</strong></div>
+            <div><span data-archive-range>05—12</span><strong data-i18n="archive_label">Project Archive</strong></div>
+          </div>
+          <div class="work-orbit" aria-hidden="true">
+            <img src="assets/brand/nexora-mark-primary.png" alt="">
+            <i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-section work-featured" id="featured">
+      <div class="container">
+        <div class="work-section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="featured_eyebrow">02 / FEATURED</p>
+            <h2 data-i18n="featured_title">Selected work</h2>
+          </div>
+          <p data-i18n="featured_copy">A closer look at four projects from the current NEXORA portfolio.</p>
+        </div>
+        <div class="featured-projects" data-featured-projects></div>
+      </div>
+    </section>
+
+    <section class="work-section work-archive" id="archive">
+      <div class="container">
+        <div class="work-section-head work-section-head--archive reveal">
+          <div>
+            <p class="eyebrow" data-i18n="archive_eyebrow">03 / PROJECT INDEX</p>
+            <h2 data-i18n="archive_title">More projects</h2>
+          </div>
+          <div class="archive-count"><span data-archive-count>08</span><small data-i18n="archive_count">More live projects</small></div>
+        </div>
+        <div class="archive-projects" data-archive-projects></div>
+      </div>
+    </section>
+
+    <section class="work-section work-next" id="contact">
+      <div class="container">
+        <div class="work-next-card reveal">
+          <div class="work-next-copy">
+            <p class="eyebrow" data-i18n="next_eyebrow">04 / YOUR PROJECT</p>
+            <h2 data-i18n="next_title">Your project can be next.</h2>
+            <p data-i18n="next_copy">Tell us what you want to build. We’ll help turn the idea into a clear digital product.</p>
+          </div>
+          <div class="work-next-actions">
+            <a class="btn btn--primary" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a>
+            <a class="btn btn--outline" href="services.html"><span data-i18n="view_services">View Services</span><span class="arrow">→</span></a>
+          </div>
+          <div class="work-next-signal" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><img class="footer-logo" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><span data-i18n="footer_copy">Building a better digital tomorrow.</span></div>
+      <nav class="footer-nav" aria-label="Footer navigation"><a href="index.html#home" data-i18n="nav_home">Home</a><a href="services.html" data-i18n="nav_services">Services</a><a href="work.html" data-i18n="nav_work">Work</a><a href="index.html#packages" data-i18n="nav_packages">Packages</a><a href="index.html#team" data-i18n="nav_about">About</a><a href="contact.html" data-i18n="nav_contact">Contact</a></nav>
+      <div class="footer-right"><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Email">@</a></div><span class="footer-copy" data-i18n="rights">© 2026 NEXORA Technologies. All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script src="js/runtime-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/api-client.js"></script>
+  <script src="js/repositories/projects-repository.js"></script>
+  <script src="js/work.js"></script>
+  <script src="js/perf-debug.js"></script>
+</body>
+</html>

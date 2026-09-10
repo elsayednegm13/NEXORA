@@ -1,0 +1,3 @@
+import {spawnSync} from 'node:child_process';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));const env={...process.env,PYTHONUTF8:'1',PYTHONIOENCODING:'utf-8'};const attempts=process.platform==='win32'?[['python',[]],['py',['-3']]]:[['python3',[]],['python',[]]];let ran=false;
+for(const [cmd,args] of attempts){if(spawnSync(cmd,[...args,'--version'],{stdio:'ignore',env}).status!==0)continue;ran=true;const r=spawnSync(cmd,[...args,path.join(root,'tests/nx-data-5/schema-proof.py')],{cwd:root,stdio:'inherit',env});if(r.status!==0)process.exit(r.status||1);break}if(!ran){console.error('FAIL Python runtime unavailable');process.exit(1)}console.log('NX-DATA-5 CHECK: PASS');

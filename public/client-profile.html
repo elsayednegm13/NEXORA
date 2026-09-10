@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'">
+  <title>NEXORA — Client Profile</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/client-profile.css">
+</head>
+<body>
+  <div class="profile-ambient ambient-a" aria-hidden="true"></div>
+  <div class="profile-ambient ambient-b" aria-hidden="true"></div>
+  <main class="profile-shell">
+    <header class="profile-topbar">
+      <a class="profile-brand" href="index.html" aria-label="NEXORA">
+        <img src="assets/brand/nexora-mark-primary.png" alt="">
+        <div><strong>NEXORA</strong><span>TECHNOLOGIES</span></div>
+      </a>
+      <div class="profile-actions">
+        <button id="profileLangBtn" class="profile-action" type="button">EN</button>
+        <button id="profileThemeBtn" class="profile-action icon" type="button" aria-label="Theme">◐</button>
+      </div>
+    </header>
+
+    <section id="profileLoading" class="profile-card state-card" aria-live="polite">
+      <div class="loading-mark"><span></span></div>
+      <h1 data-i18n="loadingTitle">جاري فتح ملفك…</h1>
+    </section>
+
+    <section id="profileInvalid" class="profile-card state-card" hidden>
+      <div class="state-icon is-error">!</div>
+      <span class="eyebrow" data-i18n="clientProfile">ملف العميل</span>
+      <h1 data-i18n="invalidTitle">الرابط غير متاح</h1>
+      <p data-i18n="invalidText">قد يكون الرابط منتهيًا أو تم استخدامه أو إلغاؤه.</p>
+    </section>
+
+    <section id="profileSuccess" class="profile-card state-card" hidden>
+      <div class="state-icon is-success">✓</div>
+      <span class="eyebrow" data-i18n="clientProfile">ملف العميل</span>
+      <h1 data-i18n="successTitle">تم حفظ بياناتك</h1>
+      <p data-i18n="successText">شكرًا لك. تم تحديث ملفك بنجاح.</p>
+    </section>
+
+    <section id="profileView" class="profile-card" hidden>
+      <div class="profile-heading">
+        <div>
+          <span class="eyebrow" data-i18n="clientProfile">ملف العميل</span>
+          <h1 data-i18n="pageTitle">استكمال بياناتك</h1>
+          <p data-i18n="pageText">راجع بياناتك وأكمل المعلومات المطلوبة.</p>
+        </div>
+        <div class="profile-identifiers">
+          <span id="profileClientCode" class="code-badge" dir="ltr">—</span>
+          <span id="profileClientType" class="type-badge">—</span>
+        </div>
+      </div>
+
+      <form id="profileForm" novalidate>
+        <section class="form-section">
+          <div class="section-head"><h2 data-i18n="identity">البيانات الأساسية</h2></div>
+          <div class="fields-grid">
+            <label class="field"><span data-i18n="displayName">الاسم</span><input name="display_name" maxlength="190" required autocomplete="name"></label>
+            <label class="field"><span data-i18n="legalName">الاسم القانوني</span><input name="legal_name" maxlength="255" autocomplete="organization"></label>
+            <label class="field"><span data-i18n="preferredLanguage">اللغة المفضلة</span><select name="preferred_language" class="profile-select"><option value="ar">العربية</option><option value="en">English</option></select></label>
+            <div class="field readonly-field"><span data-i18n="defaultCurrency">العملة الافتراضية</span><div id="profileCurrency" class="readonly-value" dir="ltr">—</div></div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-head"><h2 data-i18n="contactBilling">بيانات التواصل والفوترة</h2></div>
+          <div class="fields-grid">
+            <label class="field"><span data-i18n="billingName">اسم الفوترة</span><input name="billing_name" maxlength="255" autocomplete="organization"></label>
+            <label class="field"><span data-i18n="billingEmail">البريد الإلكتروني</span><input name="billing_email" type="email" maxlength="255" autocomplete="email"></label>
+            <label class="field"><span data-i18n="billingPhone">رقم الهاتف</span><input name="billing_phone" maxlength="80" autocomplete="tel" inputmode="tel"></label>
+            <label class="field" id="profileTaxField"><span data-i18n="taxIdentifier">الرقم الضريبي</span><input name="tax_identifier" maxlength="120"></label>
+            <label class="field field-wide"><span data-i18n="addressLine1">العنوان</span><input name="billing_address_line1" maxlength="255" autocomplete="address-line1"></label>
+            <label class="field field-wide"><span data-i18n="addressLine2">العنوان الإضافي</span><input name="billing_address_line2" maxlength="255" autocomplete="address-line2"></label>
+            <label class="field"><span data-i18n="city">المدينة</span><input name="billing_city" maxlength="120" autocomplete="address-level2"></label>
+            <label class="field"><span data-i18n="region">المنطقة / المحافظة</span><input name="billing_region" maxlength="120" autocomplete="address-level1"></label>
+            <label class="field"><span data-i18n="postalCode">الرمز البريدي</span><input name="billing_postal_code" maxlength="40" autocomplete="postal-code"></label>
+            <label class="field"><span data-i18n="countryCode">رمز الدولة</span><input name="billing_country_code" maxlength="2" placeholder="EG" autocomplete="country" autocapitalize="characters"></label>
+          </div>
+        </section>
+
+        <div id="profileFormError" class="form-error" role="alert" hidden></div>
+        <div class="submit-row"><button id="profileSubmit" class="primary-btn" type="submit"><span data-i18n="saveProfile">حفظ البيانات</span><b aria-hidden="true">↗</b></button></div>
+      </form>
+    </section>
+  </main>
+
+  <div id="profileToast" class="profile-toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="js/client-profile.js"></script>
+</body>
+</html>

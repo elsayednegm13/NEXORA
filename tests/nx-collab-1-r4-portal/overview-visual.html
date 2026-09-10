@@ -1,0 +1,52 @@
+<!doctype html><html lang="ar" dir="rtl" data-theme="light" data-r4-mode="overview"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../public/css/nexora-foundation.css"><link rel="stylesheet" href="../../public/css/project-portal.css"></head><body><main class="portal-shell">
+<header class="portal-topbar"><a class="portal-brand"><img class="portal-logo-full portal-logo-dark" alt="NEXORA"><img class="portal-logo-full portal-logo-light" alt="NEXORA"><img class="portal-logo-mark" alt=""></a><div class="portal-top-project"><span>CLIENT PROJECT / PRJ-001</span><strong>darfus_erp</strong></div><div class="portal-actions"><button class="portal-action portal-lang">EN</button><button class="portal-action portal-icon-action">◐</button></div></header>
+<section class="portal-app">
+<section class="portal-command-hero portal-surface"><div class="portal-hero-glow"></div><div class="portal-hero-identity"><div class="portal-avatar">D</div><div class="portal-identity-copy"><span class="portal-code">PRJ-001</span><h1>darfus_erp</h1><div class="portal-hero-tags"><span class="portal-status">● قيد التنفيذ</span><span class="portal-code-chip">CU-003</span></div></div></div><div class="portal-command-metrics"><article class="portal-command-metric"><span class="portal-command-icon">▣</span><div><small>العميل</small><strong>مثال عميل</strong><em>جهة الاتصال الرئيسية</em></div></article><article class="portal-command-metric portal-target-metric"><span class="portal-command-icon">◫</span><div><small>الموعد المستهدف</small><strong>15 أكتوبر 2026</strong><em>darfus_erp</em></div></article><article class="portal-command-progress"><div class="portal-progress-ring" style="--p:72"><strong>72%</strong></div><span>التقدم</span><small>قيد التنفيذ</small></article></div></section>
+<nav class="portal-nav portal-surface"><button data-tab="overview">▣ <span>بيانات المشروع</span></button><button data-tab="execution">☷ <span>تنفيذ المشروع</span></button><button data-tab="tickets">▭ <span>التذاكر والدعم</span><b>3</b></button></nav>
+<div class="portal-workspace"><section class="portal-pane portal-surface"><header class="portal-pane-head"><div><span class="portal-eyebrow">PROJECT SNAPSHOT</span><h2>بيانات المشروع</h2></div></header><div class="portal-overview-grid"><article class="portal-info-card"><i>▣</i><small>اسم المشروع</small><strong>darfus_erp</strong></article><article class="portal-info-card"><i>◫</i><small>الحالة</small><strong>قيد التنفيذ</strong></article><article class="portal-info-card"><i>◌</i><small>التقدم</small><strong>72%</strong></article><article class="portal-info-card"><i>⌁</i><small>الموعد المستهدف</small><strong>15 أكتوبر 2026</strong></article><div class="portal-overview-note">آخر حالة معتمدة للمشروع تظهر هنا بدون تفاصيل تشغيل داخلية.</div></div></section></div>
+</section></main>
+<script>(()=>{
+  const mode=document.documentElement.dataset.r4Mode||'support';
+  const failures=[];const fail=m=>failures.push(m);const el=s=>document.querySelector(s);const rect=s=>el(s)?.getBoundingClientRect()||null;const css=s=>el(s)?getComputedStyle(el(s)):null;
+  const inside=r=>r&&r.left>=-1&&r.right<=innerWidth+1&&r.top>=-1&&r.bottom<=innerHeight+1;
+  if(document.documentElement.scrollWidth>document.documentElement.clientWidth+1)fail('document horizontal overflow');
+  if(document.documentElement.scrollHeight>document.documentElement.clientHeight+1)fail('document vertical overflow');
+  const shell=rect('.portal-shell'),app=rect('.portal-app'),workspace=rect('.portal-workspace');
+  if(!shell||!app||!workspace)fail('portal shell missing');
+  if(shell&&Math.abs(shell.height-innerHeight)>2)fail('portal shell is not viewport-height');
+  if(app&&!inside(app))fail('portal app clipped');
+  if(workspace&&(workspace.height<220||!inside(workspace)))fail('portal workspace clipped');
+  const tabs=[...document.querySelectorAll('.portal-nav [data-tab]')];
+  if(tabs.length!==3)fail('client portal top-level module count is not 3');
+  if(tabs.some(b=>/وصول العميل|Client Access/i.test(b.textContent)))fail('Client Access visible in Client Portal');
+  if(document.body.innerText.includes('نحن هنا لمساعدتك'))fail('forbidden welcome/helper copy visible');
+  const fullLogos=[...document.querySelectorAll('.portal-logo-full')].map(x=>getComputedStyle(x)),markLogo=css('.portal-logo-mark');if(innerWidth<=760){if(fullLogos.some(x=>x.display!=='none')||markLogo?.display==='none')fail('mobile portal brand is not icon-only')}else{if(!fullLogos.some(x=>x.display!=='none')||markLogo?.display!=='none')fail('desktop portal full brand not visible')}
+  if(mode==='support'||mode==='closed'){
+    const ws=rect('.portal-ticket-workspace'),side=rect('.portal-ticket-sidebar'),detail=rect('.portal-ticket-detail-panel');
+    if(!ws||!side||!detail)fail('ticket workspace missing');
+    if(innerWidth>=761&&ws&&side&&detail){const sr=side.width/ws.width,dr=detail.width/ws.width;if(sr<.30||sr>.42)fail('ticket list ratio outside 30-42%');if(dr<.56||dr>.69)fail('ticket detail ratio outside 56-69%')}
+    if(innerWidth<=760){if(css('.portal-ticket-sidebar')?.display!=='none')fail('mobile selected ticket list still visible');if(css('.portal-ticket-detail-panel')?.display==='none')fail('mobile selected ticket detail hidden');if(css('.portal-ticket-mobile-back')?.display==='none')fail('mobile ticket back action missing')}
+    const message=rect('.portal-message .portal-message-content');if(innerWidth>=768&&message&&message.width<220)fail('ticket message collapsed');
+    const composer=el('#portalReplyForm'),closed=el('#portalClosedNotice'),cta=el('#portalClosedNewTicket');
+    if(mode==='closed'){if(!composer?.hidden)fail('closed ticket composer visible');if(closed?.hidden)fail('closed ticket notice hidden');if(cta?.hidden)fail('closed ticket new-ticket CTA hidden')}
+  }
+  if(mode==='execution'){
+    const stages=[...document.querySelectorAll('.portal-stage')];if(stages.length<2)fail('execution stages missing');
+    if(innerWidth>=901&&getComputedStyle(el('.portal-execution-board')).gridTemplateColumns.split(' ').length<2)fail('desktop execution is not compact two-column');
+    if(stages.some(s=>s.getBoundingClientRect().height>320))fail('execution stage became giant vertical card');
+  }
+  if(mode==='overview'){
+    const cards=[...document.querySelectorAll('.portal-info-card')];if(cards.length<4)fail('overview cards missing');
+    if(innerWidth>=1000&&cards.some(c=>c.getBoundingClientRect().width<150))fail('overview card cramped');
+  }
+  if(mode==='drawer'){
+    const drawer=rect('.portal-drawer');if(!drawer)fail('new ticket drawer missing');
+    if(innerWidth<=760&&drawer&&Math.abs(drawer.width-innerWidth)>2)fail('mobile new ticket drawer is not full width');
+    if(innerWidth>760&&drawer&&drawer.width>540)fail('desktop new ticket drawer too wide');
+  }
+  if(document.documentElement.dataset.theme==='light'){
+    const bg=getComputedStyle(document.documentElement).getPropertyValue('--portal-bg').trim();if(!bg||bg==='#02131f')fail('light theme palette not applied');
+  }
+  const out=document.createElement('output');out.id='nx-r4-portal-visual-gate';out.dataset.result=failures.length?'FAIL':'PASS';out.textContent=failures.length?failures.join(' | '):'PASS';out.style.display='none';document.body.append(out);
+})();</script>
+</body></html>

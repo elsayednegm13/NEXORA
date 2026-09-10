@@ -1,0 +1,81 @@
+<!doctype html><html lang="ar" dir="rtl" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../public/css/nexora-foundation.css"><link rel="stylesheet" href="../../public/admin/css/admin.css"></head><body class="project-workspace-open"><section class="project-workspace-layer is-open"><header class="project-workspace-topbar"><div class="project-workspace-brand"><strong>NEXORA</strong></div><div class="project-workspace-titlebar"><span class="eyebrow">CLIENT PROJECT / PRJ-001</span><strong>darfus_erp</strong></div><div class="project-workspace-actions"><button class="ghost-btn compact-btn">EN</button><button class="icon-btn">◐</button><button class="project-workspace-close">×</button></div></header><div class="project-workspace-body"><div class="project-workspace-shell"><section class="project-command-hero"><div class="project-command-main"><span class="project-command-avatar">DE</span><div class="project-command-copy"><span class="eyebrow">PRJ-001</span><h2>darfus_erp</h2><small>نظام متكامل لإدارة المؤسسات</small></div></div><div class="project-command-metrics"><div class="project-command-metric"><span class="project-command-icon">▣</span><div><small>العميل</small><strong>مثال عميل</strong><em>CU-003</em></div></div><div class="project-command-metric"><span class="project-command-icon">◫</span><div><small>الموعد المستهدف</small><strong>2026-10-15</strong><em>عالية</em></div></div><div class="project-command-progress" style="--project-progress:72"><div><strong>72%</strong></div><span>التقدم</span><small class="project-status">نشط</small></div></div></section><nav class="project-workspace-nav"><div class="project-workspace-primary"><button>▣ <span>بيانات المشروع</span></button><button>☷ <span>تنفيذ المشروع</span></button><button>▭ <span>التذاكر والدعم</span><b>3</b></button><button class="is-active">▱ <span>ملفات المشروع</span></button><button>↗ <span>وصول العميل</span></button></div><details class="project-workspace-more"><summary>••• <span>المزيد</span></summary></details></nav><main class="project-workspace-content"><section class="project-files-section"><div class="admin-files-workspace"><aside class="admin-folder-rail"><header class="admin-files-head"><div><span class="admin-workspace-icon">▱</span><div><strong>ملفات المشروع</strong><small>3</small></div></div></header><div class="admin-folder-list"><button class="is-active">▱ <span>كل ملفات المشروع</span><b>3</b></button><button>▰ <span>متطلبات العميل</span><b>2</b></button><button>▰ <span>تصاميم</span><b>1</b></button><button class="admin-new-folder">＋ <span>مجلد جديد</span></button></div><label class="admin-archive-toggle"><input type="checkbox"><span>إظهار المؤرشف</span></label></aside><section class="admin-files-list-pane"><header><div><strong>كل ملفات المشروع</strong><small>3</small></div><label class="primary-btn compact-btn admin-upload-btn">↑ رفع ملف</label></header><div class="admin-file-list"><button class="admin-file-row is-active"><span>▣</span><div><strong>dashboard-wide-reference.png</strong><small>متطلبات العميل · 214 KB</small></div><span class="nx-status-pill nx-tone-success">◉ للعميل</span></button><button class="admin-file-row"><span>PDF</span><div><strong>requirements-v2.pdf</strong><small>متطلبات العميل · 820 KB</small></div><span class="nx-status-pill nx-tone-success">◉ للعميل</span></button><button class="admin-file-row"><span>♫</span><div><strong>voice-note.webm</strong><small>كل ملفات المشروع · 94 KB</small></div><span class="nx-status-pill nx-tone-muted">● داخلي</span></button></div></section><section class="admin-file-detail"><div class="admin-file-detail-shell"><header><div><small>file_123</small><h3>dashboard-wide-reference.png</h3></div><div><button class="ghost-btn compact-btn">↗</button><button class="ghost-btn compact-btn">↓ تنزيل</button></div></header><div class="admin-file-preview"><img alt="preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='420'%3E%3Crect width='1400' height='420' fill='%230e4966'/%3E%3Ccircle cx='220' cy='210' r='120' fill='%2318c7ff' opacity='.45'/%3E%3Crect x='420' y='100' width='780' height='55' rx='12' fill='%23fff' opacity='.18'/%3E%3Crect x='420' y='190' width='560' height='38' rx='10' fill='%23fff' opacity='.12'/%3E%3C/svg%3E"></div><form class="admin-file-meta-form"><label><span>الاسم</span><input value="dashboard-wide-reference.png"></label><label><span>ملفات المشروع</span><select><option>متطلبات العميل</option></select></label><label><span>الظهور</span><select><option>للعميل</option></select></label><div class="form-actions"><button class="primary-btn compact-btn">حفظ</button><button class="danger-btn compact-btn">أرشفة الملف</button></div></form></div></section></div></section></main></div></div></section><script>document.documentElement.dataset.r4Mode="files";</script><script>(() => {
+  const mode = document.documentElement.dataset.r4Mode || 'support';
+  const failures = [];
+  const fail = (m) => failures.push(m);
+  const el = (s) => document.querySelector(s);
+  const rect = (s) => el(s)?.getBoundingClientRect() || null;
+  const css = (s) => el(s) ? getComputedStyle(el(s)) : null;
+  const withinViewport = (r) => r && r.left >= -1 && r.right <= innerWidth + 1 && r.top >= -1 && r.bottom <= innerHeight + 1;
+  const layer = rect('.project-workspace-layer');
+  const body = rect('.project-workspace-body');
+  const content = rect('.project-workspace-content');
+  if (!layer || !body || !content) fail('workspace shell missing');
+  if (document.documentElement.scrollWidth > document.documentElement.clientWidth + 1) fail('document horizontal overflow');
+  if (document.documentElement.scrollHeight > document.documentElement.clientHeight + 1) fail('document vertical overflow');
+  if (layer && (Math.abs(layer.width - innerWidth) > 2 || Math.abs(layer.height - innerHeight) > 2)) fail('workspace is not viewport-sized');
+  if (content && (content.height < 250 || !withinViewport(content))) fail('workspace content is clipped');
+
+  if (mode === 'support') {
+    const support = rect('.admin-support-workspace');
+    const side = rect('.admin-ticket-sidebar');
+    const detail = rect('.admin-ticket-detail');
+    if (!support || !detail) fail('ticket workspace missing');
+    if (support && content && Math.abs(support.height - content.height) > 2) fail('ticket workspace escapes content track');
+    if (innerWidth >= 761 && support && side && detail) {
+      const sideRatio = side.width / support.width;
+      const detailRatio = detail.width / support.width;
+      if (sideRatio < .30 || sideRatio > .42) fail('ticket list ratio outside 30-42%');
+      if (detailRatio < .56 || detailRatio > .69) fail('ticket detail ratio outside 56-69%');
+    }
+    const clientMessage = rect('.admin-message.is-client .admin-message-content');
+    if (clientMessage && clientMessage.width < 180 && innerWidth >= 768) fail('client message collapsed into narrow column');
+    const accessTab = [...document.querySelectorAll('[class*="project-workspace"] button')].find(b => b.textContent.includes('وصول العميل'));
+    if (!accessTab) fail('Client Access primary tab missing');
+    if (innerWidth >= 1024 && accessTab && !withinViewport(accessTab.getBoundingClientRect())) fail('Client Access tab not discoverable on desktop');
+    if (innerWidth <= 760) {
+      const back = el('.admin-ticket-mobile-back');
+      if (!back || css('.admin-ticket-mobile-back').display === 'none') fail('mobile ticket back action missing');
+      if (side && css('.admin-ticket-sidebar').display !== 'none') fail('mobile selected ticket still shows list pane');
+      if (detail && css('.admin-ticket-detail').display === 'none') fail('mobile selected ticket detail hidden');
+    }
+  }
+
+  if (mode === 'files') {
+    const ws = rect('.admin-files-workspace');
+    const folder = rect('.admin-folder-rail');
+    const list = rect('.admin-files-list-pane');
+    const detail = rect('.admin-file-detail');
+    if (!ws || !folder || !list || !detail) fail('three-pane file workspace missing');
+    if (ws && content && innerWidth >= 761 && Math.abs(ws.height - content.height) > 2) fail('files workspace escapes content track');
+    if (innerWidth >= 1024 && ws && folder && list && detail) {
+      const sum = folder.width + list.width + detail.width;
+      if (sum < ws.width * .88) fail('file panes do not use workspace width');
+      if (detail.width < ws.width * .35) fail('file preview pane too narrow');
+    }
+    const imgStyle = css('.admin-file-preview img');
+    if (!imgStyle || imgStyle.objectFit !== 'contain') fail('image preview is not object-fit contain');
+    if (innerWidth <= 760 && css('.admin-files-workspace')?.overflowY === 'visible') fail('mobile files lacks local scroll containment');
+  }
+
+  if (mode === 'access') {
+    const access = rect('.project-access-workspace');
+    const input = rect('.generated-project-link input');
+    const copy = rect('.generated-project-link .primary-btn');
+    const generate = rect('.project-access-form .primary-btn');
+    if (!access || !input || !copy || !generate) fail('client access link controls missing');
+    if (access && content && access.height > content.height + 2) fail('client access workspace escapes content track');
+    if (copy && (copy.width < 90 || copy.height < 36)) fail('copy-link action is not prominent');
+    if (generate && generate.height < 36) fail('generate-link action is not prominent');
+  }
+
+  const out = document.createElement('output');
+  out.id = 'nx-r4-visual-gate';
+  out.dataset.result = failures.length ? 'FAIL' : 'PASS';
+  out.dataset.mode = mode;
+  out.dataset.width = String(innerWidth);
+  out.dataset.height = String(innerHeight);
+  out.textContent = failures.length ? failures.join(' | ') : 'PASS';
+  out.style.display = 'none';
+  document.body.append(out);
+})();
+</script></body></html>

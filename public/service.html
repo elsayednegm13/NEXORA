@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (()=>{const r=document.documentElement;try{const l=localStorage.getItem('nexora_lang')==='ar'?'ar':'en';const s=localStorage.getItem('nexora_theme');const m=['light','dark','system'].includes(s)?s:'system';const t=m==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):m;r.lang=l;r.dir=l==='ar'?'rtl':'ltr';r.dataset.theme=t;r.classList.add('service-data-pending');setTimeout(()=>r.classList.remove('service-data-pending'),4500);if(l==='ar'){r.classList.add('i18n-preload','i18n-fade');setTimeout(()=>r.classList.remove('i18n-preload'),2500)}}catch(_){r.lang='en';r.dir='ltr'}})();
+  </script>
+  <style>html.i18n-preload{background:#03101b}html.i18n-preload[data-theme="light"]{background:#f4f8fc}html.i18n-fade body{transition:opacity .45s cubic-bezier(.22,1,.36,1)}html.i18n-preload body{visibility:hidden;opacity:0}html.service-data-pending .service-page main{visibility:hidden;opacity:0}html:not(.service-data-pending) .service-page main{transition:opacity .28s cubic-bezier(.22,1,.36,1)}@media(prefers-reduced-motion:reduce){html.i18n-fade body,html:not(.service-data-pending) .service-page main{transition:none}}</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#03101b">
+  <meta name="description" content="NEXORA Technologies service details.">
+  <title>NEXORA Technologies — Service</title>
+  <link rel="icon" href="assets/brand/favicon.ico">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/motion-polish.css">
+  <link rel="stylesheet" href="css/service.css">
+</head>
+<body class="service-page">
+  <div class="site-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html#home" aria-label="NEXORA home"><img class="brand-logo brand-logo--full" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><img class="brand-logo brand-logo--mark" src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></a>
+      <nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="index.html#home" data-i18n="nav_home">Home</a><a class="nav-link active" href="services.html" aria-current="page" data-i18n="nav_services">Services</a><a class="nav-link" href="work.html" data-i18n="nav_work">Work</a><a class="nav-link" href="index.html#packages" data-i18n="nav_packages">Packages</a><a class="nav-link" href="index.html#team" data-i18n="nav_about">About</a><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></nav>
+      <div class="nav-actions"><button class="icon-btn" data-theme-toggle type="button" aria-label="Change theme">◐</button><button class="lang-switch" data-lang-toggle type="button" aria-label="Switch language">AR</button><a class="btn btn--primary nav-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a><button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false"><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="menu-toggle-label" data-i18n="menu_label">Menu</span></button></div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" aria-hidden="true"><div class="drawer-backdrop"></div><aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation"><div class="drawer-head"><div class="drawer-brand-mark"><img src="assets/brand/nexora-mark-primary.png" alt="" aria-hidden="true"></div><button class="drawer-close" data-menu-close type="button" aria-label="Close menu"><span aria-hidden="true">×</span></button></div><div class="drawer-kicker" data-i18n="mobile_nav_kicker">Explore</div><nav class="drawer-links"><a href="index.html#home"><span class="drawer-index">01</span><span data-i18n="nav_home">Home</span></a><a class="active" href="services.html" aria-current="page"><span class="drawer-index">02</span><span data-i18n="nav_services">Services</span></a><a href="work.html"><span class="drawer-index">03</span><span data-i18n="nav_work">Work</span></a><a href="index.html#packages"><span class="drawer-index">04</span><span data-i18n="nav_packages">Packages</span></a><a href="index.html#team"><span class="drawer-index">05</span><span data-i18n="nav_about">About</span></a><a href="contact.html"><span class="drawer-index">06</span><span data-i18n="nav_contact">Contact</span></a></nav><div class="drawer-foot"><a class="btn btn--primary drawer-cta" href="contact.html"><span data-i18n="start_project">Start a Project</span><span class="arrow">→</span></a><p data-i18n="drawer_hint">Choose a section or start your project.</p></div></aside></div>
+
+  <main data-service-page>
+    <div class="service-progress" aria-hidden="true"><i></i></div>
+
+    <section class="service-hero">
+      <div class="service-hero-lines" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="service-breadcrumb reveal" aria-label="Breadcrumb"><a href="services.html" data-service-i18n="breadcrumb">Services</a><span>/</span><span data-service-number>01</span></nav>
+        <div class="service-hero-grid">
+          <div class="service-hero-copy reveal">
+            <div class="service-kicker"><span data-service-i18n="serviceLabel">Service</span><i></i><span data-service-position>01 / 05</span></div>
+            <h1 data-service-title>Service</h1>
+            <p class="service-hero-lead" data-service-short-description></p>
+            <div class="service-hero-actions"><a class="btn btn--primary" data-service-contact href="contact.html"><span data-service-i18n="start">Start a Project</span><span class="arrow">→</span></a><a class="btn btn--ghost" href="services.html"><span data-service-i18n="allServices">All Services</span><span class="arrow">←</span></a></div>
+          </div>
+          <div class="service-hero-visual reveal" aria-hidden="true">
+            <div class="service-visual-orbit"><i></i><i></i><i></i><span class="service-visual-icon" data-service-icon></span><strong data-service-number>01</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-summary">
+      <div class="container"><div class="service-summary-grid reveal"><div><span data-service-i18n="serviceLabel">Service</span><strong data-service-number>01</strong></div><div><span data-service-i18n="statusLabel">Status</span><strong data-service-i18n="available">Available</strong></div><div class="service-summary-wide"><span data-service-i18n="scopeLabel">Scope</span><strong data-service-i18n="tailored">Tailored to project needs</strong></div><div><span data-service-i18n="catalogLabel">Catalog</span><strong><span data-service-index>01</span> / <span data-service-total>05</span></strong></div></div></div>
+    </section>
+
+    <section class="service-content" data-service-optional="description" hidden>
+      <div class="container service-content-grid"><div class="service-content-heading reveal"><p class="eyebrow"><span data-section-number>01</span> / <span data-service-i18n="aboutEyebrow">ABOUT</span></p><h2 data-service-i18n="aboutTitle">About this service.</h2></div><div class="service-rich-copy reveal" data-service-description></div></div>
+    </section>
+
+    <section class="service-content" data-service-optional="capabilities" hidden>
+      <div class="container service-content-grid"><div class="service-content-heading reveal"><p class="eyebrow"><span data-section-number>01</span> / <span data-service-i18n="capabilitiesEyebrow">CAPABILITIES</span></p><h2 data-service-i18n="capabilitiesTitle">What can be included.</h2></div><div class="service-capability-list reveal" data-service-capabilities></div></div>
+    </section>
+
+    <section class="service-content" data-service-optional="technologies" hidden>
+      <div class="container service-content-grid"><div class="service-content-heading reveal"><p class="eyebrow"><span data-section-number>01</span> / <span data-service-i18n="techEyebrow">TECHNOLOGIES</span></p><h2 data-service-i18n="techTitle">Tools selected for the job.</h2></div><div class="service-tech-list reveal" data-service-technologies></div></div>
+    </section>
+
+    <section class="service-method" data-service-section>
+      <div class="container">
+        <div class="service-section-head reveal"><div><p class="eyebrow"><span data-section-number>01</span> / <span data-service-i18n="methodEyebrow">DELIVERY</span></p><h2 data-service-i18n="methodTitle">From scope to launch.</h2></div><p data-service-i18n="methodCopy">The exact scope changes, but the delivery discipline stays clear from discovery through release.</p></div>
+        <div class="service-method-grid"><article class="reveal"><span>01</span><h3 data-service-i18n="discover">Discover</h3><p data-service-i18n="discoverD">Clarify goals, users, constraints and success criteria.</p></article><article class="reveal"><span>02</span><h3 data-service-i18n="design">Design</h3><p data-service-i18n="designD">Shape the experience, structure and interaction model.</p></article><article class="reveal"><span>03</span><h3 data-service-i18n="build">Build</h3><p data-service-i18n="buildD">Develop, integrate and test with maintainable engineering.</p></article><article class="reveal"><span>04</span><h3 data-service-i18n="launch">Launch</h3><p data-service-i18n="launchD">Deploy, verify and prepare the product for real use.</p></article></div>
+      </div>
+    </section>
+
+    <section class="service-related" data-service-optional="relatedProjects" hidden>
+      <div class="container"><div class="service-section-head reveal"><div><p class="eyebrow"><span data-section-number>01</span> / <span data-service-i18n="relatedEyebrow">RELATED WORK</span></p><h2 data-service-i18n="relatedTitle">Projects using this service.</h2></div></div><div class="service-related-grid" data-service-related-projects></div></div>
+    </section>
+
+    <section class="service-next">
+      <div class="container"><div class="service-section-head reveal"><div><p class="eyebrow" data-service-i18n="continueEyebrow">NEXT / CONTINUE</p><h2 data-service-i18n="continueTitle">Explore another service.</h2></div><a class="service-all-link" href="services.html"><span data-service-i18n="allServices">All Services</span><span>→</span></a></div><a class="service-next-card reveal" data-next-service href="#"><div class="service-next-index"><span data-service-i18n="nextService">Next Service</span><strong data-next-number>02</strong></div><div class="service-next-icon" data-next-icon aria-hidden="true"></div><div class="service-next-copy"><h3 data-next-title>Next Service</h3><p data-next-description></p></div><span class="service-next-arrow">→</span></a></div>
+    </section>
+
+    <section class="service-cta">
+      <div class="container"><div class="service-cta-card reveal"><div><p class="eyebrow" data-service-i18n="ctaEyebrow">YOUR PROJECT</p><h2 data-service-i18n="ctaTitle">Need this service for your project?</h2><p data-service-i18n="ctaCopy">Tell us what you’re building and we’ll help shape the right scope.</p></div><a class="btn btn--primary" data-service-contact href="contact.html"><span data-service-i18n="start">Start a Project</span><span class="arrow">→</span></a><div class="service-cta-orbit" aria-hidden="true"></div></div></div>
+    </section>
+
+    <section class="service-not-found" data-service-not-found hidden><div class="container service-not-found-inner"><span>404</span><h1 data-service-i18n="notFoundTitle">Service not found.</h1><p data-service-i18n="notFoundCopy">This service is not available in the current catalog.</p><a class="btn btn--primary" href="services.html"><span data-service-i18n="allServices">All Services</span><span class="arrow">→</span></a></div></section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><div class="footer-brand"><img class="footer-logo" data-brand-logo src="assets/brand/nexora-logo-dark.png" alt="NEXORA Technologies"><span data-i18n="footer_copy">Building a better digital tomorrow.</span></div><nav class="footer-nav"><a href="index.html#home" data-i18n="nav_home">Home</a><a href="services.html" data-i18n="nav_services">Services</a><a href="work.html" data-i18n="nav_work">Work</a><a href="index.html#packages" data-i18n="nav_packages">Packages</a><a href="index.html#team" data-i18n="nav_about">About</a><a href="contact.html" data-i18n="nav_contact">Contact</a></nav><div class="footer-right"><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Email">@</a></div><span class="footer-copy" data-i18n="rights">© 2026 NEXORA Technologies. All rights reserved.</span></div></div></footer>
+
+  <script src="js/runtime-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/services-data.js"></script>
+  <script src="js/api-client.js"></script>
+  <script src="js/repositories/services-repository.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/service.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/perf-debug.js"></script>
+</body>
+</html>
