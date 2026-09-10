@@ -33,4 +33,3 @@ assert.ok(css.includes('background:linear-gradient(180deg,rgba(54,207,255,.34),r
 assert.ok(css.includes('html[data-theme="light"] #appView'),'Independent Light theme foundation missing');
 console.log('R5_ADMIN_FOUNDATION_SOURCE_PASS');
 console.log('BROWSER_VISUAL_ACCEPTANCE: NOT_RUN. Source checks cannot certify pixel or interaction parity.');
-
