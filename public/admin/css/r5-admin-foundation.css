@@ -562,6 +562,107 @@ html[data-theme="light"] #detailDrawer .drawer-head {background:rgba(248,252,254
   #detailDrawer .drawer-body {padding-inline:12px}
 }
 
+/* R5.2 — mobile data IA: rows become readable records instead of a squeezed desktop table. */
+@media(max-width:700px) {
+  #appView .table-wrap {overflow:visible}
+  #appView table {display:block;min-width:0;border-collapse:separate}
+  #appView table thead {
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    clip-path:inset(50%);
+    white-space:nowrap;
+    border:0;
+  }
+  #appView table tbody {display:grid;gap:8px;padding:8px}
+  #appView table tbody tr {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:0 10px;
+    padding:9px 10px;
+    border:1px solid var(--nx-r5-line);
+    border-radius:11px;
+    background:var(--nx-r5-surface-2);
+  }
+  #appView table tbody tr:hover {background:rgba(54,207,255,.055)}
+  #appView table tbody td {
+    min-width:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 0;
+    border-bottom:1px solid var(--nx-r5-line);
+    font-size:9px;
+    text-align:end;
+  }
+  #appView table tbody td:not(:first-child):not(:last-child)::before {
+    flex:0 0 auto;
+    color:var(--nx-r5-subtle);
+    font-size:8px;
+    font-weight:700;
+  }
+  #appView table tbody td:first-child {
+    grid-column:1;
+    padding:0 0 8px;
+    justify-content:flex-start;
+    text-align:start;
+  }
+  #appView table tbody td:first-child::before {display:none}
+  #appView table tbody td:last-child {
+    grid-column:2;
+    grid-row:1;
+    align-self:start;
+    padding:0 0 8px;
+    border-bottom:0;
+    justify-content:flex-end;
+  }
+  #appView table tbody td:last-child::before {display:none}
+  #appView table tbody td:last-child.row-action {font-size:14px}
+  #appView table tbody td[colspan] {
+    grid-column:1/-1;
+    display:block;
+    padding:0;
+    border-bottom:0;
+    text-align:center;
+  }
+  #appView table tbody td[colspan]::before {display:none}
+  #appView table tbody td > strong,
+  #appView table tbody td > small,
+  #appView table tbody td > .table-client-cell,
+  #appView table tbody td > .project-progress {min-width:0}
+
+  #appView #view-inquiries table tbody td:nth-child(2)::before {content:"المصدر"}
+  #appView #view-inquiries table tbody td:nth-child(3)::before {content:"الحالة"}
+  #appView #view-inquiries table tbody td:nth-child(4)::before {content:"التاريخ"}
+  #appView #view-clients table tbody td:nth-child(2)::before {content:"جهة الاتصال"}
+  #appView #view-clients table tbody td:nth-child(3)::before {content:"الحالة"}
+  #appView #view-clients table tbody td:nth-child(4)::before {content:"الطلبات المرتبطة"}
+  #appView #view-clients table tbody td:nth-child(5)::before {content:"آخر تحديث"}
+  #appView #view-client-projects table tbody td:nth-child(2)::before {content:"العميل"}
+  #appView #view-client-projects table tbody td:nth-child(3)::before {content:"الحالة"}
+  #appView #view-client-projects table tbody td:nth-child(4)::before {content:"التقدم"}
+  #appView #view-client-projects table tbody td:nth-child(5)::before {content:"الموعد المستهدف"}
+  #appView #view-client-projects table tbody td:nth-child(6)::before {content:"آخر تحديث"}
+
+  html[lang="en"] #appView #view-inquiries table tbody td:nth-child(2)::before {content:"Source"}
+  html[lang="en"] #appView #view-inquiries table tbody td:nth-child(3)::before {content:"Status"}
+  html[lang="en"] #appView #view-inquiries table tbody td:nth-child(4)::before {content:"Date"}
+  html[lang="en"] #appView #view-clients table tbody td:nth-child(2)::before {content:"Contact"}
+  html[lang="en"] #appView #view-clients table tbody td:nth-child(3)::before {content:"Status"}
+  html[lang="en"] #appView #view-clients table tbody td:nth-child(4)::before {content:"Linked inquiries"}
+  html[lang="en"] #appView #view-clients table tbody td:nth-child(5)::before {content:"Updated"}
+  html[lang="en"] #appView #view-client-projects table tbody td:nth-child(2)::before {content:"Client"}
+  html[lang="en"] #appView #view-client-projects table tbody td:nth-child(3)::before {content:"Status"}
+  html[lang="en"] #appView #view-client-projects table tbody td:nth-child(4)::before {content:"Progress"}
+  html[lang="en"] #appView #view-client-projects table tbody td:nth-child(5)::before {content:"Target date"}
+  html[lang="en"] #appView #view-client-projects table tbody td:nth-child(6)::before {content:"Updated"}
+}
+
 @media(prefers-reduced-motion:reduce) {
   #appView *,#detailDrawer * {transition:none!important;animation:none!important;scroll-behavior:auto!important}
 }
