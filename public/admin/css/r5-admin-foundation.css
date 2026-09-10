@@ -465,3 +465,4 @@ html[data-theme="light"] #detailDrawer .drawer-head {background:rgba(248,252,254
 @media(prefers-reduced-motion:reduce) {
   #appView *,#detailDrawer * {transition:none!important;animation:none!important;scroll-behavior:auto!important}
 }
+
