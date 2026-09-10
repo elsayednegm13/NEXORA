@@ -1,0 +1,1 @@
+{"name":"nexora-r5-local-ui-proof","private":true,"type":"module","scripts":{"dev":"node server.mjs"}}
