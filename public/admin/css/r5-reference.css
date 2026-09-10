@@ -1,0 +1,212 @@
+/* R5 reference correction. Source: NEXORA_R5_SUPPORT_WORKSPACE_DESIGN_PROTOTYPE.html.
+   Scope: the dedicated project workspace. Keep the established application behavior. */
+#projectWorkspaceLayer {
+  --bg:#06111a; --surface:#0a1721; --surface-2:#0d1d29; --surface-3:#102431;
+  --line:rgba(133,188,216,.13); --line-strong:rgba(77,205,255,.28);
+  --text:#f4f8fb; --muted:#8ca2b1; --subtle:#637987; --cyan:#36cfff; --blue:#3988ff;
+  --green:#54d49a; --amber:#ffcc72; --danger:#ff7584;
+  --panel:var(--surface); --panel2:var(--surface-2); --panel-2:var(--surface-2);
+  --input-bg:#071722; --accent:var(--cyan); --r1:10px; --r2:14px; --r3:18px;
+  --conv-bg:rgba(8,22,32,.76); --top-bg:rgba(6,17,26,.88); --head-bg:rgba(7,20,30,.72);
+  --context-bg:linear-gradient(180deg,rgba(11,27,39,.68),rgba(7,19,28,.58));
+  --composer-bg:rgba(6,18,27,.92); --control-bg:#081925; --bubble-bg:#0b2230;
+  --client-bubble:linear-gradient(135deg,#0c2a3b,#0a2432); --avatar-bg:#0c2432;
+  --scroll-thumb:rgba(88,174,208,.42);
+  grid-template-rows:58px minmax(0,1fr);
+  background:radial-gradient(900px 520px at 84% -10%,rgba(54,207,255,.09),transparent 60%),var(--bg);
+  color:var(--text); font-family:Inter,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+html[data-theme="light"] #projectWorkspaceLayer {
+  --bg:#f1f6f9; --surface:#fff; --surface-2:#f5f9fc; --surface-3:#e9f1f6;
+  --line:rgba(36,82,106,.16); --line-strong:rgba(12,126,167,.3);
+  --text:#132c3d; --muted:#486879; --subtle:#5d7685; --cyan:#087ea5;
+  --green:#16794f; --amber:#94631b; --danger:#b33146;
+  --input-bg:#f7fafc; --conv-bg:rgba(255,255,255,.94); --top-bg:rgba(248,252,254,.95);
+  --head-bg:#f8fbfd; --context-bg:linear-gradient(180deg,#f5fafc,#edf5f9);
+  --composer-bg:#fff; --control-bg:#fff; --bubble-bg:#f1f6fa;
+  --client-bubble:linear-gradient(135deg,#e5f4fb,#edf8fc); --avatar-bg:#e9f3f8;
+  --scroll-thumb:rgba(37,111,147,.46);
+}
+#projectWorkspaceLayer, #projectWorkspaceLayer * {box-sizing:border-box; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent}
+#projectWorkspaceLayer [hidden] {display:none!important}
+#projectWorkspaceLayer button, #projectWorkspaceLayer input, #projectWorkspaceLayer select, #projectWorkspaceLayer textarea {font-family:inherit}
+#projectWorkspaceLayer :focus-visible {outline:2px solid var(--cyan); outline-offset:2px}
+#projectWorkspaceLayer .project-workspace-topbar {grid-template-columns:auto minmax(0,1fr) auto;gap:18px;padding:0 20px;border-color:var(--line);background:var(--top-bg);backdrop-filter:blur(16px)}
+#projectWorkspaceLayer .project-workspace-brand {height:38px;direction:ltr}
+#projectWorkspaceLayer .project-workspace-brand img {width:132px;height:38px;object-fit:contain}
+#projectWorkspaceLayer .project-workspace-brand .project-mark {display:none}
+#projectWorkspaceLayer .project-workspace-titlebar {display:flex;align-items:center;gap:8px;text-align:start;color:var(--muted);font-size:12px}
+#projectWorkspaceLayer .project-workspace-titlebar .eyebrow {font-size:12px;letter-spacing:0;color:var(--muted);font-weight:400}
+#projectWorkspaceLayer .project-workspace-titlebar strong {font-size:12px;font-weight:650;color:var(--text)}
+#projectWorkspaceLayer .project-workspace-actions {gap:7px}
+#projectWorkspaceLayer .project-workspace-actions button {display:inline-flex;align-items:center;justify-content:center;height:34px;min-height:34px;min-width:0;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--muted);font-size:12px;box-shadow:none}
+#projectWorkspaceLayer .project-workspace-actions .icon-btn, #projectWorkspaceLayer .project-workspace-close {width:34px;padding:0}
+#projectWorkspaceLayer .project-workspace-body {padding:0;min-width:0;min-height:0;overflow:hidden}
+#projectWorkspaceLayer .project-workspace-shell {width:100%;max-width:none;margin:0;grid-template-rows:72px minmax(0,1fr);gap:0}
+#projectWorkspaceLayer .project-context-row {display:grid;grid-template-columns:minmax(260px,1fr) auto auto;align-items:center;gap:20px;padding:8px 20px;border-bottom:1px solid var(--line);background:var(--context-bg);min-width:0}
+#projectWorkspaceLayer .project-command-hero {display:contents}
+#projectWorkspaceLayer .project-command-hero:after {display:none}
+#projectWorkspaceLayer .project-command-main {display:flex;gap:12px}
+#projectWorkspaceLayer .project-command-avatar {width:40px;height:40px;flex-basis:40px;border-radius:12px;background:linear-gradient(135deg,rgba(54,207,255,.18),rgba(57,136,255,.09));border:1px solid var(--line-strong);font-size:14px;font-weight:800;color:var(--cyan)}
+#projectWorkspaceLayer .project-command-meta {display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted)}
+#projectWorkspaceLayer .project-command-copy .eyebrow {font-size:10px;color:var(--muted);letter-spacing:0;font-weight:400}
+#projectWorkspaceLayer .project-command-status {display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--green);white-space:nowrap}
+#projectWorkspaceLayer .project-command-status:before {content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+#projectWorkspaceLayer .project-command-status.project-status-on_hold {color:var(--amber)}
+#projectWorkspaceLayer .project-command-status.project-status-cancelled {color:var(--danger)}
+#projectWorkspaceLayer .project-command-status.project-status-archived {color:var(--muted)}
+#projectWorkspaceLayer .project-command-copy h2 {font-size:16px;line-height:1.2;letter-spacing:0;margin:4px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+#projectWorkspaceLayer .project-command-metrics {display:flex;align-items:center;gap:18px}
+#projectWorkspaceLayer .project-command-metric {display:grid;grid-template-columns:minmax(0,1fr);gap:2px;min-width:88px;max-width:156px;padding:0;border:0}
+#projectWorkspaceLayer .project-command-metric small {color:var(--subtle);font-size:9px}
+#projectWorkspaceLayer .project-command-metric strong {margin:2px 0 0;font-size:11px;font-weight:650;color:var(--text)}
+#projectWorkspaceLayer .project-command-progress {display:flex;align-items:center;gap:8px}
+#projectWorkspaceLayer .project-command-progress>div {width:96px;height:5px;border:0;border-radius:99px;background:var(--surface-3);box-shadow:none;overflow:hidden}
+#projectWorkspaceLayer .project-command-progress>div:after {display:none}
+#projectWorkspaceLayer .project-command-progress i {display:block;width:calc(var(--project-progress) * 1%);height:100%;background:linear-gradient(90deg,#36cfff,#3988ff)}
+#projectWorkspaceLayer .project-command-progress b {font-size:11px}
+#projectWorkspaceLayer .project-workspace-nav {display:flex;align-items:center;gap:3px;position:relative;top:auto;min-height:0;padding:3px;margin:0;border-radius:11px;border:1px solid var(--line);background:rgba(133,188,216,.025);backdrop-filter:none}
+#projectWorkspaceLayer .project-workspace-primary {display:flex;gap:3px;min-width:0}
+#projectWorkspaceLayer .project-workspace-nav button, #projectWorkspaceLayer .project-workspace-more>summary {height:32px;min-height:32px;min-width:0;padding:0 10px;font-size:10px;font-weight:700;border:0;border-radius:8px;color:var(--muted);gap:0}
+#projectWorkspaceLayer .project-workspace-primary button>.nexora-fa, #projectWorkspaceLayer #adminTicketNavCount {display:none}
+#projectWorkspaceLayer .project-workspace-nav button.is-active {color:var(--text);background:rgba(54,207,255,.09);box-shadow:inset 0 0 0 1px rgba(54,207,255,.18)}
+#projectWorkspaceLayer .project-workspace-more>summary {width:30px;padding:0}
+#projectWorkspaceLayer .project-workspace-more>summary span {display:none}
+#projectWorkspaceLayer .project-workspace-more>div {background:var(--surface);border-color:var(--line);z-index:15}
+#projectWorkspaceLayer .project-workspace-content {padding:12px 20px 18px;min-height:0;grid-template-columns:minmax(0,1fr)}
+#projectWorkspaceLayer .project-workspace-content>[data-project-module] {border-color:var(--line);background:var(--surface)}
+#projectWorkspaceLayer .project-support-section, #projectWorkspaceLayer #projectSupportRoot {min-width:0;min-height:0;overflow:hidden;background:transparent!important}
+#projectWorkspaceLayer .admin-support-workspace {height:100%;min-height:0;min-width:0;display:grid;grid-template-columns:minmax(300px,.31fr) minmax(0,.69fr);gap:12px;overflow:hidden}
+#projectWorkspaceLayer .admin-ticket-sidebar, #projectWorkspaceLayer .admin-ticket-detail {height:100%;margin:0;border:1px solid var(--line);background:var(--conv-bg);box-shadow:0 12px 34px rgba(0,0,0,.12);min-width:0;min-height:0}
+#projectWorkspaceLayer .admin-ticket-sidebar {padding:0;gap:0;grid-template-rows:auto minmax(0,1fr);border-radius:var(--r3) 0 0 var(--r3)}
+#projectWorkspaceLayer .admin-ticket-detail {border-radius:0 var(--r3) var(--r3) 0;overflow:hidden}
+html[dir="ltr"] #projectWorkspaceLayer .admin-ticket-sidebar {border-radius:0 var(--r3) var(--r3) 0}
+html[dir="ltr"] #projectWorkspaceLayer .admin-ticket-detail {border-radius:var(--r3) 0 0 var(--r3)}
+#projectWorkspaceLayer .admin-ticket-list-head {padding:12px 12px 10px;border-bottom:1px solid var(--line)}
+#projectWorkspaceLayer .admin-ticket-head {gap:10px}
+#projectWorkspaceLayer .admin-ticket-head>div {gap:9px}
+#projectWorkspaceLayer .admin-workspace-icon {width:30px;height:30px;border-radius:9px;background:rgba(54,207,255,.08);color:var(--cyan);border:1px solid rgba(54,207,255,.15)}
+#projectWorkspaceLayer .admin-ticket-head strong {font-size:12px}
+#projectWorkspaceLayer .admin-ticket-head small {font-size:9px;margin-top:2px;color:var(--muted)}
+#projectWorkspaceLayer .primary-btn {background:linear-gradient(135deg,#36cfff,#3988ff);color:#fff;border:0;box-shadow:none;transform:none}
+#projectWorkspaceLayer .admin-ticket-head .primary-btn {height:32px;min-height:32px;padding:0 11px;border-radius:9px;font-size:10px;font-weight:800;gap:4px;white-space:nowrap}
+#projectWorkspaceLayer .admin-ticket-tools {grid-template-columns:minmax(0,1fr) 112px;gap:7px;margin-top:9px}
+#projectWorkspaceLayer .admin-ticket-search, #projectWorkspaceLayer .admin-ticket-tools select {height:32px;min-height:32px;min-width:0;width:100%;border:1px solid var(--line);background:var(--input-bg);border-radius:9px;padding:0 9px;font-size:9px}
+#projectWorkspaceLayer .admin-ticket-search {gap:4px}
+#projectWorkspaceLayer .admin-ticket-search input {height:30px;min-height:0;padding:0;font-size:9px}
+#projectWorkspaceLayer .admin-ticket-list {padding:7px;gap:0;display:grid;align-content:start;background:transparent}
+#projectWorkspaceLayer .admin-ticket-row {padding:10px 8px;gap:8px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none;transform:none}
+#projectWorkspaceLayer .admin-ticket-row:last-child {border-bottom:0}
+#projectWorkspaceLayer .admin-ticket-row:hover {background:rgba(133,188,216,.035);transform:none}
+#projectWorkspaceLayer .admin-ticket-row.is-active {background:linear-gradient(90deg,rgba(54,207,255,.08),transparent 76%);box-shadow:inset -2px 0 0 var(--cyan)}
+html[dir="ltr"] #projectWorkspaceLayer .admin-ticket-row.is-active {background:linear-gradient(-90deg,rgba(54,207,255,.08),transparent 76%);box-shadow:inset 2px 0 0 var(--cyan)}
+#projectWorkspaceLayer .admin-ticket-row-main small {color:var(--subtle);font-size:8px}
+#projectWorkspaceLayer .admin-ticket-row-main strong {font-size:10.5px;margin:3px 0 4px;color:var(--text)}
+#projectWorkspaceLayer .admin-ticket-row-main span {font-size:8px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#projectWorkspaceLayer .admin-ticket-row-state {gap:4px;align-items:flex-start}
+#projectWorkspaceLayer .nx-status-pill {min-height:0;font-size:7px;font-weight:400;padding:3px 6px;gap:4px;line-height:1.2;background:transparent!important}
+#projectWorkspaceLayer .admin-ticket-detail-shell {display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;height:100%;min-width:0;min-height:0}
+#projectWorkspaceLayer .admin-ticket-detail-head {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--head-bg)}
+#projectWorkspaceLayer .admin-ticket-title-wrap {min-width:0;gap:7px;align-items:center}
+#projectWorkspaceLayer .admin-ticket-title-wrap>div {min-width:0}
+#projectWorkspaceLayer .admin-ticket-title-line {display:flex;align-items:center;gap:7px}
+#projectWorkspaceLayer .admin-ticket-title-line small {font-size:8px;color:var(--subtle)}
+#projectWorkspaceLayer .admin-ticket-detail-head h3 {font-size:13px;line-height:normal;margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#projectWorkspaceLayer .admin-live-chip {padding:0;min-height:0;border:0;border-radius:0;background:transparent;color:var(--amber);font-size:8px;font-weight:400;gap:5px;white-space:nowrap}
+#projectWorkspaceLayer .admin-live-chip.is-live {background:transparent;color:var(--green)}
+#projectWorkspaceLayer .admin-live-chip .nexora-fa {font-size:6px}
+#projectWorkspaceLayer .admin-ticket-control-group {display:contents}
+#projectWorkspaceLayer .admin-ticket-control-toggle {display:none}
+#projectWorkspaceLayer .admin-ticket-controls {display:flex;align-items:end;gap:6px;padding:0;border:0;background:transparent;min-width:0}
+#projectWorkspaceLayer .admin-ticket-controls label {display:grid;gap:3px;min-width:0}
+#projectWorkspaceLayer .admin-ticket-controls label>span {font-size:7px;color:var(--subtle)}
+#projectWorkspaceLayer .admin-ticket-controls select {height:31px;min-height:31px;width:108px;min-width:108px;border:1px solid var(--line);border-radius:8px;background:var(--control-bg);padding:0 8px;font-size:8px;color:var(--text)}
+#projectWorkspaceLayer .admin-ticket-controls [data-save-ticket] {height:31px;min-height:31px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);font-size:8px;gap:4px;white-space:nowrap}
+#projectWorkspaceLayer .admin-ticket-controls [data-save-ticket] .nexora-fa {display:none}
+#projectWorkspaceLayer .admin-ticket-thread {padding:14px 16px;gap:10px;min-width:0;min-height:0;overflow:auto;scrollbar-gutter:stable}
+#projectWorkspaceLayer .admin-message {max-width:min(72%,690px);grid-template-columns:28px minmax(0,1fr);gap:7px;align-items:start}
+#projectWorkspaceLayer .admin-message.is-client {grid-template-columns:minmax(0,1fr) 28px}
+#projectWorkspaceLayer .admin-message-avatar {width:28px;height:28px;min-width:28px;flex-basis:28px;border-radius:9px;background:var(--avatar-bg);border:1px solid var(--line);color:var(--cyan);font-size:9px;font-weight:850}
+#projectWorkspaceLayer .admin-message-content>header {margin:0 0 3px;gap:7px;color:var(--subtle);font-size:7px;flex-wrap:wrap}
+#projectWorkspaceLayer .admin-message-content>header strong {font-size:8px;color:var(--muted)}
+#projectWorkspaceLayer .admin-message-bubble {padding:8px 10px;font-size:10px;line-height:1.62;border:1px solid var(--line);border-radius:12px 12px 12px 4px;background:var(--bubble-bg);color:var(--text);overflow-wrap:anywhere}
+#projectWorkspaceLayer .admin-message.is-client .admin-message-bubble {background:var(--client-bubble);border-color:rgba(54,207,255,.17);border-radius:12px 12px 4px 12px}
+#projectWorkspaceLayer .admin-message.is-internal .admin-message-bubble {border-style:dashed}
+#projectWorkspaceLayer .admin-ticket-composer {display:block;padding:9px 10px;border-top:1px solid var(--line);background:var(--composer-bg);min-width:0;min-height:0}
+#projectWorkspaceLayer .admin-composer-row {display:grid;grid-template-columns:32px minmax(0,1fr) 100px auto;gap:6px;align-items:end;border:1px solid var(--line);border-radius:12px;background:var(--input-bg);padding:5px;min-width:0}
+#projectWorkspaceLayer .admin-composer-row [data-attach] {width:32px;height:34px;min-height:34px;border:0;background:transparent;color:var(--muted);border-radius:8px;padding:0}
+#projectWorkspaceLayer .admin-composer-row textarea {height:34px;min-height:34px;max-height:84px;width:100%;min-width:0;resize:none;border:0;border-radius:0;outline:0;background:transparent;padding:8px 5px;font-size:9px;line-height:1.5;grid-column:auto;box-shadow:none}
+#projectWorkspaceLayer .admin-composer-row textarea:focus-visible {outline:0;box-shadow:inset 0 -2px 0 var(--cyan)}
+#projectWorkspaceLayer .admin-composer-row select {height:34px;min-height:34px;width:100px;min-width:0;max-width:100%;grid-column:auto;border:0;border-inline-start:1px solid var(--line);border-radius:0;background:transparent;color:var(--muted);font-size:8px;padding:0 7px}
+#projectWorkspaceLayer .admin-composer-row button[type="submit"] {height:34px;min-height:34px;padding:0 12px;border-radius:8px;font-size:9px;font-weight:800;gap:4px;grid-column:auto;white-space:nowrap}
+#projectWorkspaceLayer .admin-pending-attachments {max-height:74px;overflow:auto;padding:0 0 6px}
+#projectWorkspaceLayer .admin-attachment {min-width:0;max-width:100%;background:var(--surface);border-color:var(--line)}
+#projectWorkspaceLayer .admin-ticket-empty {color:var(--muted)}
+#projectWorkspaceLayer .admin-ticket-create-drawer {background:var(--surface);border-color:var(--line);color:var(--text)}
+#projectWorkspaceLayer .admin-ticket-create-drawer input, #projectWorkspaceLayer .admin-ticket-create-drawer textarea, #projectWorkspaceLayer .admin-ticket-create-drawer select {background:var(--input-bg);color:var(--text);border-color:var(--line)}
+#projectWorkspaceLayer .admin-ticket-closed-note {margin:0;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--composer-bg);color:var(--muted)}
+#projectWorkspaceLayer ::-webkit-scrollbar {width:8px;height:8px}
+#projectWorkspaceLayer ::-webkit-scrollbar-track {background:transparent}
+#projectWorkspaceLayer ::-webkit-scrollbar-thumb {background:linear-gradient(180deg,rgba(54,207,255,.34),rgba(57,136,255,.24));border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+#projectWorkspaceLayer ::-webkit-scrollbar-thumb:hover {background:linear-gradient(180deg,rgba(54,207,255,.58),rgba(57,136,255,.42));background-clip:padding-box}
+html[data-theme="light"] #projectWorkspaceLayer ::-webkit-scrollbar-thumb {background:rgba(37,111,147,.46);background-clip:padding-box}
+@media(max-width:1180px) {
+  #projectWorkspaceLayer .project-context-row {grid-template-columns:minmax(0,1fr) auto}
+  #projectWorkspaceLayer .project-command-metrics {display:none}
+  #projectWorkspaceLayer .admin-ticket-controls select {min-width:88px;width:88px}
+}
+@media(max-width:900px) {
+  #projectWorkspaceLayer {grid-template-rows:52px minmax(0,1fr)}
+  #projectWorkspaceLayer .project-workspace-shell {grid-template-rows:64px minmax(0,1fr)}
+  #projectWorkspaceLayer .project-workspace-topbar {padding-inline:10px;gap:10px}
+  #projectWorkspaceLayer .project-workspace-brand img {display:none!important}
+  #projectWorkspaceLayer .project-workspace-brand .project-mark {display:block!important;width:38px;height:38px;object-fit:contain}
+  #projectWorkspaceLayer .project-context-row {padding-inline:10px;gap:12px}
+  #projectWorkspaceLayer .project-workspace-content {padding:8px 10px 10px}
+  #projectWorkspaceLayer .admin-support-workspace {display:block;position:relative}
+  #projectWorkspaceLayer .admin-ticket-sidebar, #projectWorkspaceLayer .admin-ticket-detail {height:100%;border-radius:14px;margin:0}
+  #projectWorkspaceLayer .admin-ticket-detail {display:none}
+  #projectWorkspaceLayer .admin-ticket-sidebar:has(.admin-ticket-row.is-active) {display:none}
+  #projectWorkspaceLayer .admin-ticket-sidebar:has(.admin-ticket-row.is-active)+.admin-ticket-detail {display:block}
+  #projectWorkspaceLayer .admin-ticket-mobile-back {display:inline-flex;align-items:center;justify-content:center;width:30px;min-height:31px;padding:0;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted)}
+  #projectWorkspaceLayer .admin-ticket-mobile-back span {display:none}
+  html[dir="ltr"] #projectWorkspaceLayer .admin-ticket-mobile-back .nexora-fa {transform:rotate(180deg)}
+  #projectWorkspaceLayer .admin-ticket-control-group {display:block}
+  #projectWorkspaceLayer .admin-ticket-control-toggle {display:flex;align-items:center;gap:5px;height:31px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);font-size:9px}
+  #projectWorkspaceLayer .admin-ticket-controls {display:none}
+  #projectWorkspaceLayer .admin-ticket-detail-head:has(.admin-ticket-control-toggle[aria-expanded="true"]) .admin-ticket-control-group {display:contents}
+  #projectWorkspaceLayer .admin-ticket-control-toggle[aria-expanded="true"]+.admin-ticket-controls {display:grid;grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:6px}
+  #projectWorkspaceLayer .admin-ticket-controls select {width:100%;min-width:0}
+  #projectWorkspaceLayer .admin-ticket-controls [data-save-ticket] {grid-column:auto}
+  #projectWorkspaceLayer .admin-message {max-width:88%}
+  #projectWorkspaceLayer .admin-composer-row {grid-template-columns:32px minmax(0,1fr) auto}
+  #projectWorkspaceLayer .admin-composer-row select {grid-column:2;grid-row:2;width:100%;height:24px;min-height:24px;border:0;padding:0 5px}
+  #projectWorkspaceLayer .admin-composer-row button[type="submit"] {grid-column:3;grid-row:1}
+  #projectWorkspaceLayer .project-workspace-primary {overflow:auto;max-width:48vw;scrollbar-width:thin}
+  #projectWorkspaceLayer .project-workspace-primary::-webkit-scrollbar {display:block;height:4px}
+}
+@media(max-width:520px) {
+  #projectWorkspaceLayer .project-workspace-titlebar {display:none}
+  #projectWorkspaceLayer .project-workspace-topbar {grid-template-columns:auto 1fr auto;padding-inline:9px}
+  #projectWorkspaceLayer .project-workspace-actions {grid-column:3}
+  #projectWorkspaceLayer .project-workspace-shell {grid-template-rows:auto minmax(0,1fr)}
+  #projectWorkspaceLayer .project-context-row {grid-template-columns:minmax(0,1fr);gap:8px;padding:8px 10px}
+  #projectWorkspaceLayer .project-command-main {gap:9px}
+  #projectWorkspaceLayer .project-command-avatar {width:32px;height:32px;flex-basis:32px;font-size:11px}
+  #projectWorkspaceLayer .project-command-copy h2 {font-size:14px}
+  #projectWorkspaceLayer .project-workspace-nav {width:100%;justify-content:space-between}
+  #projectWorkspaceLayer .project-workspace-primary {max-width:none;flex:1;justify-content:space-between;gap:0}
+  #projectWorkspaceLayer .project-workspace-nav button {padding:0 5px;font-size:9px}
+  #projectWorkspaceLayer .project-workspace-more>summary {width:24px}
+  #projectWorkspaceLayer .project-workspace-content {padding:7px 10px 10px}
+  #projectWorkspaceLayer .admin-ticket-detail-head {padding:11px 10px;gap:8px}
+  #projectWorkspaceLayer .admin-ticket-title-wrap {display:flex;width:auto;align-items:center}
+  #projectWorkspaceLayer .admin-message {max-width:94%}
+  #projectWorkspaceLayer .admin-ticket-composer {padding:7px}
+  #projectWorkspaceLayer .admin-composer-row button[type="submit"] {padding:0 10px}
+  #projectWorkspaceLayer .admin-ticket-control-toggle[aria-expanded="true"]+.admin-ticket-controls {grid-template-columns:repeat(2,minmax(0,1fr))}
+  #projectWorkspaceLayer .admin-ticket-create-drawer {width:100%}
+}
+@media(prefers-reduced-motion:reduce) {
+  #projectWorkspaceLayer, #projectWorkspaceLayer * {transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
