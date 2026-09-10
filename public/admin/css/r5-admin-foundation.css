@@ -1,0 +1,467 @@
+/*
+  NEXORA R5.1 Admin Foundation
+  Shared composition layer for the existing Admin shell.
+  Runtime behavior and module markup stay unchanged; the Project Workspace
+  reference layer remains intentionally scoped to #projectWorkspaceLayer.
+*/
+#appView {
+  --sidebar:236px;
+  --nx-r5-bg:#06111a;
+  --nx-r5-surface:#0a1721;
+  --nx-r5-surface-2:#0d1d29;
+  --nx-r5-surface-3:#102431;
+  --nx-r5-line:rgba(133,188,216,.13);
+  --nx-r5-line-strong:rgba(77,205,255,.28);
+  --nx-r5-text:#f4f8fb;
+  --nx-r5-muted:#8ca2b1;
+  --nx-r5-subtle:#637987;
+  --nx-r5-cyan:#36cfff;
+  --nx-r5-blue:#3988ff;
+  --nx-r5-green:#54d49a;
+  --nx-r5-amber:#ffcc72;
+  --nx-r5-danger:#ff7584;
+  background:var(--nx-r5-bg);
+  color:var(--nx-r5-text);
+  min-height:100vh;
+}
+
+html[data-theme="light"] #appView {
+  --nx-r5-bg:#f1f6f9;
+  --nx-r5-surface:#fff;
+  --nx-r5-surface-2:#f5f9fc;
+  --nx-r5-surface-3:#e9f1f6;
+  --nx-r5-line:rgba(36,82,106,.16);
+  --nx-r5-line-strong:rgba(12,126,167,.3);
+  --nx-r5-text:#132c3d;
+  --nx-r5-muted:#486879;
+  --nx-r5-subtle:#5d7685;
+  --nx-r5-cyan:#087ea5;
+  --nx-r5-green:#16794f;
+  --nx-r5-amber:#94631b;
+  --nx-r5-danger:#b33146;
+}
+
+#appView,
+#appView *,
+#detailDrawer,
+#detailDrawer * {
+  scrollbar-width:thin;
+  scrollbar-color:rgba(88,174,208,.42) transparent;
+}
+
+#appView ::-webkit-scrollbar,
+#detailDrawer ::-webkit-scrollbar {width:8px;height:8px}
+#appView ::-webkit-scrollbar-track,
+#detailDrawer ::-webkit-scrollbar-track {background:transparent}
+#appView ::-webkit-scrollbar-thumb,
+#detailDrawer ::-webkit-scrollbar-thumb {
+  background:linear-gradient(180deg,rgba(54,207,255,.34),rgba(57,136,255,.24));
+  border:2px solid transparent;
+  border-radius:999px;
+  background-clip:padding-box;
+}
+#appView ::-webkit-scrollbar-thumb:hover,
+#detailDrawer ::-webkit-scrollbar-thumb:hover {
+  background:linear-gradient(180deg,rgba(54,207,255,.58),rgba(57,136,255,.42));
+  background-clip:padding-box;
+}
+html[data-theme="light"] #appView ::-webkit-scrollbar-thumb,
+html[data-theme="light"] #detailDrawer ::-webkit-scrollbar-thumb {
+  background:rgba(37,111,147,.46);
+  background-clip:padding-box;
+}
+
+#appView :focus-visible,
+#detailDrawer :focus-visible {
+  outline:2px solid var(--nx-r5-cyan);
+  outline-offset:2px;
+}
+
+/* Global shell: one calm chrome layer around the active workspace. */
+#appView .sidebar {
+  width:var(--sidebar);
+  padding:20px 14px 16px;
+  background:rgba(6,17,26,.92);
+  border-inline-end:1px solid var(--nx-r5-line);
+  box-shadow:none;
+}
+html[data-theme="light"] #appView .sidebar {
+  background:rgba(248,252,254,.96);
+  border-inline-end-color:var(--nx-r5-line);
+  box-shadow:14px 0 42px rgba(40,79,102,.06);
+}
+html[dir="rtl"][data-theme="light"] #appView .sidebar {box-shadow:-14px 0 42px rgba(40,79,102,.06)}
+
+#appView .side-brand {
+  min-height:42px;
+  padding:3px 10px 22px;
+  gap:10px;
+}
+#appView .side-brand img {width:36px;height:36px}
+#appView .side-brand strong {font-size:13px;letter-spacing:.16em}
+#appView .side-brand span {font-size:8px;letter-spacing:.24em;margin-top:2px}
+#appView .side-nav {gap:3px}
+#appView .nav-group-label {
+  margin:15px 10px 5px;
+  color:var(--nx-r5-subtle);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+#appView .nav-item {
+  min-height:40px;
+  padding:0 10px;
+  gap:10px;
+  border:1px solid transparent;
+  border-radius:10px;
+  color:var(--nx-r5-muted);
+  transition:background .16s,border-color .16s,color .16s;
+}
+#appView .nav-item:hover {
+  color:var(--nx-r5-text);
+  background:rgba(133,188,216,.045);
+  border-color:var(--nx-r5-line);
+}
+#appView .nav-item.is-active {
+  color:var(--nx-r5-text);
+  background:rgba(54,207,255,.085);
+  border-color:rgba(54,207,255,.18);
+  box-shadow:inset 2px 0 0 var(--nx-r5-cyan);
+}
+html[dir="rtl"] #appView .nav-item.is-active {box-shadow:inset -2px 0 0 var(--nx-r5-cyan)}
+html[data-theme="light"] #appView .nav-item {color:var(--nx-r5-muted)}
+html[data-theme="light"] #appView .nav-item:hover,
+html[data-theme="light"] #appView .nav-item.is-active {color:var(--nx-r5-text)}
+html[data-theme="light"] #appView .nav-item.is-active {background:rgba(54,207,255,.1);border-color:rgba(12,126,167,.18)}
+#appView .nav-icon {width:20px;color:var(--nx-r5-cyan);font-size:13px}
+#appView .nav-badge {min-width:19px;height:19px;font-size:9px;background:var(--nx-r5-cyan)}
+#appView .side-bottom {gap:3px}
+
+#appView .workspace {margin-inline-start:var(--sidebar);min-width:0}
+#appView .topbar {
+  height:58px;
+  padding:0 20px;
+  gap:12px;
+  background:rgba(6,17,26,.84);
+  border-bottom:1px solid var(--nx-r5-line);
+  box-shadow:none;
+}
+html[data-theme="light"] #appView .topbar {background:rgba(248,252,254,.92)}
+#appView .top-title {min-width:0}
+#appView .top-title span {
+  font-size:8px;
+  letter-spacing:.12em;
+  color:var(--nx-r5-muted);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#appView .top-title h1 {
+  margin:2px 0 0;
+  color:var(--nx-r5-text);
+  font-size:15px;
+  line-height:1.2;
+  font-weight:700;
+}
+#appView .top-actions {gap:6px}
+#appView .top-actions .ghost-btn,
+#appView .top-actions .icon-btn {
+  height:34px;
+  min-height:34px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:9px;
+  background:transparent;
+  color:var(--nx-r5-muted);
+  box-shadow:none;
+}
+#appView .top-actions .ghost-btn {padding:0 10px;font-size:10px}
+#appView .top-actions .icon-btn {width:34px}
+#appView .admin-chip {
+  min-height:34px;
+  padding:4px 8px;
+  gap:8px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:9px;
+  background:rgba(133,188,216,.035);
+}
+#appView .admin-chip strong {font-size:10px}
+#appView .admin-chip small {font-size:8px;margin-top:1px;color:var(--nx-r5-subtle)}
+#appView .status-dot {width:6px;height:6px;box-shadow:0 0 0 4px rgba(84,212,154,.08)}
+
+/* Page context and primary work area. */
+#appView .content-wrap {
+  min-height:calc(100vh - 58px);
+  padding:18px 22px 34px;
+  background:radial-gradient(800px 380px at 80% -20%,rgba(54,207,255,.055),transparent 65%);
+}
+html[data-theme="light"] #appView .content-wrap {background:radial-gradient(800px 380px at 80% -20%,rgba(54,207,255,.09),transparent 65%)}
+#appView .view.is-active {animation:fadeUp .18s ease both}
+#appView .hero-panel {
+  min-height:146px;
+  height:146px;
+  padding:22px 24px;
+  grid-template-columns:minmax(0,1fr) 150px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:14px;
+  background:linear-gradient(120deg,rgba(54,207,255,.065),transparent 52%),var(--nx-r5-surface);
+  box-shadow:none;
+}
+#appView .hero-panel:before {display:none}
+#appView .hero-panel h2 {
+  max-width:660px;
+  margin:8px 0 7px;
+  color:var(--nx-r5-text);
+  font-size:clamp(23px,2.4vw,34px);
+  line-height:1.12;
+  letter-spacing:-.025em;
+}
+#appView .hero-panel p {max-width:620px;color:var(--nx-r5-muted);font-size:11px;line-height:1.6}
+#appView .hero-orbit {width:122px;height:122px}
+#appView .hero-orbit img {width:34px;filter:drop-shadow(0 0 18px rgba(54,207,255,.2))}
+#appView .hero-orbit .o1 {inset:12px}
+
+#appView .stats-grid {grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
+#appView .stat-card {
+  min-height:94px;
+  padding:13px 14px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:12px;
+  background:var(--nx-r5-surface);
+  box-shadow:none;
+}
+#appView .stat-card:after {width:52px;height:52px;top:-22px;inset-inline-end:-18px;background:rgba(54,207,255,.045)}
+#appView .stat-card span {font-size:9px;color:var(--nx-r5-muted)}
+#appView .stat-card strong {margin-top:11px;font-size:27px;line-height:1;letter-spacing:-.03em}
+#appView .stat-card small {font-size:8px}
+#appView .split-grid {grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:10px}
+#appView .panel {
+  padding:14px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:13px;
+  background:var(--nx-r5-surface);
+  box-shadow:none;
+}
+#appView .panel-head {margin-bottom:11px;gap:10px}
+#appView .panel-head h3 {margin:3px 0 0;font-size:13px}
+#appView .panel-head .eyebrow {font-size:8px;color:var(--nx-r5-muted)}
+#appView .recent-list {gap:2px}
+#appView .recent-item {padding:9px 7px;border-radius:8px;gap:9px}
+#appView .recent-item strong {font-size:10px}
+#appView .recent-item small {font-size:8px;margin-top:3px;color:var(--nx-r5-muted)}
+#appView .status-pill {min-width:62px;padding:4px 6px;font-size:7px;border-radius:999px;background:transparent}
+#appView .signal-grid {gap:0}
+#appView .signal-grid div {padding:9px 4px;font-size:9px}
+#appView .signal-grid b {font-size:8px}
+
+/* A command area joins directly to its data surface. */
+#appView .section-tools {
+  min-height:48px;
+  margin:0;
+  padding:8px 10px;
+  gap:7px;
+  border:1px solid var(--nx-r5-line);
+  border-bottom:0;
+  border-radius:13px 13px 0 0;
+  background:var(--nx-r5-surface);
+}
+#appView .section-tools .section-note {
+  margin-inline-end:auto;
+  color:var(--nx-r5-muted);
+  font-size:10px;
+  line-height:1.4;
+}
+#appView .section-tools .search-box {
+  flex:1 1 260px;
+  min-width:180px;
+  height:32px;
+  padding-inline:9px;
+  gap:6px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:8px;
+  background:var(--nx-r5-surface-2);
+}
+#appView .section-tools .search-box input {font-size:9px;padding:0}
+#appView .section-tools .select-input {
+  flex:0 1 155px;
+  min-width:116px;
+  height:32px;
+  min-height:32px;
+  padding:0 8px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:8px;
+  background:var(--nx-r5-surface-2);
+  font-size:9px;
+}
+#appView .section-tools .ghost-btn,
+#appView .section-tools .primary-btn {
+  height:32px;
+  min-height:32px;
+  padding:0 10px;
+  border-radius:8px;
+  font-size:9px;
+  box-shadow:none;
+  white-space:nowrap;
+}
+#appView .section-tools .live-sync {font-size:8px;white-space:nowrap;color:var(--nx-r5-muted)}
+#appView .table-panel {
+  border:1px solid var(--nx-r5-line);
+  border-radius:0 0 13px 13px;
+  background:var(--nx-r5-surface);
+  box-shadow:none;
+}
+#appView .table-wrap {scrollbar-gutter:stable;min-height:0}
+#appView table {min-width:720px}
+#appView th,
+#appView td {padding:11px 12px;border-bottom:1px solid var(--nx-r5-line);font-size:10px}
+#appView th {padding-top:9px;padding-bottom:9px;font-size:8px;letter-spacing:.08em;color:var(--nx-r5-subtle);background:rgba(133,188,216,.025)}
+#appView td small {font-size:8px;margin-top:3px;color:var(--nx-r5-muted)}
+#appView tbody tr:hover {background:rgba(54,207,255,.035)}
+#appView .table-footer {padding:8px 10px}
+#appView .table-footer .ghost-btn {height:30px;min-height:30px;padding:0 9px;font-size:9px}
+
+/* Entity grids remain entity cards, but no longer compete with page chrome. */
+#appView .manage-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#appView .manage-card {
+  min-width:0;
+  padding:11px;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  gap:11px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:12px;
+  background:var(--nx-r5-surface);
+  box-shadow:none;
+  transition:border-color .16s,background .16s;
+}
+#appView .manage-card:hover {border-color:var(--nx-r5-line-strong);background:var(--nx-r5-surface-2);transform:none}
+#appView .manage-visual {width:58px;height:52px;border-radius:9px;border-color:var(--nx-r5-line);background:var(--nx-r5-surface-2)}
+#appView .manage-visual b {font-size:16px;color:var(--nx-r5-cyan)}
+#appView .manage-card h3 {margin:0 0 4px;font-size:12px}
+#appView .manage-card p {max-width:100%;font-size:9px;color:var(--nx-r5-muted)}
+#appView .manage-meta {gap:5px;margin-top:7px}
+#appView .mini-pill {padding:3px 5px;font-size:7px;border-color:var(--nx-r5-line);background:transparent}
+#appView .row-action {font-size:14px;color:var(--nx-r5-cyan)}
+
+/* Drawers use the same context → content → action hierarchy. */
+#detailDrawer {
+  --nx-r5-bg:#06111a;
+  --nx-r5-surface:#0a1721;
+  --nx-r5-surface-2:#0d1d29;
+  --nx-r5-line:rgba(133,188,216,.13);
+  --nx-r5-text:#f4f8fb;
+  --nx-r5-muted:#8ca2b1;
+  --nx-r5-subtle:#637987;
+  --nx-r5-cyan:#36cfff;
+  width:min(720px,94vw);
+  background:var(--nx-r5-bg);
+  border-inline-start:1px solid var(--nx-r5-line);
+  box-shadow:-20px 0 60px rgba(0,0,0,.18);
+}
+html[data-theme="light"] #detailDrawer {
+  --nx-r5-bg:#f1f6f9;
+  --nx-r5-surface:#fff;
+  --nx-r5-surface-2:#f5f9fc;
+  --nx-r5-line:rgba(36,82,106,.16);
+  --nx-r5-text:#132c3d;
+  --nx-r5-muted:#486879;
+  --nx-r5-subtle:#5d7685;
+  --nx-r5-cyan:#087ea5;
+}
+html[dir="rtl"] #detailDrawer {box-shadow:20px 0 60px rgba(0,0,0,.18)}
+#detailDrawer .drawer-head {
+  min-height:72px;
+  padding:13px 18px;
+  background:rgba(6,17,26,.84);
+  border-bottom:1px solid var(--nx-r5-line);
+}
+html[data-theme="light"] #detailDrawer .drawer-head {background:rgba(248,252,254,.94)}
+#detailDrawer .drawer-head h2 {margin:3px 0 0;font-size:16px}
+#detailDrawer .drawer-body {padding:16px 18px 28px}
+#detailDrawer .detail-grid {gap:8px}
+#detailDrawer .detail-card,
+#detailDrawer .form-section {
+  padding:12px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:11px;
+  background:var(--nx-r5-surface);
+}
+#detailDrawer .detail-section {margin-top:16px}
+#detailDrawer .detail-section h3,
+#detailDrawer .form-section h3 {margin:0 0 9px;font-size:11px}
+#detailDrawer .field {gap:5px;margin-bottom:9px}
+#detailDrawer .field>span {font-size:9px;color:var(--nx-r5-muted)}
+#detailDrawer .field input,
+#detailDrawer .field textarea,
+#detailDrawer .select-input {
+  min-height:34px;
+  padding:8px 9px;
+  border-radius:8px;
+  font-size:10px;
+  background:var(--nx-r5-surface-2);
+  border-color:var(--nx-r5-line);
+}
+#detailDrawer .field textarea {min-height:84px}
+#detailDrawer .form-actions {bottom:-16px;padding:18px 0 3px}
+
+/* Auth remains a distinct entry point, but speaks the same visual language. */
+#loginView .auth-shell {max-width:600px;padding:36px clamp(26px,5vw,64px)}
+#loginView .auth-brand {top:26px}
+#loginView .auth-copy h1 {font-size:clamp(36px,4.5vw,58px);margin:13px 0 15px}
+#loginView .auth-copy p {font-size:13px;line-height:1.7}
+#loginView .auth-form {gap:12px;margin-top:24px}
+#loginView .auth-form input {min-height:40px;padding:10px 12px;border-radius:9px;font-size:11px}
+#loginView .primary-btn {min-height:40px;padding:10px 14px;border-radius:9px;box-shadow:none;font-size:11px}
+
+@media(max-width:1100px) {
+  #appView {--sidebar:220px}
+  #appView .content-wrap {padding-inline:16px}
+  #appView .hero-panel {grid-template-columns:minmax(0,1fr) 110px}
+  #appView .hero-orbit {width:94px;height:94px}
+  #appView .manage-grid {grid-template-columns:1fr}
+}
+
+@media(max-width:900px) {
+  #appView .topbar {height:56px;padding-inline:12px}
+  #appView .content-wrap {min-height:calc(100vh - 56px);padding:13px 12px 26px}
+  #appView .hero-panel {height:auto;min-height:126px;padding:18px}
+  #appView .hero-panel h2 {font-size:25px}
+  #appView .hero-orbit {display:none}
+  #appView .stats-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  #appView .section-tools {align-items:stretch;flex-wrap:wrap}
+  #appView .section-tools .search-box {flex-basis:100%;order:-2}
+  #appView .section-tools .live-sync {margin-inline-start:auto;align-self:center}
+  #appView .section-tools .select-input {flex:1 1 140px}
+  #appView .section-tools .ghost-btn,
+  #appView .section-tools .primary-btn {flex:0 0 auto}
+  #appView .manage-grid {grid-template-columns:1fr}
+  #appView .manage-card {grid-template-columns:58px minmax(0,1fr) auto}
+}
+
+@media(max-width:560px) {
+  #appView .topbar {padding-inline:9px;gap:8px}
+  #appView .top-title h1 {font-size:13px}
+  #appView .top-actions .admin-chip {padding-inline:5px;border-color:transparent;background:transparent}
+  #appView .top-actions .admin-chip div {display:none}
+  #appView .top-actions .ghost-btn {padding-inline:8px}
+  #appView .content-wrap {padding-inline:9px}
+  #appView .hero-panel {min-height:120px;padding:15px}
+  #appView .hero-panel h2 {font-size:22px}
+  #appView .hero-panel p {font-size:10px}
+  #appView .stats-grid {gap:7px}
+  #appView .stat-card {min-height:86px;padding:11px}
+  #appView .stat-card strong {font-size:24px}
+  #appView .panel {padding:11px}
+  #appView .split-grid {grid-template-columns:1fr}
+  #appView .section-tools {padding:8px;gap:6px}
+  #appView .section-tools .select-input {min-width:0}
+  #appView .section-tools .section-note {flex-basis:100%;order:-3}
+  #appView .table-panel {border-radius:0 0 11px 11px}
+  #appView .manage-card {padding:10px;gap:9px}
+  #appView .manage-visual {width:52px;height:48px}
+  #detailDrawer {width:100vw}
+  #detailDrawer .drawer-head {padding-inline:12px}
+  #detailDrawer .drawer-body {padding-inline:12px}
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #appView *,#detailDrawer * {transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
