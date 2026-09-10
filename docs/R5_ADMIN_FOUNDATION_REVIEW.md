@@ -11,6 +11,7 @@ This checkpoint applies the approved R5 composition language to the shared Admin
 - Client, inquiry and project tables kept as the dominant work surface.
 - Portfolio and Services cards treated as entity rows with controlled spacing and metadata hierarchy.
 - Detail drawers, login entry, Dark/Light semantics, RTL/LTR-safe spacing and NEXORA scrollbars.
+- Shared status chips, live-sync indicators, readonly controls, toast and confirm-dialog overlays use the same component language.
 - Responsive rules for tablet/mobile and reduced-motion preference.
 
 No API, Worker, D1, R2, migration, authentication, portal or realtime code is changed. This stylesheet is scoped to `#appView`/`#detailDrawer`; the Project Workspace reference stylesheet remains isolated in its own checkpoint.

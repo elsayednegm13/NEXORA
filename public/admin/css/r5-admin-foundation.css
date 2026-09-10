@@ -253,6 +253,106 @@ html[data-theme="light"] #appView .content-wrap {background:radial-gradient(800p
 #appView .signal-grid div {padding:9px 4px;font-size:9px}
 #appView .signal-grid b {font-size:8px}
 
+/* Shared component language: one semantic treatment across every module. */
+#appView .live-sync,
+#appView .client-status,
+#appView .project-status,
+#appView .profile-completion-status {
+  min-height:24px;
+  padding:3px 7px;
+  gap:5px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:999px;
+  background:transparent;
+  font-size:8px;
+  font-weight:700;
+  line-height:1.2;
+}
+#appView .live-sync {min-height:30px;padding-inline:8px;font-weight:500}
+#appView .live-sync>i,
+#appView .client-status:before,
+#appView .profile-completion-status i {
+  width:5px;
+  height:5px;
+  flex:0 0 5px;
+  box-shadow:none;
+}
+#appView .live-sync small {padding-inline-start:6px;font-size:7px;border-inline-start-color:var(--nx-r5-line)}
+#appView .client-status-active,
+#appView .project-status-completed,
+#appView .profile-completion-status.is-active {color:var(--nx-r5-green);border-color:rgba(84,212,154,.25)}
+#appView .client-status-on_hold,
+#appView .project-status-planning,
+#appView .project-status-on_hold {color:var(--nx-r5-amber);border-color:rgba(255,204,114,.25)}
+#appView .client-status-archived,
+#appView .project-status-cancelled,
+#appView .project-status-archived,
+#appView .profile-completion-status.is-expired,
+#appView .profile-completion-status.is-revoked {color:var(--nx-r5-subtle)}
+#appView .project-progress {height:5px;min-width:72px;border-radius:99px;background:var(--nx-r5-surface-3);overflow:hidden;display:flex;align-items:center;gap:5px}
+#appView .project-progress>span {height:100%;width:var(--progress);background:linear-gradient(90deg,var(--nx-r5-cyan),var(--nx-r5-blue));border-radius:inherit}
+#appView .project-progress>b {font-size:8px;font-weight:700;white-space:nowrap}
+#appView .detail-section-title {margin-bottom:10px}
+#appView .detail-section-title>span {font-size:11px;color:var(--nx-r5-text)}
+#appView .detail-section-title>small {font-size:8px;color:var(--nx-r5-subtle)}
+#appView .readonly-control {min-height:34px;padding:8px 9px;border-radius:8px;background:var(--nx-r5-surface-2);border-color:var(--nx-r5-line);font-size:10px}
+#appView .check-row {font-size:9px;color:var(--nx-r5-muted)}
+
+/* Toast and confirm dialog are global overlays, not ad-hoc browser chrome. */
+#toast {
+  --nx-r5-surface:#0a1721;
+  --nx-r5-line:rgba(133,188,216,.13);
+  --nx-r5-text:#f4f8fb;
+  --nx-r5-muted:#8ca2b1;
+  --nx-r5-cyan:#36cfff;
+  --nx-r5-green:#54d49a;
+  --nx-r5-danger:#ff7584;
+  right:20px;
+  inset-inline-end:20px;
+  bottom:20px;
+  min-width:240px;
+  max-width:min(380px,calc(100vw - 40px));
+  padding:9px 11px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:10px;
+  background:var(--nx-r5-surface);
+  color:var(--nx-r5-text);
+  box-shadow:0 14px 34px rgba(0,0,0,.2);
+  font-size:10px;
+}
+html[data-theme="light"] #toast {--nx-r5-surface:#fff;--nx-r5-line:rgba(36,82,106,.16);--nx-r5-text:#132c3d;box-shadow:0 14px 34px rgba(40,79,102,.14)}
+#toast .toast-icon {width:24px;height:24px;border-radius:7px;font-size:11px}
+#toast .toast-message {font-size:10px;color:inherit}
+#toast.ok {border-color:rgba(84,212,154,.3)}
+#toast.error {border-color:rgba(255,117,132,.34)}
+body>.nexora-confirm-layer {
+  --nx-r5-surface:#0a1721;
+  --nx-r5-surface-2:#0d1d29;
+  --nx-r5-line:rgba(133,188,216,.13);
+  --nx-r5-text:#f4f8fb;
+  --nx-r5-muted:#8ca2b1;
+  --nx-r5-cyan:#36cfff;
+  --nx-r5-danger:#ff7584;
+  background:rgba(3,12,19,.58);
+  backdrop-filter:blur(5px);
+}
+html[data-theme="light"] body>.nexora-confirm-layer {--nx-r5-surface:#fff;--nx-r5-surface-2:#f5f9fc;--nx-r5-line:rgba(36,82,106,.16);--nx-r5-text:#132c3d;--nx-r5-muted:#486879;--nx-r5-cyan:#087ea5;--nx-r5-danger:#b33146;background:rgba(36,82,106,.2)}
+body>.nexora-confirm-layer .nexora-confirm {
+  width:min(420px,calc(100vw - 28px));
+  padding:18px;
+  border:1px solid var(--nx-r5-line);
+  border-radius:14px;
+  background:var(--nx-r5-surface);
+  color:var(--nx-r5-text);
+  box-shadow:0 22px 60px rgba(0,0,0,.28);
+}
+body>.nexora-confirm-layer .nexora-confirm-mark {width:34px;height:34px;border-radius:10px;color:var(--nx-r5-cyan);background:rgba(54,207,255,.08);border-color:rgba(54,207,255,.18)}
+body>.nexora-confirm-layer .nexora-confirm-mark.is-danger {color:var(--nx-r5-danger);background:rgba(255,117,132,.08);border-color:rgba(255,117,132,.2)}
+body>.nexora-confirm-layer .nexora-confirm-copy h3 {font-size:14px;margin:0 0 5px}
+body>.nexora-confirm-layer .nexora-confirm-copy p {font-size:10px;line-height:1.6;color:var(--nx-r5-muted)}
+body>.nexora-confirm-layer .nexora-confirm-actions {gap:6px;margin-top:14px}
+body>.nexora-confirm-layer .nexora-confirm-actions button {min-height:32px;padding:0 10px;border-radius:8px;font-size:9px;box-shadow:none}
+
 /* A command area joins directly to its data surface. */
 #appView .section-tools {
   min-height:48px;
