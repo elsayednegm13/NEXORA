@@ -13,7 +13,7 @@
 - Reference SHA-256: `522fe882f7cb503e422d449dcf1f691ceb2eb8623594d41f77c1b1b8fd0475d6`.
 - Repository correction base: `elsayednegm13/NEXORA` commit `d4b11c9dea3227571a79d21aa7f87e62dee9c2be` (R4.2). The rejected R4.2 density block is removed; its composer width/grid containment remains. The three existing HTML/JS files receiving UI changes were verified byte-identical to the R4.1 Clean Full source. R5.1 screenshots remain a rejected candidate, not the implementation baseline.
 - R5.1 screenshots are evidence of the rejected candidate, not a new source of truth.
-- Do not broaden this correction to other Admin modules until the Support implementation has been compared visually with the reference.
+- The Support workspace remains the visual source of truth. Broader Admin Foundation work may be developed only as a separate review checkpoint; it is not an approved baseline and must not be merged or deployed until the Support implementation and the integrated Admin result have received visual review.
 
 | Reference property | Captured target |
 | --- | --- |
